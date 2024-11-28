@@ -1,13 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, inject, Injectable } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { environment } from '../../environment/environment';
 
-interface IAuth {
-  email: string;
-  password: string;
+interface IAuthResponse {
   token: string;
 }
 
@@ -35,7 +32,7 @@ export class AuthComponent {
   onSubmitAuth() {
     if (this.formAuth.valid) {
       this.httpClient
-        .post<IAuth>(`${environment.host}:${environment.port}/${environment.routerAuth}`, this.formAuth.value)
+        .post<IAuthResponse>(`${environment.host}:${environment.port}/${environment.routerAuth}`, this.formAuth.value)
         .subscribe({
           next: (response) => {
             console.log(response)
