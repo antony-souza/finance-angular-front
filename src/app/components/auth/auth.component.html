@@ -1,0 +1,19 @@
+<form [formGroup]="formAuth" (submit)="onSubmitAuth()">
+  <div>
+    <label for="email">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      formControlName="email"
+    />
+    <label for="password">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      formControlName="password"
+    />
+  </div>
+  <button [disabled]="!formAuth.valid" type="submit">Entrar</button>
+</form>
