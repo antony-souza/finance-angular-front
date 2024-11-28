@@ -3,6 +3,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { environment } from '../../environment/environment';
+import { routes } from '../../app/app.routes';
+import { Router } from '@angular/router';
 
 interface IAuthResponse {
   token: string;
@@ -18,7 +20,7 @@ interface IAuthResponse {
 
 
 export class AuthComponent {
-
+  private readonly router = inject(Router)
   private form = inject(FormBuilder)
   private validadtors = Validators
 
@@ -37,6 +39,7 @@ export class AuthComponent {
           next: (response) => {
             console.log(response)
             localStorage.setItem('token', response.token)
+            this.router.navigate(['/home'])
           }
         })
     }

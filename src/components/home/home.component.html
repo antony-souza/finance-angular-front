@@ -1,1 +1,17 @@
-<p>home works!</p>
+<div class="flex items-center p-5 gap-12">
+  <div
+    *ngFor="let user of users"
+    class="flex flex-col gap-5 bg-slate-700 p-5 items-center h-auto"
+  >
+    <img
+      [src]="user.image_url"
+      alt="avatar"
+      class="rounded-circle"
+      width="100"
+      height="100"
+    />
+    <h5 class="text-white">{{ user.name }}</h5>
+    <p class="text-red-500">Cargo: {{ user.role }}</p>
+    <p class="text-white">{{ user.email }}</p>
+  </div>
+</div>
