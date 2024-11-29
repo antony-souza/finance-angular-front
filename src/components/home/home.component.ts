@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { environment } from '../../environment/environment';
+import { routes } from '../../app/app.routes';
+import { Router } from '@angular/router';
 
 interface IUsersResponse {
   id: string
@@ -20,8 +22,10 @@ interface IUsersResponse {
   styleUrl: './home.component.scss'
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit{
   constructor(private readonly httpClient: HttpClient) { }
+
+  router = inject(Router)
 
   users: IUsersResponse[] = []
 
@@ -31,8 +35,17 @@ export class HomeComponent {
         .subscribe({
           next: (response) => {
             this.users = response
+            this.users.map((user,) => {
+              user.role = user.role === 'ADMIN' ? 'Administrador' : 'Usuário'
+            })
           }
         })
     }
   }
+
+  handleLogout() {
+    localStorage.removeItem('token')
+    this.router.navigate(['/'])
+  }
+
 }
