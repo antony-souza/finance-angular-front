@@ -4,7 +4,6 @@ import { HomeComponent } from '../components/home/home.component';
 import { RouterGuard } from '../guards/router-guards.guard';
 import { ChartsComponent } from '../components/charts/charts.component';
 
-
 export const routes: Routes =
     [
         {
