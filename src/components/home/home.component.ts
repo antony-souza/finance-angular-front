@@ -4,6 +4,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { environment } from '../../environment/environment';
 import { routes } from '../../app/app.routes';
 import { Router } from '@angular/router';
+import { ChartsComponent } from "../charts/charts.component";
 
 interface IUsersResponse {
   id: string
@@ -22,7 +23,7 @@ interface IUsersResponse {
   styleUrl: './home.component.scss'
 })
 
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
   constructor(private readonly httpClient: HttpClient) { }
 
   router = inject(Router)
