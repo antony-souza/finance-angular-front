@@ -1,42 +1,61 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { WebSocketService } from '../../web/socket.component'; // Seu serviço de WebSocket
-import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environment/environment';
+import { ChartService } from './services/chart.service';
+import { PieChartComponent } from "../pie-chart/pie-chart.component";
 
 Chart.register(...registerables)
+
+interface IChartInfo {
+  labels: string[];
+  data: number[];
+}
 
 @Component({
   selector: 'app-charts',
   templateUrl: './charts.component.html',
-  styleUrl: './charts.component.scss'
+  standalone: true,
+  styleUrl: './charts.component.scss',
+  imports: [PieChartComponent],
 })
-export class ChartsComponent implements OnInit {
+export class ChartBaseComponent implements OnInit {
 
-  chart: any = []
+  public chart: any;
+  private chartInfo: any;
+  private label: string[] = [];
+  private data: number[] = [];
 
   constructor(
-    private readonly webSocketService: WebSocketService,
-    private readonly httpClient: HttpClient) {
+    private readonly chartService: ChartService) {
   }
 
-  ngOnInit() {
-    this.chart = new Chart('canvas', {
+  ngOnInit(): void {
+    this.chartService.getChartInfo().subscribe((response) => {
+      this.chartInfo = response;
+      console.log(response)
+      if (this.chartInfo != null) {
+        for (let i = 0; i < this.chartInfo.length; i++) {
+          this.label.push(this.chartInfo[i].label);
+          this.data.push(this.chartInfo[i].data);
+        }
+        this.createChart(this.label, this.data);
+      }
+    });
+  }
+
+  createChart(labeldata: string[], realdata: any[]) {
+   /*  this.chart = new Chart('canvas', {
       type: 'pie',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: labeldata,
         datasets: [
           {
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1,
+            label: 'No of sales',
+            data: realdata,
           },
         ],
       },
-      options: {
-        animation: true,
-        responsive: true,
-      },
-    });
+    }) */
   }
 }

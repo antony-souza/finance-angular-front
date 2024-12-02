@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { AuthComponent } from '../components/auth/auth.component';
 import { HomeComponent } from '../components/home/home.component';
 import { RouterGuard } from '../guards/router-guards.guard';
-import { ChartsComponent } from '../components/charts/charts.component';
+import { ChartBaseComponent } from '../components/charts/charts.component';
 
 export const routes: Routes =
     [
@@ -17,7 +17,7 @@ export const routes: Routes =
         },
         {
             path: 'charts',
-            component: ChartsComponent,
+            component: ChartBaseComponent,
             canActivate: [RouterGuard]
         }
 
