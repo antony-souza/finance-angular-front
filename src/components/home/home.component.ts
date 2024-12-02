@@ -2,9 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { environment } from '../../environment/environment';
-import { routes } from '../../app/app.routes';
 import { Router } from '@angular/router';
-import { ChartsComponent } from "../charts/charts.component";
 
 interface IUsersResponse {
   id: string

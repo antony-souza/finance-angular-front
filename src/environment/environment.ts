@@ -3,7 +3,7 @@ class Environment {
     public readonly port: number = 8920;
     public readonly routerAuth: string = 'auth';
     public readonly getAllUsers: string = 'user/all';
-    public readonly charts: string = 'charts';
+    public readonly charts: string = 'charts/all';
 }
 
 export const environment = new Environment();
