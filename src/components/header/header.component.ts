@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ChartBaseComponent } from "../charts/charts.component";
 
 @Component({
   selector: 'app-header',

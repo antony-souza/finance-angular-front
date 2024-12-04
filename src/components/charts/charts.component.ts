@@ -1,16 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { WebSocketService } from '../../web/socket.component'; // Seu serviço de WebSocket
 import { ChartService } from './services/chart.service';
 import { CommonModule } from '@angular/common';
 
 Chart.register(...registerables);
-
-interface IChartInfo {
-  labels: string[];
-  data: number[];
-  type?: chartType;
-}
 
 type chartType = 'line' | 'bar' | 'pie' | 'doughnut' | 'radar' | 'polarArea' | 'bubble' | 'scatter';
 
@@ -23,16 +17,19 @@ type chartType = 'line' | 'bar' | 'pie' | 'doughnut' | 'radar' | 'polarArea' | '
 })
 export class ChartBaseComponent implements OnInit {
 
-  @ViewChild('barChart') barChartRef: ElementRef | undefined;
+  @Input() chartReference: string = '';
+  @Input() chartType: chartType = 'pie';
+  @Input() chartTitle: string = '';
+  @Input()
 
   public chart: any;
-  public chartInfo: any;
+  public chartInfo: any
   private label: string[] = [];
   private data: number[] = [];
 
   constructor(
-    private readonly chartService: ChartService,
-    private readonly webSocketService: WebSocketService
+    public readonly chartService: ChartService,
+    public readonly webSocketService: WebSocketService
   ) { }
 
   ngOnInit(): void {
@@ -45,8 +42,8 @@ export class ChartBaseComponent implements OnInit {
           this.data.push(this.chartInfo[i].data);
         }
 
-        if (this.barChartRef && this.barChartRef.nativeElement) {
-          this.renderChart(this.barChartRef.nativeElement, 'bar');
+        if (this.chartReference) {
+          this.renderChart(this.chartReference, this.chartType, this.label, this.data);
         }
       }
     });
@@ -62,14 +59,14 @@ export class ChartBaseComponent implements OnInit {
         this.data.push(this.chartInfo[i].data);
       }
 
-      if (this.barChartRef && this.barChartRef.nativeElement) {
-        this.renderChart(this.barChartRef.nativeElement, 'bar');
+      if (this.chartReference) {
+        this.renderChart(this.chartReference, this.chartType, this.label, this.data);
       }
     });
   }
 
-  private renderChart(canvasElement: HTMLCanvasElement, chartType: chartType) {
-    const ctx = canvasElement.getContext('2d');
+  renderChart(idReference: string, chartType: chartType, label: string[], data: number[]) {
+    const ctx = idReference
 
     if (this.chart) {
       this.chart.destroy();
@@ -79,11 +76,11 @@ export class ChartBaseComponent implements OnInit {
       this.chart = new Chart(ctx, {
         type: chartType,
         data: {
-          labels: this.label,
+          labels: label,
           datasets: [
             {
               label: 'Vendas',
-              data: this.data,
+              data: data,
             },
           ],
         },

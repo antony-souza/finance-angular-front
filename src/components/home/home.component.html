@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="flex flex-col gap-5 p-5">
   <div class="flex items-center gap-5">
     <div
@@ -11,9 +12,10 @@
       <p class="text-white">{{ user.email }}</p>
     </div>
   </div>
-  <!-- <div class="flex justify-center min-h-screen">
-    <div class="flex flex-col gap-5 h-[400px] w-[400px]">
-      <app-charts class="bg-slate-50 rounded p-2 w-full h-full" />
-    </div>
-  </div> -->
+</div>
+<div class="flex justify-start items-start min-h-screen">
+  <div class="flex gap-5 h-[400px] w-[400px] pt-5 pl-5">
+    <app-charts [chartReference]="'chart1'" />
+    <app-charts [chartReference]="'chart2'" [chartType]="'bar'" />
+  </div>
 </div>

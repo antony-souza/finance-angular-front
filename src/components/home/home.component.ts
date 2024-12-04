@@ -3,6 +3,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { environment } from '../../environment/environment';
 import { Router } from '@angular/router';
+import { ChartBaseComponent } from '../charts/charts.component';
+import { HeaderComponent } from '../header/header.component';
 
 interface IUsersResponse {
   id: string
@@ -13,38 +15,52 @@ interface IUsersResponse {
   role: string
 }
 
+interface IChartInfo {
+  labels: string[];
+  data: number[];
+}
+
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, HeaderComponent, ChartBaseComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 
 export class HomeComponent implements OnInit {
-  constructor(private readonly httpClient: HttpClient) { }
+  constructor(
+    private readonly httpClient: HttpClient,
+    /* private readonly chartComponent: ChartBaseComponent */
+  ) { }
 
   router = inject(Router)
 
   users: IUsersResponse[] = []
+  chartHomeInfo: any
 
   ngOnInit() {
-    if (localStorage.getItem('token')) {
-      this.httpClient.get<IUsersResponse[]>(`${environment.host}:${environment.port}/${environment.getAllUsers}`)
-        .subscribe({
-          next: (response) => {
-            this.users = response
-            this.users.map((user,) => {
-              user.role = user.role === 'ADMIN' ? 'Administrador' : 'Usuário'
-            })
-          }
-        })
-    }
+    this.httpClient.get<IUsersResponse[]>(`${environment.host}:${environment.port}/${environment.getAllUsers}`)
+      .subscribe({
+        next: (response) => {
+          this.users = response
+          this.users.map((user,) => {
+            user.role = user.role === 'ADMIN' ? 'Administrador' : 'Usuário'
+          })
+        }
+      })
+
+    this.httpClient.get<IChartInfo>(`${environment.host}:${environment.port}/${environment.getAllUsers}`)
+      .subscribe((response) => {
+        this.chartHomeInfo = response
+      })
   }
 
   handleLogout() {
     localStorage.removeItem('token')
     this.router.navigate(['/'])
   }
+
+
 
 }
