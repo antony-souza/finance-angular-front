@@ -11,6 +11,13 @@ interface IAuthResponse {
   name: string;
   role: string;
   store_id: string;
+  user: IUserProps
+}
+
+interface IUserProps {
+  id:string
+  name: string;
+  image_url: string;
 }
 
 @Component({
@@ -42,8 +49,7 @@ export class AuthComponent {
           next: (response) => {
             console.log(response)
             localStorage.setItem('token', response.token)
-            const decodedToken = jwtDecode<IAuthResponse>(response.token)
-            localStorage.setItem('store_id', decodedToken.store_id)
+            localStorage.setItem('user', JSON.stringify(response.user))
 
             this.router.navigate(['/home'])
           }

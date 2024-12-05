@@ -1,9 +1,9 @@
-<header
-  class="flex w-full bg-slate-700 h-14 items-center text-white justify-between p-2"
->
-  <span class="">Dashbourd</span>
-  <img
-    class="w-10 h-10 rounded-full cursor-pointer"
-    src="https://i.imgur.com/Rn9rEvI.jpeg"
-  />
+<header class="flex w-full bg-slate-700 h-14 items-center text-white justify-between p-2 overflow-hidden">
+  <div class="flex items-center gap-2 w-full justify-end cursor-pointer">
+    <img 
+      [src]="user.image_url" 
+      alt="avatar" 
+      class="rounded-full w-10 h-10" />
+    <span>{{ user.name }}</span>
+  </div>
 </header>
