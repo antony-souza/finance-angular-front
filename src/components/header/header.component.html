@@ -1,9 +1,6 @@
-<header class="flex w-full bg-slate-700 h-14 items-center text-white justify-between p-2 overflow-hidden">
-  <div class="flex items-center gap-2 w-full justify-end cursor-pointer">
-    <img 
-      [src]="user.image_url" 
-      alt="avatar" 
-      class="rounded-full w-10 h-10" />
-    <span>{{ user.name }}</span>
+<header class="flex w-full bg-slate-700 h-14 items-center text-white p-5 overflow-hidden">
+  <div class="flex items-center gap-2 w-full justify-end">
+    <img [src]="user.image_url" alt="avatar" class="rounded-full w-10 h-10 cursor-pointer" />
+    <span class="cursor-pointer">{{ user.name }}</span>
   </div>
 </header>

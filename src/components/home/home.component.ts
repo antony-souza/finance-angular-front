@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { environment } from '../../environment/environment';
 import { Router } from '@angular/router';
 import { ChartBaseComponent } from '../charts/charts.component';
@@ -24,8 +24,9 @@ interface IUsersResponse {
 })
 
 export class HomeComponent implements OnInit {
-  
+
   users: IUsersResponse[] = []
+  
   constructor(
     private readonly httpClient: HttpClient,
   ) { }
