@@ -24,7 +24,7 @@ export class ChartBaseComponent implements OnInit {
   @Input() messageSockets: string = '';
 
   public chart: any;
-  public chartInfo: any
+  public chartInfo: IChartInfo[] = [];
   private label: string[] = [];
   private data: number[] = [];
 
@@ -58,17 +58,16 @@ export class ChartBaseComponent implements OnInit {
 
   processChartData(): void {
     if (this.chartInfo) {
+
       this.label = [];
       this.data = [];
 
-      for (let i = 0; i < this.chartInfo.length; i++) {
-        this.label.push(this.chartInfo[i].Products.name);
-        this.data.push(this.chartInfo[i].total_billed);
+      for (const item of this.chartInfo) {
+        this.label.push(item.Products.name);
+        this.data.push(item.total_billed);
       }
     }
-
   }
-
 
   renderChart(idReference: string, chartType: chartType, label: string[], data: number[]) {
     const ctx = document.getElementById(idReference) as HTMLCanvasElement;

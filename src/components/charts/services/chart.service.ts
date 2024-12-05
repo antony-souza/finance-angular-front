@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 
 export interface IChartInfo {
     total_billed: number;
-    Product: {
+    Products: {
         name: string;
     }
 }
