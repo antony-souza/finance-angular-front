@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { environment } from '../../environment/environment';
 import { Router } from '@angular/router';
 import { ChartBaseComponent } from '../charts/charts.component';
@@ -15,11 +15,6 @@ interface IUsersResponse {
   role: string
 }
 
-interface IChartInfo {
-  labels: string[];
-  data: number[];
-}
-
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -29,15 +24,13 @@ interface IChartInfo {
 })
 
 export class HomeComponent implements OnInit {
+  
+  users: IUsersResponse[] = []
   constructor(
     private readonly httpClient: HttpClient,
-    /* private readonly chartComponent: ChartBaseComponent */
   ) { }
 
   router = inject(Router)
-
-  users: IUsersResponse[] = []
-  chartHomeInfo: any
 
   ngOnInit() {
     this.httpClient.get<IUsersResponse[]>(`${environment.host}:${environment.port}/${environment.getAllUsers}`)
@@ -49,15 +42,11 @@ export class HomeComponent implements OnInit {
           })
         }
       })
-
-    this.httpClient.get<IChartInfo>(`${environment.host}:${environment.port}/${environment.getAllUsers}`)
-      .subscribe((response) => {
-        this.chartHomeInfo = response
-      })
   }
 
   handleLogout() {
-    localStorage.removeItem('token')
+    localStorage.clear()
+
     this.router.navigate(['/'])
   }
 

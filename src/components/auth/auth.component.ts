@@ -5,9 +5,12 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { environment } from '../../environment/environment';
 import { routes } from '../../app/app.routes';
 import { Router } from '@angular/router';
-
+import { jwtDecode } from 'jwt-decode';
 interface IAuthResponse {
   token: string;
+  name: string;
+  role: string;
+  store_id: string;
 }
 
 @Component({
@@ -39,6 +42,9 @@ export class AuthComponent {
           next: (response) => {
             console.log(response)
             localStorage.setItem('token', response.token)
+            const decodedToken = jwtDecode<IAuthResponse>(response.token)
+            localStorage.setItem('store_id', decodedToken.store_id)
+
             this.router.navigate(['/home'])
           }
         })

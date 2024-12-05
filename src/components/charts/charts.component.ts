@@ -34,12 +34,10 @@ export class ChartBaseComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    this.chartService.getChartInfo().subscribe((response) => {
-      this.chartInfo = response;
+    this.chartService.getChartInfo().subscribe((data) => {
+      this.chartInfo = data;
 
       this.processChartData();
-
       if (this.chartReference) {
         this.renderChart(this.chartReference, this.chartType, this.label, this.data);
       }
