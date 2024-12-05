@@ -4,6 +4,7 @@ class Environment {
     public readonly routerAuth: string = 'auth';
     public readonly getAllUsers: string = 'user/all';
     public readonly charts: string = 'charts/all';
+    public readonly salesAll: string = 'sales/all';
 }
 
 export const environment = new Environment();

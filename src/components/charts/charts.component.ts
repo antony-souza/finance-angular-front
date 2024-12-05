@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { WebSocketService } from '../../web/socket.component'; // Seu serviço de WebSocket
-import { ChartService } from './services/chart.service';
+import { ChartService, IChartInfo } from './services/chart.service';
 import { CommonModule } from '@angular/common';
+import { formatPrice } from '../../utils/formatMoney/format-price.service';
 
 Chart.register(...registerables);
 
@@ -32,14 +33,23 @@ export class ChartBaseComponent implements OnInit {
     public readonly webSocketService: WebSocketService
   ) { }
 
+
+
   ngOnInit(): void {
     this.chartService.getChartInfo().subscribe((response) => {
+
       this.chartInfo = response;
+
       console.log(response);
-      if (this.chartInfo != null) {
-        for (let i = 0; i < this.chartInfo.length; i++) {
-          this.label.push(this.chartInfo[i].label);
-          this.data.push(this.chartInfo[i].data);
+
+      if (this.chartInfo) {
+
+        this.label = [];
+        this.data = [];
+
+        for (let i = 0; i < this.chartInfo.length; i++){
+          this.label.push(this.chartInfo[i].Products.name)
+          this.data.push(this.chartInfo[i].total_billed)
         }
 
         if (this.chartReference) {
@@ -48,19 +58,22 @@ export class ChartBaseComponent implements OnInit {
       }
     });
 
-    this.webSocketService.on('update', data => {
+    this.webSocketService.on('update', (data) => {
       console.log('Dados atualizados do WebSocket:', data);
       this.chartInfo = data;
-      this.label = [];
-      this.data = [];
 
-      for (let i = 0; i < this.chartInfo.length; i++) {
-        this.label.push(this.chartInfo[i].label);
-        this.data.push(this.chartInfo[i].data);
-      }
+      if (this.chartInfo) {
+        this.label = [];
+        this.data = [];
 
-      if (this.chartReference) {
-        this.renderChart(this.chartReference, this.chartType, this.label, this.data);
+        for (let i = 0; i < this.chartInfo.length; i++) {
+          this.label.push(this.chartInfo[i].Products.name);
+          this.data.push(this.chartInfo[i].total_billed);
+        }
+
+        if (this.chartReference) {
+          this.renderChart(this.chartReference, this.chartType, this.label, this.data);
+        }
       }
     });
   }
@@ -80,13 +93,40 @@ export class ChartBaseComponent implements OnInit {
           datasets: [
             {
               label: 'Vendas',
-              data: data,
+              data:  data,
             },
           ],
         },
         options: {
-          responsive: true
-        }
+          responsive: true,
+          plugins:{
+            title: {
+              display: true,
+              text: this.chartTitle,
+              font: {
+                size: 20
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: (tooltipItem: any) => {
+                  
+                  return formatPrice(tooltipItem.raw); 
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks:{
+                callback(tickValue, index, ticks) {
+                  return formatPrice(ticks[index].value);
+                }
+              }
+            }
+          }
+        },
       });
     }
   }
