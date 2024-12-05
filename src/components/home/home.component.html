@@ -16,11 +16,13 @@
 <div class="flex justify-start items-start min-h-screen">
   <div class="flex gap-5 h-[400px] w-[400px] pt-5 pl-5">
     <app-charts 
+      [messageSockets]="'sales'"
       [chartReference]="'chart1'" 
       [chartType]="'pie'" 
       [chartTitle]="'Faturamento Atual - Produtos Vendidos'"
       />
     <app-charts 
+      [messageSockets]="'sales'"
       [chartReference]="'chart2'" 
       [chartType]="'bar'" 
       [chartTitle]="'Faturamento Atual'" />

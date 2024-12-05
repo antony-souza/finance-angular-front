@@ -21,7 +21,7 @@ export class ChartBaseComponent implements OnInit {
   @Input() chartReference: string = '';
   @Input() chartType: chartType = 'pie';
   @Input() chartTitle: string = '';
-  @Input()
+  @Input() messageSockets: string = '';
 
   public chart: any;
   public chartInfo: any
@@ -33,53 +33,45 @@ export class ChartBaseComponent implements OnInit {
     public readonly webSocketService: WebSocketService
   ) { }
 
-
-
   ngOnInit(): void {
-    this.chartService.getChartInfo().subscribe((response) => {
 
+    this.chartService.getChartInfo().subscribe((response) => {
       this.chartInfo = response;
 
-      console.log(response);
+      this.processChartData();
 
-      if (this.chartInfo) {
-
-        this.label = [];
-        this.data = [];
-
-        for (let i = 0; i < this.chartInfo.length; i++) {
-          this.label.push(this.chartInfo[i].Products.name)
-          this.data.push(this.chartInfo[i].total_billed)
-        }
-
-        if (this.chartReference) {
-          this.renderChart(this.chartReference, this.chartType, this.label, this.data);
-        }
+      if (this.chartReference) {
+        this.renderChart(this.chartReference, this.chartType, this.label, this.data);
       }
     });
 
-    this.webSocketService.on('update', (data) => {
+    this.webSocketService.on(this.messageSockets, (data) => {
       console.log('Dados atualizados do WebSocket:', data);
       this.chartInfo = data;
 
-      if (this.chartInfo) {
-        this.label = [];
-        this.data = [];
-
-        for (let i = 0; i < this.chartInfo.length; i++) {
-          this.label.push(this.chartInfo[i].Products.name);
-          this.data.push(this.chartInfo[i].total_billed);
-        }
-
-        if (this.chartReference) {
-          this.renderChart(this.chartReference, this.chartType, this.label, this.data);
-        }
+      this.processChartData();
+      if (this.chartReference) {
+        this.renderChart(this.chartReference, this.chartType, this.label, this.data);
       }
     });
   }
 
+  processChartData(): void {
+    if (this.chartInfo) {
+      this.label = [];
+      this.data = [];
+
+      for (let i = 0; i < this.chartInfo.length; i++) {
+        this.label.push(this.chartInfo[i].Products.name);
+        this.data.push(this.chartInfo[i].total_billed);
+      }
+    }
+
+  }
+
+
   renderChart(idReference: string, chartType: chartType, label: string[], data: number[]) {
-    const ctx = idReference
+    const ctx = document.getElementById(idReference) as HTMLCanvasElement;
 
     if (this.chart) {
       this.chart.destroy();
@@ -123,8 +115,8 @@ export class ChartBaseComponent implements OnInit {
             tooltip: {
               callbacks: {
                 label: (tooltipItem: any) => {
-
-                  return formatPrice(tooltipItem.raw);
+                  const formatedPrice = formatPrice(tooltipItem.raw);
+                  return formatedPrice || 'R$ 0,00';
                 }
               },
             },
