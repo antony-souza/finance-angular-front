@@ -47,7 +47,7 @@ export class ChartBaseComponent implements OnInit {
         this.label = [];
         this.data = [];
 
-        for (let i = 0; i < this.chartInfo.length; i++){
+        for (let i = 0; i < this.chartInfo.length; i++) {
           this.label.push(this.chartInfo[i].Products.name)
           this.data.push(this.chartInfo[i].total_billed)
         }
@@ -92,37 +92,50 @@ export class ChartBaseComponent implements OnInit {
           labels: label,
           datasets: [
             {
-              label: 'Vendas',
-              data:  data,
+              label: 'Gráfico de Vendas',
+              data: data,
             },
           ],
         },
         options: {
           responsive: true,
-          plugins:{
+          maintainAspectRatio: false,
+          devicePixelRatio: 2,
+          normalized: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top',
+              align: 'center',
+              labels: {
+                color: 'black',
+              }
+            },
             title: {
               display: true,
               text: this.chartTitle,
               font: {
-                size: 20
-              }
+                size: 20,
+                style: 'italic',
+              },
+              color: 'black',
             },
             tooltip: {
               callbacks: {
                 label: (tooltipItem: any) => {
-                  
-                  return formatPrice(tooltipItem.raw); 
+
+                  return formatPrice(tooltipItem.raw);
                 }
-              }
-            }
+              },
+            },
           },
           scales: {
             y: {
               beginAtZero: true,
-              ticks:{
+              ticks: {
                 callback(tickValue, index, ticks) {
                   return formatPrice(ticks[index].value);
-                }
+                },
               }
             }
           }
