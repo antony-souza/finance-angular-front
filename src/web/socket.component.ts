@@ -7,14 +7,30 @@ import { environment } from '../environment/environment';
     providedIn: 'root',
 })
 export class WebSocketService {
-    private socket: Socket;
+    socket: Socket;
 
     constructor() {
-        this.socket = io(`${environment.host}:${environment.port}`);
+        this.socket = io(`${environment.host}:${environment.port}`, {
+            autoConnect: false,
+            reconnection: false,
+        });
+    }
+
+    connect(): void {
+        this.socket.connect();
+    }
+
+    disconnect(): void {
+        this.socket.disconnect();
     }
 
     joinRoom(room: string): void {
         this.socket.emit('joinStore', room);
+    }
+
+    leaveRoom(room: string): void {
+        this.socket.emit('leaveStore', room);
+
     }
 
     emit(eventName: string, data: any): void {
@@ -23,11 +39,5 @@ export class WebSocketService {
 
     on(eventName: string, callback: (data: any) => void): void {
         this.socket.on(eventName, callback);
-    }
-
-    disconnect(): void {
-        if (this.socket) {
-            this.socket.disconnect();
-        }
     }
 }

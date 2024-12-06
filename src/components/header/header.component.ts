@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { WebSocketService } from '../../web/socket.component';
 
 interface IUserProps {
-  id: string
+  id: string;
   name: string;
   image_url: string;
 }
@@ -13,8 +13,9 @@ interface IUserProps {
   selector: 'app-header',
   standalone: true,
   imports: [CommonModule],
+  providers: [WebSocketService],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
 
@@ -22,13 +23,17 @@ export class HeaderComponent {
 
   user: IUserProps
 
-  constructor() {
+  constructor(private readonly webSocketService: WebSocketService) {
     this.user = JSON.parse(localStorage.getItem('user') as string)
   }
 
   handleLogout() {
-    localStorage.clear()
+    const storeId = localStorage.getItem('store_id') as string;
+    
+    this.webSocketService.leaveRoom(storeId);
+    this.webSocketService.disconnect();
 
-    this.router.navigate(['/'])
+    localStorage.clear();
+    this.router.navigate(['/']).then(() => window.location.reload());
   }
 }

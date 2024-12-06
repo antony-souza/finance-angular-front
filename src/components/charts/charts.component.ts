@@ -35,6 +35,7 @@ export class ChartBaseComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
     this.chartService.getChartInfo().subscribe((data) => {
       this.chartInfo = data;
 
@@ -44,9 +45,9 @@ export class ChartBaseComponent implements OnInit {
       }
     });
 
-    this.webSocketService.joinRoom(localStorage.getItem('store_id') as string);
 
     this.webSocketService.on(this.messageSockets, (data) => {
+      this.webSocketService.connect()
       console.log('Dados atualizados do WebSocket:', data);
       this.chartInfo = data;
 

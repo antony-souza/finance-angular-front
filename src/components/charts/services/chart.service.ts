@@ -11,10 +11,12 @@ export interface IChartInfo {
 @Injectable({
     providedIn: 'root'
 })
-export class ChartService {
-    
-    storeId = localStorage.getItem('store_id') as string;
-    constructor(private readonly httpClient: HttpClient) { }
+export class ChartService{
+
+    storeId: string | null = null;
+    constructor(private httpClient: HttpClient) { 
+        this.storeId = localStorage.getItem('store_id') as string;
+    }
 
     getChartInfo(): Observable<IChartInfo[]> {
         return this.httpClient.get<IChartInfo[]>(`${environment.host}:${environment.port}/${environment.salesAll}/${this.storeId}`);
