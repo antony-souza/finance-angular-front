@@ -2,5 +2,6 @@
   <div class="flex items-center gap-2 w-full justify-end">
     <img [src]="user.image_url" alt="avatar" class="rounded-full w-10 h-10 cursor-pointer" />
     <span class="cursor-pointer">{{ user.name }}</span>
+    <button (click)="handleLogout()">Sair</button>
   </div>
 </header>

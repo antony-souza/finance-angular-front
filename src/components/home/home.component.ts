@@ -4,7 +4,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { environment } from '../../environment/environment';
 import { Router } from '@angular/router';
 import { ChartBaseComponent } from '../charts/charts.component';
-import { HeaderComponent } from '../header/header.component';
+import { LayoutDashHeaderComponent } from '../layout-dash-header/layout-dash-header.component';
 
 interface IUsersResponse {
   id: string
@@ -18,7 +18,7 @@ interface IUsersResponse {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, HeaderComponent, ChartBaseComponent],
+  imports: [CommonModule, HttpClientModule, ChartBaseComponent, LayoutDashHeaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
