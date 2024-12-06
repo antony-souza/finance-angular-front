@@ -4,19 +4,19 @@ import { environment } from "../../../environment/environment";
 import { Observable } from "rxjs";
 
 export interface IChartInfo {
+    name: string;
+    quantity_sold: number
     total_billed: number;
-    Products: {
-        name: string;
-    }
 }
 @Injectable({
     providedIn: 'root'
 })
 export class ChartService {
-
+    
+    storeId = localStorage.getItem('store_id') as string;
     constructor(private readonly httpClient: HttpClient) { }
 
     getChartInfo(): Observable<IChartInfo[]> {
-        return this.httpClient.get<IChartInfo[]>(`${environment.host}:${environment.port}/${environment.salesAll}/afc29f8c-de19-4879-ad2c-347f8e07bda3`);
+        return this.httpClient.get<IChartInfo[]>(`${environment.host}:${environment.port}/${environment.salesAll}/${this.storeId}`);
     }
 }

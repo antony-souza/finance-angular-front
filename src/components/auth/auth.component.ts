@@ -3,9 +3,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { environment } from '../../environment/environment';
-import { routes } from '../../app/app.routes';
 import { Router } from '@angular/router';
-import { jwtDecode } from 'jwt-decode';
+
 interface IAuthResponse {
   token: string;
   name: string;
@@ -18,6 +17,7 @@ interface IUserProps {
   id:string
   name: string;
   image_url: string;
+  store_id: string;
 }
 
 @Component({
@@ -50,7 +50,7 @@ export class AuthComponent {
             console.log(response)
             localStorage.setItem('token', response.token)
             localStorage.setItem('user', JSON.stringify(response.user))
-
+            localStorage.setItem('store_id', response.user.store_id)
             this.router.navigate(['/home'])
           }
         })

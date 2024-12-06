@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Component, OnInit, Input } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
-import { WebSocketService } from '../../web/socket.component'; // Seu serviço de WebSocket
+import { WebSocketService } from '../../web/socket.component';
 import { ChartService, IChartInfo } from './services/chart.service';
 import { CommonModule } from '@angular/common';
 import { formatPrice } from '../../utils/formatMoney/format-price.service';
@@ -18,10 +19,10 @@ type chartType = 'line' | 'bar' | 'pie' | 'doughnut' | 'radar' | 'polarArea' | '
 })
 export class ChartBaseComponent implements OnInit {
 
-  @Input() chartReference: string = '';
+  @Input() chartReference = '';
   @Input() chartType: chartType = 'pie';
-  @Input() chartTitle: string = '';
-  @Input() messageSockets: string = '';
+  @Input() chartTitle = '';
+  @Input() messageSockets = '';
 
   public chart: any;
   public chartInfo: IChartInfo[] = [];
@@ -61,7 +62,7 @@ export class ChartBaseComponent implements OnInit {
       this.data = [];
 
       for (const item of this.chartInfo) {
-        this.label.push(item.Products.name);
+        this.label.push(item.name);
         this.data.push(item.total_billed);
       }
     }
