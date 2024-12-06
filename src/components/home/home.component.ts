@@ -26,7 +26,7 @@ interface IUsersResponse {
 export class HomeComponent implements OnInit {
 
   users: IUsersResponse[] = []
-  
+
   constructor(
     private readonly httpClient: HttpClient,
   ) { }
@@ -38,9 +38,6 @@ export class HomeComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.users = response
-          this.users.map((user,) => {
-            user.role = user.role === 'ADMIN' ? 'Administrador' : 'Usuário'
-          })
         }
       })
   }
