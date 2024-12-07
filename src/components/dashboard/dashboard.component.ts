@@ -19,8 +19,8 @@ interface IMenuItem {
 export class DashboardComponent {
 
   menuItems: IMenuItem[] = [
-    { name: 'Histórico de Vendas', icon: 'attach_money', path: '/settings' },
-    { name: 'Faturamento dos Produtos', icon: 'business', path: '/profile' },
-    {name: 'Funcionáros', icon: 'people', path: '/employees'},
+    { name: 'Histórico de Vendas', icon: 'attach_money', path: '/saleshistory' },
+    { name: 'Faturamento dos Produtos', icon: 'business', path: '/productbilling' },
+    { name: 'Funcionáros', icon: 'people', path: '/employees' },
   ];
 }
