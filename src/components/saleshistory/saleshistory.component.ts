@@ -8,6 +8,7 @@ import { environment } from '../../environment/environment';
 import { formatPrice } from '../../utils/formatMoney/format-price.service';
 
 interface ISalesHistory {
+  store_name: string;
   total_billed: number | string;
   quantity_sold: number;
   product_name: string;
