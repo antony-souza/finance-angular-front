@@ -1,7 +1,13 @@
-<header class="flex w-full bg-slate-700 h-14 items-center text-white p-5 overflow-hidden">
-  <div class="flex items-center gap-2 w-full justify-end">
-    <img [src]="user.image_url" alt="avatar" class="rounded-full w-10 h-10 cursor-pointer" />
-    <span class="cursor-pointer">{{ user.name }}</span>
-    <button (click)="handleLogout()">Sair</button>
+<mat-toolbar color="primary">
+  <div class="flex w-full items-center justify-end">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="custom-avatar-button">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button (click)="handleLogout()" mat-menu-item>
+        <mat-icon>input</mat-icon>
+        <span>Sair</span>
+      </button>
+    </mat-menu>
   </div>
-</header>
+</mat-toolbar>

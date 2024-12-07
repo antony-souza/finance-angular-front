@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebSocketService } from '../../web/socket.component';
+import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
 
 interface IUserProps {
   id: string;
@@ -12,7 +13,7 @@ interface IUserProps {
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ...MATERIAL_COMPONENTS],
   providers: [WebSocketService],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
@@ -29,7 +30,7 @@ export class HeaderComponent {
 
   handleLogout() {
     const storeId = localStorage.getItem('store_id') as string;
-    
+
     this.webSocketService.leaveRoom(storeId);
     this.webSocketService.disconnect();
 
