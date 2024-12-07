@@ -3,7 +3,6 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebSocketService } from '../../web/socket.component';
 import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
-
 interface IUserProps {
   id: string;
   name: string;
@@ -23,6 +22,7 @@ export class HeaderComponent {
   router = inject(Router)
 
   user: IUserProps
+  isMenuOpen = false
 
   constructor(private readonly webSocketService: WebSocketService) {
     this.user = JSON.parse(localStorage.getItem('user') as string)

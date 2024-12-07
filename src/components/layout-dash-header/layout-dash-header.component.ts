@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-layout-dash-header',
   standalone: true,
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, DashboardComponent],
   templateUrl: './layout-dash-header.component.html',
-  styleUrl: './layout-dash-header.component.scss'
+  styleUrls: ['./layout-dash-header.component.scss']
 })
-export class LayoutDashHeaderComponent {
+export class LayoutDashHeaderComponent { 
+
 
 }
