@@ -1,25 +1,45 @@
-<form [formGroup]="formAuth" (submit)="onSubmitAuth()">
-  <div>
-    <label for="email">Email</label>
-    <input
-      type="email"
-      class="form-control"
-      id="email"
-      formControlName="email"
-    />
-    <label for="password">Password</label>
-    <input
-      type="password"
-      class="form-control"
-      id="password"
-      formControlName="password"
-    />
-  </div>
-  <button
-    class="bg-slate-900 text-white"
-    [disabled]="!formAuth.valid"
-    type="submit"
-  >
-    Entrar
-  </button>
-</form>
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <mat-card class="w-full max-w-md p-6">
+    <mat-card-title class="text-center font-bold text-gray-800">
+      Bem-vindo
+    </mat-card-title>
+    <form [formGroup]="formAuth" (ngSubmit)="onSubmitAuth()" class="mt-6">
+      <mat-form-field class="w-full mb-6" appearance="fill">
+        <mat-label>Email</mat-label>
+        <mat-icon matPrefix>email</mat-icon>
+        <input
+          matInput
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="Digite seu email"
+        />
+      </mat-form-field>
+      <mat-form-field class="w-full mb-6" appearance="fill">
+        <mat-label>Senha</mat-label>
+        <mat-icon matPrefix>lock</mat-icon>
+        <input
+          matInput
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="Digite sua senha"
+        />
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        class="w-full mb-4"
+        [disabled]="!formAuth.valid"
+        type="submit"
+      >
+        Entrar
+      </button>
+    </form>
+    <div class="mt-4 text-center">
+      <a href="#" class="text-blue-600 hover:underline text-sm"
+        >Esqueceu sua senha?</a
+      >
+    </div>
+  </mat-card>
+</div>

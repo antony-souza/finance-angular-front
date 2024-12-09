@@ -5,6 +5,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { environment } from '../../environment/environment';
 import { Router } from '@angular/router';
 import { WebSocketService } from '../../web/socket.component';
+import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
 
 interface IAuthResponse {
   token: string;
@@ -24,7 +25,7 @@ interface IUserProps {
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule,...MATERIAL_COMPONENTS],
   providers: [WebSocketService],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss'
