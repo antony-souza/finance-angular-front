@@ -51,8 +51,6 @@ export class AuthComponent {
         .post<IAuthResponse>(`${environment.host}:${environment.port}/${environment.routerAuth}`, this.formAuth.value)
         .subscribe({
           next: (response) => {
-            this.webSocketService.connect()
-            this.webSocketService.joinRoom(response.user.store_id)
             localStorage.setItem('token', response.token)
             localStorage.setItem('user', JSON.stringify(response.user))
             localStorage.setItem('store_id', response.user.store_id)

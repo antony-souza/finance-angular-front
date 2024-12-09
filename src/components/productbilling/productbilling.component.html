@@ -1,1 +1,19 @@
-<app-header></app-header>
+<app-layout-options />
+
+<div class="pt-10 flex justify-center items-center gap-6">
+  <div class="flex h-[400px] w-[400px] bg-white rounded-lg shadow-custom p-4">
+    <app-charts 
+      [messageSockets]="'sales'" 
+      [chartReference]="'chart2'" 
+      [chartType]="'bar'"
+      />
+  </div>
+
+  <div class="flex h-[400px] w-[400px] bg-white rounded-lg shadow-custom p-4">
+    <app-charts 
+      [messageSockets]="'sales'"
+      [chartReference]="'chart1'" 
+      [chartType]="'pie'"
+       />
+  </div>
+</div>

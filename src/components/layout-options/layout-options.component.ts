@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout-options',
@@ -12,4 +13,13 @@ import { HeaderComponent } from '../header/header.component';
 })
 export class LayoutOptionsComponent {
 
+  router = inject(Router);
+
+  handleNavigateToHistoryPayments() {
+    this.router.navigate(['/saleshistory']);
+  }
+
+  handleNavigateToProductBilling() {
+    this.router.navigate(['/productbilling']);
+  }
 }

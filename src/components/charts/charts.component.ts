@@ -45,9 +45,9 @@ export class ChartBaseComponent implements OnInit {
       }
     });
 
-
+    this.webSocketService.connect();
+    this.webSocketService.joinRoom(localStorage.getItem('store_id') as string);
     this.webSocketService.on(this.messageSockets, (data) => {
-      this.webSocketService.connect()
       console.log('Dados atualizados do WebSocket:', data);
       this.chartInfo = data;
 
@@ -85,7 +85,7 @@ export class ChartBaseComponent implements OnInit {
           labels: label,
           datasets: [
             {
-              label: 'Gráfico de Vendas',
+              label: 'Total Faturado',
               data: data,
             },
           ],
@@ -104,7 +104,7 @@ export class ChartBaseComponent implements OnInit {
                 color: 'black',
               }
             },
-            title: {
+            /* title: {
               display: true,
               text: this.chartTitle,
               font: {
@@ -112,7 +112,7 @@ export class ChartBaseComponent implements OnInit {
                 style: 'italic',
               },
               color: 'black',
-            },
+            }, */
             tooltip: {
               callbacks: {
                 label: (tooltipItem: any) => {

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
 import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environment/environment';
 import { formatPrice } from '../../utils/formatMoney/format-price.service';
+import { LayoutOptionsComponent } from '../layout-options/layout-options.component';
 
 interface ISalesHistory {
   store_name: string;
@@ -19,7 +19,7 @@ interface ISalesHistory {
 @Component({
   selector: 'app-saleshistory',
   standalone: true,
-  imports: [HeaderComponent, CommonModule, ...MATERIAL_COMPONENTS],
+  imports: [CommonModule,LayoutOptionsComponent,...MATERIAL_COMPONENTS],
   templateUrl: './saleshistory.component.html',
   styleUrl: './saleshistory.component.scss'
 })
