@@ -3,6 +3,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { environment } from '../../environment/environment';
 import { Router } from '@angular/router';
+import { HeaderComponent } from '../header/header.component';
+import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
+import { LayoutOptionsComponent } from '../layout-options/layout-options.component';
 
 interface IUsersResponse {
   id: string
@@ -16,7 +19,7 @@ interface IUsersResponse {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, LayoutOptionsComponent, ...MATERIAL_COMPONENTS],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
