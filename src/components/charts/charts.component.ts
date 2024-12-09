@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { WebSocketService } from '../../web/socket.component';
 import { ChartService, IChartInfo } from './services/chart.service';
@@ -17,7 +17,7 @@ type chartType = 'line' | 'bar' | 'pie' | 'doughnut' | 'radar' | 'polarArea' | '
   standalone: true,
   styleUrls: ['./charts.component.scss'],
 })
-export class ChartBaseComponent implements OnInit {
+export class ChartBaseComponent implements OnInit, OnDestroy {
 
   @Input() chartReference = '';
   @Input() chartType: chartType = 'pie';
@@ -36,6 +36,8 @@ export class ChartBaseComponent implements OnInit {
 
   ngOnInit(): void {
     
+    this.chartReference = this.generateRandomId();
+
     this.chartService.getChartInfo().subscribe((data) => {
       this.chartInfo = data;
 
@@ -135,5 +137,19 @@ export class ChartBaseComponent implements OnInit {
         },
       });
     }
+  }
+  ngOnDestroy(): void {
+    this.webSocketService.leaveRoom(localStorage.getItem('store_id') as string);
+    this.webSocketService.disconnect();
+  }
+
+  generateRandomId(length = 8): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
   }
 }
