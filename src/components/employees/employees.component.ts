@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environment/environment';
-import { LayoutOptionsComponent } from '../layout-options/layout-options.component';
+import { LayoutDashboardComponent } from '../dashboard/layout-options.component';
 
 interface IEmployeeResponse {
   id: string;
@@ -16,7 +16,7 @@ interface IEmployeeResponse {
 @Component({
   selector: 'app-employees',
   standalone: true,
-  imports: [CommonModule, LayoutOptionsComponent, ...MATERIAL_COMPONENTS],
+  imports: [CommonModule, LayoutDashboardComponent, ...MATERIAL_COMPONENTS],
   templateUrl: './employees.component.html',
   styleUrl: './employees.component.scss'
 })

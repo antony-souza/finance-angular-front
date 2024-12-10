@@ -11,14 +11,14 @@ interface IAsideMenu {
 }
 
 @Component({
-  selector: 'app-layout-options',
+  selector: 'app-dashboard',
   standalone: true,
   imports: [...MATERIAL_COMPONENTS, CommonModule],
   providers: [WebSocketService],
   templateUrl: './layout-options.component.html',
   styleUrls: ['./layout-options.component.scss'],
 })
-export class LayoutOptionsComponent {
+export class LayoutDashboardComponent {
   router = inject(Router);
 
   asideMenu: IAsideMenu[] = [

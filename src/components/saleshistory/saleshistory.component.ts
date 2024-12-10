@@ -4,7 +4,8 @@ import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-materi
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environment/environment';
 import { formatPrice } from '../../utils/formatMoney/format-price.service';
-import { LayoutOptionsComponent } from '../layout-options/layout-options.component';
+import { LayoutDashboardComponent } from '../dashboard/layout-options.component';
+
 
 interface ISalesHistory {
   store_name: string;
@@ -19,7 +20,7 @@ interface ISalesHistory {
 @Component({
   selector: 'app-saleshistory',
   standalone: true,
-  imports: [CommonModule, LayoutOptionsComponent, ...MATERIAL_COMPONENTS],
+  imports: [CommonModule, LayoutDashboardComponent, ...MATERIAL_COMPONENTS],
   templateUrl: './saleshistory.component.html',
   styleUrls: ['./saleshistory.component.scss'],
 })
