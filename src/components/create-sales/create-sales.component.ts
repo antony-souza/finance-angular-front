@@ -44,8 +44,8 @@ export class CreateSalesComponent implements OnInit{
       this.httpClient
         .post(`${environment.host}:${environment.port}/${environment.salesCreate}`, this.formSales.value)
         .subscribe({
-          next: (response) => {
-            console.log(response)
+          next: () => {
+            this.formSales.reset();
           }
         })
     }
@@ -57,9 +57,7 @@ export class CreateSalesComponent implements OnInit{
       .subscribe({
         next: (response) => {
           this.products = response;
-          console.log('Produtos carregados:', response);
-        },
-        error: (err) => console.error('Erro ao carregar produtos:', err),
+        }
       });
   }
 }
