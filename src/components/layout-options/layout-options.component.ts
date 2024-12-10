@@ -7,7 +7,7 @@ import { WebSocketService } from '../../web/socket.component';
 interface IAsideMenu {
   name: string;
   icon: string;
-  action: () => void; // Atualizado para uma função anônima
+  action: () => void;
 }
 
 @Component({
@@ -25,7 +25,7 @@ export class LayoutOptionsComponent {
     {
       name: 'Registrar Venda',
       icon: 'add_shopping_cart',
-      action: () => this.handleNavigateToCreateSales(), // Corrigido
+      action: () => this.handleNavigateToCreateSales(),
     },
     {
       name: 'Histórico de Vendas',
