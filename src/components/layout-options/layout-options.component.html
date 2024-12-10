@@ -1,6 +1,15 @@
 <app-header />
-<div class="flex flex-col pt-24">
+<div class="flex flex-col pt-24 p-10">
   <div class="flex justify-center gap-8">
+
+    <mat-card class="flex flex-col text-center items-center p-4 w-96 cursor-pointer" (click)="handleNavigateToCreateSales()">
+      <mat-icon color="primary">point_of_sale</mat-icon>
+      <div>
+        <h2 class="text-xl font-bold">Registrar Venda</h2>
+        <p class="text-gray-600">Registre uma venda da loja</p>
+      </div>
+    </mat-card>
+
     <mat-card class="flex flex-col text-center items-center p-4 w-96 cursor-pointer" (click)="handleNavigateToHistoryPayments()">
       <mat-icon color="primary">history</mat-icon>
       <div>

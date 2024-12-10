@@ -5,6 +5,8 @@ class Environment {
     public readonly getAllUsers: string = 'user/all';
     public readonly productbilling: string = 'sales/all';
     public readonly salesAll: string = `sales/store/all`;
+    public readonly salesCreate: string = 'sales/create';
+    public readonly allproducts: string = 'products/allstore';
 
 }
 

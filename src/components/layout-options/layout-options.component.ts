@@ -9,11 +9,15 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [...MATERIAL_COMPONENTS, CommonModule, HeaderComponent],
   templateUrl: './layout-options.component.html',
-  styleUrl: './layout-options.component.scss'
+  styleUrls: ['./layout-options.component.scss']
 })
 export class LayoutOptionsComponent {
 
   router = inject(Router);
+
+  handleNavigateToCreateSales() {
+    this.router.navigate(['/createsales']);
+  }
 
   handleNavigateToHistoryPayments() {
     this.router.navigate(['/saleshistory']);
@@ -22,4 +26,6 @@ export class LayoutOptionsComponent {
   handleNavigateToProductBilling() {
     this.router.navigate(['/productbilling']);
   }
+
+ 
 }

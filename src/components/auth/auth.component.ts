@@ -4,7 +4,6 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { environment } from '../../environment/environment';
 import { Router } from '@angular/router';
-import { WebSocketService } from '../../web/socket.component';
 import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
 
 interface IAuthResponse {
@@ -25,8 +24,7 @@ interface IUserProps {
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule,...MATERIAL_COMPONENTS],
-  providers: [WebSocketService],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule, ...MATERIAL_COMPONENTS],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss'
 })
@@ -36,9 +34,7 @@ export class AuthComponent {
   private form = inject(FormBuilder)
   private validadtors = Validators
 
-  constructor(
-    private readonly httpClient: HttpClient,
-    private readonly webSocketService: WebSocketService) {}
+  constructor(private readonly httpClient: HttpClient) { }
 
   protected formAuth = this.form.group({
     email: ['', [this.validadtors.required, this.validadtors.email]],
@@ -52,8 +48,8 @@ export class AuthComponent {
         .subscribe({
           next: (response) => {
             localStorage.setItem('token', response.token)
-            localStorage.setItem('user', JSON.stringify(response.user))
             localStorage.setItem('store_id', response.user.store_id)
+            localStorage.setItem('user_id', response.user.id)
             this.router.navigate(['/home'])
           }
         })

@@ -31,6 +31,11 @@
       <td mat-cell *matCellDef="let item" class="text-center">{{ item.total_billed }}</td>
     </ng-container>
 
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Data </th>
+        <td mat-cell *matCellDef="let item" class="text-center">{{ item.date }}</td>
+    </ng-container>
+
     <ng-container matColumnDef="user_image">
       <th mat-header-cell *matHeaderCellDef> Foto do Vendedor </th>
       <td mat-cell *matCellDef="let item" class="text-center">

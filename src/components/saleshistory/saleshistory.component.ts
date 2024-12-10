@@ -30,6 +30,7 @@ export class SaleshistoryComponent implements OnInit {
     'store_name',
     'quantity_sold',
     'total_billed',
+    'date',
     'user_image',
     'user_name',
     'actions',

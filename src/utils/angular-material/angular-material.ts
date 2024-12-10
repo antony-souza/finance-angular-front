@@ -19,5 +19,5 @@ export const MATERIAL_COMPONENTS = [
   MatCardModule,
   MatTableModule,
   MatPaginatorModule,
-  MatSortModule
+  MatSortModule,
 ];

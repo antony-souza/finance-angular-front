@@ -1,0 +1,48 @@
+<app-layout-options></app-layout-options>
+<h2 class="text-4xl font-bold text-slate-950 mt-10 text-center">Registrar Venda</h2>
+<div class="pt-10 flex justify-center items-center gap-6">
+  <mat-card class="w-full max-w-md p-6">
+    <form [formGroup]="formSales" (submit)="onSubmitSales()" class="mt-6">
+
+      <mat-form-field class="w-full mb-6" appearance="fill">
+        <mat-label>Produto</mat-label>
+        <select matNativeControl formControlName="product_id">
+          <option value="" disabled selected>Selecione um produto</option>
+          <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
+        </select>
+      </mat-form-field>
+
+      <mat-form-field class="w-full mb-6" appearance="fill">
+        <mat-label>Quantidade</mat-label>
+        <input
+          matInput
+          type="number"
+          name="quantity_sold"
+          formControlName="quantity_sold"
+          placeholder="Digite a quantidade"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="w-full mb-6" appearance="fill">
+        <mat-label>Data:</mat-label>
+        <input
+          matInput
+          type="date"
+          name="date"
+          formControlName="date"
+          placeholder="Digite a data"
+        />
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="w-full mb-4"
+        [disabled]="!formSales.valid"
+        type="submit"
+      >
+        Registrar Venda
+      </button>
+    </form>
+  </mat-card>
+</div>
