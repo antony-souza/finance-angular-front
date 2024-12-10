@@ -13,6 +13,7 @@
               <th class="px-6 py-3 font-semibold text-gray-900">Nome</th>
               <th class="px-6 py-3 font-semibold text-gray-900">Email</th>
               <th class="px-6 py-3 font-semibold text-gray-900">Empresa</th>
+              <th class="px-6 py-3 font-semibold text-gray-900">Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -23,6 +24,14 @@
               <td class="p-4 font-semibold text-gray-800">{{ employee.name }}</td>
               <td class="p-4 font-semibold text-gray-800">{{ employee.email }}</td>
               <td class="p-4 font-semibold text-gray-800">{{ employee.store }}</td>
+              <td class="p-4 font-semibold text-gray-800">
+                <button class="rounded-full">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button  class="pl-2 rounded-full">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>

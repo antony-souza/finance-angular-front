@@ -36,5 +36,4 @@ export class EmployeesComponent implements OnInit {
         this.employees = response;
       });
   }
-
 }
