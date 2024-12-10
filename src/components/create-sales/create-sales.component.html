@@ -1,51 +1,62 @@
-<app-layout-options></app-layout-options>
-<h2 class="text-4xl font-bold text-slate-950 mt-10 text-center">Registrar Venda</h2>
-<div class="pt-10 flex justify-center items-center gap-6 pb-10">
-  <mat-card class="w-full max-w-md p-6">
-    <form [formGroup]="formSales" (submit)="onSubmitSales()" class="mt-6">
+<div class="flex h-full">
+  <app-layout-options />
 
-      <mat-form-field class="w-full mb-6" appearance="fill">
-        <mat-label>Produto Vendido</mat-label>
-        <mat-icon matPrefix color="primary">shopping_cart</mat-icon>
-        <select matNativeControl formControlName="product_id">
-          <option value="" disabled selected>Selecione um produto</option>
-          <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
-        </select>
-      </mat-form-field>
+  <div class="ml-64 flex flex-col w-full px-8 py-6">
+ 
+    <div class="flex items-center mb-8 pl-6">
+      <h2 class="text-5xl font-bold text-slate-950">Registrar Venda</h2>
+    </div>
 
-      <mat-form-field class="w-full mb-6" appearance="fill">
-        <mat-label>Quantidade da Venda</mat-label>
-        <mat-icon matPrefix color="primary">filter_1</mat-icon>
-        <input
-          matInput
-          type="number"
-          name="quantity_sold"
-          formControlName="quantity_sold"
-          placeholder="Digite a quantidade"
-        />
-      </mat-form-field>
+    <div class="flex justify-start items-center pl-6">
+      <mat-card class="w-full max-w-md bg-white p-8 rounded-lg shadow-custom">
+        <form [formGroup]="formSales" (submit)="onSubmitSales()" class="space-y-6">
+    
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Produto Vendido</mat-label>
+            <mat-icon matPrefix color="primary">shopping_cart</mat-icon>
+            <select matNativeControl formControlName="product_id">
+              <option value="" disabled selected>Selecione um produto</option>
+              <option *ngFor="let product of products" [value]="product.id">
+                {{ product.name }}
+              </option>
+            </select>
+          </mat-form-field>
 
-      <mat-form-field class="w-full mb-6" appearance="fill">
-        <mat-label>Data da Venda</mat-label>
-        <mat-icon matPrefix color="primary">calendar_today</mat-icon> 
-        <input
-          matInput
-          type="date"
-          name="date"
-          formControlName="date"
-          placeholder="Digite a data"
-        />
-      </mat-form-field>
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Quantidade da Venda</mat-label>
+            <mat-icon matPrefix color="primary">filter_1</mat-icon>
+            <input
+              matInput
+              type="number"
+              name="quantity_sold"
+              formControlName="quantity_sold"
+              placeholder="Digite a quantidade"
+            />
+          </mat-form-field>
 
-      <button
-        mat-raised-button
-        color="primary"
-        class="w-full mb-4"
-        [disabled]="!formSales.valid"
-        type="submit"
-      >
-        Registrar Venda
-      </button>
-    </form>
-  </mat-card>
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Data da Venda</mat-label>
+            <mat-icon matPrefix color="primary">calendar_today</mat-icon>
+            <input
+              matInput
+              type="date"
+              name="date"
+              formControlName="date"
+              placeholder="Digite a data"
+            />
+          </mat-form-field>
+
+          <button
+            mat-raised-button
+            color="primary"
+            class="w-full"
+            [disabled]="!formSales.valid"
+            type="submit"
+          >
+            Registrar Venda
+          </button>
+        </form>
+      </mat-card>
+    </div>
+  </div>
 </div>

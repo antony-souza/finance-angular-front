@@ -1,18 +1,23 @@
-<app-layout-options />
+<div class="flex h-full">
+  <app-layout-options />
 
-<h2 class="text-4xl font-bold text-slate-950 mb-5 mt-5 text-center">Faturamento</h2>
-<div class="pt-10 flex justify-center items-center gap-6 pb-10">
-  <div class="flex h-[400px] w-[400px] bg-white rounded-lg shadow-custom p-4">
-    <app-charts 
-      [messageSockets]="'sales'" 
-      [chartType]="'bar'"
-      />
-  </div>
+  <div class="ml-64 flex flex-col w-full px-8 py-6">
+    <div class="flex items-center mb-8 pl-6">
+      <h2 class="text-5xl font-bold text-slate-950">Faturamento</h2>
+    </div>
 
-  <div class="flex h-[400px] w-[400px] bg-white rounded-lg shadow-custom p-4">
-    <app-charts 
-      [messageSockets]="'sales'"
-      [chartType]="'pie'"
-       />
+    <div class="flex gap-6 pl-6">
+      <div class="flex h-[400px] w-[auto] bg-white rounded-lg shadow-custom p-4">
+        <app-charts 
+          [messageSockets]="'sales'" 
+          [chartType]="'bar'" />
+      </div>
+
+      <div class="flex h-[400px] w-[auto] bg-white rounded-lg shadow-custom p-4">
+        <app-charts 
+          [messageSockets]="'sales'" 
+          [chartType]="'pie'" />
+      </div>
+    </div>
   </div>
 </div>

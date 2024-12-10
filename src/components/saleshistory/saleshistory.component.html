@@ -1,65 +1,78 @@
-<app-layout-options></app-layout-options>
+<div class="flex h-full">
+  <app-layout-options />
 
-<h2 class="text-4xl font-bold text-slate-950 mt-10 text-center">Histórico de Vendas</h2>
+  <div class="ml-64 w-full px-8 py-6">
 
-<div class="table-container mx-auto p-10 text-center">
-  <table mat-table [dataSource]="salesHistory" class="mat-elevation-z8">
-    <ng-container matColumnDef="product_image">
-      <th mat-header-cell *matHeaderCellDef> Foto Produto </th>
-      <td mat-cell *matCellDef="let item">
-        <img [src]="item.product_image" alt="Produto" class="center-text w-12 h-12 rounded-full p-1 object-cover" />
-      </td>
-    </ng-container>
+    <div class="flex items-center">
+      <h2 class="text-5xl font-bold text-slate-950 pl-6">Histórico de Vendas</h2>
+    </div>
 
-    <ng-container matColumnDef="product_name">
-      <th mat-header-cell *matHeaderCellDef class="center-text"> Produto </th>
-      <td mat-cell *matCellDef="let item" class="center-text">{{ item.product_name }}</td>
-    </ng-container>
+    <div class="table-container shadow-custom p-6">
+      <table mat-table [dataSource]="salesHistory" class="mat-elevation-z8 w-full">
 
-    <ng-container matColumnDef="store_name">
-      <th mat-header-cell *matHeaderCellDef class="center-text"> Loja </th>
-      <td mat-cell *matCellDef="let item" class="center-text">{{ item.store_name }}</td>
-    </ng-container>
+        <ng-container matColumnDef="product_image">
+          <th mat-header-cell *matHeaderCellDef class="text-left">Foto Produto</th>
+          <td mat-cell *matCellDef="let item">
+            <img
+              [src]="item.product_image"
+              alt="Produto"
+              class="w-12 h-12 rounded-full p-1 object-cover"
+            />
+          </td>
+        </ng-container>
 
-    <ng-container matColumnDef="quantity_sold">
-        <th mat-header-cell *matHeaderCellDef class="center-text"> Quantidade Vendida </th>
-        <td mat-cell *matCellDef="let item" class="center-text">
-          {{ item.quantity_sold }}
-        </td>
-    </ng-container>
+        <ng-container matColumnDef="product_name">
+          <th mat-header-cell *matHeaderCellDef class="text-left">Produto</th>
+          <td mat-cell *matCellDef="let item" class="text-left">{{ item.product_name }}</td>
+        </ng-container>
 
-    <ng-container matColumnDef="total_billed">
-      <th mat-header-cell *matHeaderCellDef class="center-text"> Total Faturado </th>
-      <td mat-cell *matCellDef="let item" class="center-text">{{ item.total_billed }}</td>
-    </ng-container>
+        <ng-container matColumnDef="store_name">
+          <th mat-header-cell *matHeaderCellDef class="text-left">Loja</th>
+          <td mat-cell *matCellDef="let item" class="text-left">{{ item.store_name }}</td>
+        </ng-container>
 
-    <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef class="center-text"> Data </th>
-        <td mat-cell *matCellDef="let item" class="center-text">{{ item.date }}</td>
-    </ng-container>
+        <ng-container matColumnDef="quantity_sold">
+          <th mat-header-cell *matHeaderCellDef class="text-left">Quantidade Vendida</th>
+          <td mat-cell *matCellDef="let item" class="text-left">{{ item.quantity_sold }}</td>
+        </ng-container>
 
-    <ng-container matColumnDef="user_image" >
-      <th mat-header-cell *matHeaderCellDef> Foto do Vendedor </th>
-      <td mat-cell *matCellDef="let item">
-        <img [src]="item.user_image" alt="Vendedor" class="ml-5 w-12 h-12 p-1 rounded-full object-cover" />
-      </td>
-    </ng-container>
+        <ng-container matColumnDef="total_billed">
+          <th mat-header-cell *matHeaderCellDef class="text-left">Total Faturado</th>
+          <td mat-cell *matCellDef="let item" class="text-left">{{ item.total_billed }}</td>
+        </ng-container>
 
-    <ng-container matColumnDef="user_name">
-      <th mat-header-cell *matHeaderCellDef class="center-text"> Vendedor </th>
-      <td mat-cell *matCellDef="let item" class="center-text">{{ item.user_name }}</td>
-    </ng-container>
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef class="text-left">Data</th>
+          <td mat-cell *matCellDef="let item" class="text-left">{{ item.date }}</td>
+        </ng-container>
 
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef class="center-text"> Ações </th>
-      <td mat-cell *matCellDef="let item" class="center-text">
-        <button mat-raised-button color="primary">Detalhes</button>
-      </td>
-    </ng-container>
+        <ng-container matColumnDef="user_image">
+          <th mat-header-cell *matHeaderCellDef class="text-left">Foto do Vendedor</th>
+          <td mat-cell *matCellDef="let item">
+            <img
+              [src]="item.user_image"
+              alt="Vendedor"
+              class="w-12 h-12 rounded-full p-1 object-cover"
+            />
+          </td>
+        </ng-container>
 
-    <!-- Indicadores -->
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <!-- Conteúdo -->
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+        <ng-container matColumnDef="user_name">
+          <th mat-header-cell *matHeaderCellDef class="text-left">Vendedor</th>
+          <td mat-cell *matCellDef="let item" class="text-left">{{ item.user_name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="text-left">Ações</th>
+          <td mat-cell *matCellDef="let item" class="text-left">
+            <button mat-raised-button color="primary">Detalhes</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
 </div>
