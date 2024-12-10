@@ -7,7 +7,7 @@
     <ng-container matColumnDef="product_image">
       <th mat-header-cell *matHeaderCellDef> Foto Produto </th>
       <td mat-cell *matCellDef="let item">
-        <img [src]="item.product_image" alt="Produto" class="w-16 h-16 rounded object-cover" />
+        <img [src]="item.product_image" alt="Produto" class="center-text w-12 h-12 rounded-full p-1 object-cover" />
       </td>
     </ng-container>
 
@@ -41,7 +41,7 @@
     <ng-container matColumnDef="user_image" >
       <th mat-header-cell *matHeaderCellDef> Foto do Vendedor </th>
       <td mat-cell *matCellDef="let item">
-        <img [src]="item.user_image" alt="Vendedor" class="w-12 h-12 rounded-full object-cover" />
+        <img [src]="item.user_image" alt="Vendedor" class="ml-5 w-12 h-12 p-1 rounded-full object-cover" />
       </td>
     </ng-container>
 
