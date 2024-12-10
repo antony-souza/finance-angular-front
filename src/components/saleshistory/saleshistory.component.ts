@@ -13,6 +13,7 @@ interface ISalesHistory {
   product_name: string;
   product_image: string;
   user_name: string;
+  user_image: string;
 }
 
 @Component({
@@ -24,17 +25,6 @@ interface ISalesHistory {
 })
 export class SaleshistoryComponent implements OnInit {
   salesHistory: ISalesHistory[] = [];
-  displayedColumns: string[] = [
-    'product_image',
-    'product_name',
-    'store_name',
-    'quantity_sold',
-    'total_billed',
-    'date',
-    'user_image',
-    'user_name',
-    'actions',
-  ];
 
   constructor(private readonly httpClient: HttpClient) {}
 
@@ -50,7 +40,6 @@ export class SaleshistoryComponent implements OnInit {
           ...sale,
           total_billed: formatPrice(sale.total_billed as number),
         }));
-        console.log(this.salesHistory);
       });
   }
 }

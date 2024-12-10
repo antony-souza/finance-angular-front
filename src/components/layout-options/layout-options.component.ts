@@ -37,6 +37,11 @@ export class LayoutOptionsComponent {
       icon: 'attach_money',
       action: () => this.handleNavigateToProductBilling(),
     },
+    {
+      name: 'Funcionários',
+      icon: 'people',
+      action: () => this.handleNavigateToEmployees(),
+    },
   ];
 
   constructor(private readonly webSocketService: WebSocketService) {}
@@ -51,6 +56,10 @@ export class LayoutOptionsComponent {
 
   handleNavigateToProductBilling() {
     this.router.navigate(['/productbilling']);
+  }
+
+  handleNavigateToEmployees() {
+    this.router.navigate(['/employees']);
   }
 
   handleLogout() {

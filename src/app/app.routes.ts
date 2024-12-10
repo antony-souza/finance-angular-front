@@ -5,6 +5,7 @@ import { RouterGuard } from '../guards/router-guards.guard';
 import { SaleshistoryComponent } from '../components/saleshistory/saleshistory.component';
 import { ProductbillingComponent } from '../components/productbilling/productbilling.component';
 import { CreateSalesComponent } from '../components/create-sales/create-sales.component';
+import { EmployeesComponent } from '../components/employees/employees.component';
 
 export const routes: Routes =
     [
@@ -30,6 +31,11 @@ export const routes: Routes =
         {
             path: 'createsales',
             component: CreateSalesComponent,
+            canActivate: [RouterGuard]
+        },
+        {
+            path: 'employees',
+            component: EmployeesComponent,
             canActivate: [RouterGuard]
         },
 

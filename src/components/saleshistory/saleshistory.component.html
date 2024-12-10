@@ -2,76 +2,37 @@
   <app-layout-options />
 
   <div class="ml-64 w-full px-8 py-6">
-
     <div class="flex items-center">
       <h2 class="text-5xl font-bold text-slate-950 pl-6">Histórico de Vendas</h2>
     </div>
-
-    <div class="table-container shadow-custom p-6">
-      <table mat-table [dataSource]="salesHistory" class="mat-elevation-z8 w-full">
-
-        <ng-container matColumnDef="product_image">
-          <th mat-header-cell *matHeaderCellDef class="text-left">Foto Produto</th>
-          <td mat-cell *matCellDef="let item">
-            <img
-              [src]="item.product_image"
-              alt="Produto"
-              class="w-12 h-12 rounded-full p-1 object-cover"
-            />
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="product_name">
-          <th mat-header-cell *matHeaderCellDef class="text-left">Produto</th>
-          <td mat-cell *matCellDef="let item" class="text-left">{{ item.product_name }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="store_name">
-          <th mat-header-cell *matHeaderCellDef class="text-left">Loja</th>
-          <td mat-cell *matCellDef="let item" class="text-left">{{ item.store_name }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="quantity_sold">
-          <th mat-header-cell *matHeaderCellDef class="text-left">Quantidade Vendida</th>
-          <td mat-cell *matCellDef="let item" class="text-left">{{ item.quantity_sold }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="total_billed">
-          <th mat-header-cell *matHeaderCellDef class="text-left">Total Faturado</th>
-          <td mat-cell *matCellDef="let item" class="text-left">{{ item.total_billed }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef class="text-left">Data</th>
-          <td mat-cell *matCellDef="let item" class="text-left">{{ item.date }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="user_image">
-          <th mat-header-cell *matHeaderCellDef class="text-left">Foto do Vendedor</th>
-          <td mat-cell *matCellDef="let item">
-            <img
-              [src]="item.user_image"
-              alt="Vendedor"
-              class="w-12 h-12 rounded-full p-1 object-cover"
-            />
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="user_name">
-          <th mat-header-cell *matHeaderCellDef class="text-left">Vendedor</th>
-          <td mat-cell *matCellDef="let item" class="text-left">{{ item.user_name }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef class="text-left">Ações</th>
-          <td mat-cell *matCellDef="let item" class="text-left">
-            <button mat-raised-button color="primary">Detalhes</button>
-          </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <div class="p-6">
+      <table class="min-w-full bg-white border border-gray-300 shadow rounded">
+        <thead>
+          <tr class="bg-gray-200 text-center border-b">
+            <th class="px-6 py-3 font-semibold text-gray-700">Foto</th>
+            <th class="px-6 py-3 font-semibold text-gray-700">Nome</th>
+            <th class="px-6 py-3 font-semibold text-gray-700">Quantidade</th>
+            <th class="px-6 py-3 font-semibold text-gray-700">Faturamento</th>
+            <th class="px-6 py-3 font-semibold text-gray-700">Foto do Funcionário</th>
+            <th class="px-6 py-3 font-semibold text-gray-700">Nome do Funcionário</th>
+            <th class="px-6 py-3 font-semibold text-gray-700">Empresa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sales of salesHistory" class="border-b text-center">
+            <td class="p-4 flex justify-center items-center">
+              <img [src]="sales.product_image" alt="Foto do Produto" class="w-12 h-12 rounded-full object-cover" />
+            </td>
+            <td class="p-4 font-semibold text-gray-800">{{ sales.product_name }}</td>
+            <td class="p-4 font-semibold text-gray-800">{{ sales.quantity_sold }}</td>
+            <td class="p-4 font-semibold text-gray-800">{{ sales.total_billed }}</td>
+            <td class="p-4 flex justify-center items-center">
+              <img [src]="sales.user_image" alt="Foto do Funcionário" class="w-12 h-12 rounded-full object-cover" />
+            </td>
+            <td class="p-4 font-semibold text-gray-800">{{ sales.user_name }}</td>
+            <td class="p-4 font-semibold text-gray-800">{{ sales.store_name }}</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>

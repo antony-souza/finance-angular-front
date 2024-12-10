@@ -1,0 +1,32 @@
+<div class="flex h-full">
+    <app-layout-options />
+  
+    <div class="ml-64 w-full px-8 py-6">
+      <div class="flex items-center">
+        <h2 class="text-5xl font-bold text-slate-950 pl-6">Lista de Funcionários</h2>
+      </div>
+      <div class="p-6">
+        <table class="min-w-full bg-white border border-gray-300 shadow">
+          <thead>
+            <tr class="bg-gray-200 text-center border-b">
+              <th class="px-6 py-3 font-semibold text-gray-700">Foto</th>
+              <th class="px-6 py-3 font-semibold text-gray-700">Nome</th>
+              <th class="px-6 py-3 font-semibold text-gray-700">Email</th>
+              <th class="px-6 py-3 font-semibold text-gray-700">Empresa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employee of employees" class="border-b text-center">
+              <td class="p-4 flex justify-center items-center">
+                <img [src]="employee.image_url" alt="Foto do Funcionário" class="w-12 h-12 rounded-full object-cover" />
+              </td>
+              <td class="p-4 font-semibold text-gray-800">{{ employee.name }}</td>
+              <td class="p-4 font-semibold text-gray-800">{{ employee.email }}</td>
+              <td class="p-4 text-gray-600">{{ employee.store }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
