@@ -1,18 +1,18 @@
 <h2 mat-dialog-title>Editar Funcionário</h2>
 <mat-dialog-content>
   <form [formGroup]="formUpdateEmployee">
-    <mat-form-field>
-      <mat-icon matPrefix>person</mat-icon>
+    <mat-form-field class="w-full">
+      <mat-icon matPrefix color="primary">person</mat-icon>
       <mat-label>Nome</mat-label>
       <input 
         matInput 
         formControlName="name" 
         name="name"
         placeholder="Digite o novo nome do funcionário"
-        >
+      >
     </mat-form-field>
-    <mat-form-field>
-      <mat-icon matPrefix>email</mat-icon>
+    <mat-form-field class="w-full">
+      <mat-icon matPrefix color="primary">email</mat-icon>
       <mat-label>Email</mat-label>
       <input 
         matInput 
@@ -20,22 +20,25 @@
         name="email"
         type="email"
         placeholder="Digite o novo email do funcionário"
-        />
+      />
     </mat-form-field>
     <div class="pb-5">  
       <label class="text-black font-medium" for="image_url">Foto do Funcionário</label> 
-       <input  
+      <input  
         formControlName="image_url" 
         (change)="onFileSelected($event)"
         name="image_url"
         type="file"
         accept="image/*"
-        class="file-input"
-       />
+      />
     </div>
   </form>
+  <div class="flex justify-end w-full">
+    <button mat-button color="warn" (click)="closeDialog()">Fechar</button>
+    <button mat-button 
+      (click)="saveChanges()"
+      color="primary" 
+    >Salvar</button>
+  </div>
 </mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button (click)="closeDialog()">Fechar</button>
-  <button mat-button color="primary" (click)="saveChanges()">Salvar</button>
-</mat-dialog-actions>
+
