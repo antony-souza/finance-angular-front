@@ -16,8 +16,8 @@
             <mat-icon matPrefix color="primary">shopping_cart</mat-icon>
             <select matNativeControl formControlName="product_id">
               <option value="" disabled selected>Selecione um produto</option>
-              <option *ngFor="let product of products" [value]="product.id">
-                {{ product.name }}
+              <option *ngFor="let product of products" [value]="product.product_id">
+                {{ product.product_name }}
               </option>
             </select>
           </mat-form-field>

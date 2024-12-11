@@ -8,8 +8,15 @@ import { environment } from '../../environment/environment';
 import { LayoutDashboardComponent } from '../dashboard/layout-options.component';
 
 interface IProductResponse {
-  id: string;
-  name: string;
+  product_id: string;
+  product_name: string;
+  product_price: number;
+  product_description: string;
+  product_image_url: string;
+  product_quantity: number;
+  category_name: string;
+  store_id: string;
+  store_name: string;
 }
 
 @Component({
@@ -53,7 +60,7 @@ export class CreateSalesComponent implements OnInit{
 
   loadProducts() {
     this.httpClient
-      .get<IProductResponse[]>(`${environment.host}:${environment.port}/${environment.allproducts}/${localStorage.getItem('store_id')}`)
+      .get<IProductResponse[]>(`${environment.host}:${environment.port}/${environment.getAllProductsByStore}/${localStorage.getItem('store_id')}`)
       .subscribe({
         next: (response) => {
           this.products = response;
