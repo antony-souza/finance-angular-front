@@ -6,6 +6,7 @@ import { SaleshistoryComponent } from '../components/saleshistory/saleshistory.c
 import { ProductbillingComponent } from '../components/productbilling/productbilling.component';
 import { CreateSalesComponent } from '../components/create-sales/create-sales.component';
 import { EmployeesComponent } from '../components/employees/employees.component';
+import { ProductsComponent } from '../components/products/products.component';
 
 export const routes: Routes =
     [
@@ -36,6 +37,11 @@ export const routes: Routes =
         {
             path: 'employees',
             component: EmployeesComponent,
+            canActivate: [RouterGuard]
+        },
+        {
+            path: 'products',
+            component: ProductsComponent,
             canActivate: [RouterGuard]
         },
 

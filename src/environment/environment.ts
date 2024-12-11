@@ -3,6 +3,7 @@ class Environment {
     public readonly port: number = 8920;
     public readonly routerAuth: string = 'auth';
     public readonly getAllUsers: string = 'user/all/enable';
+    public readonly getAllProductsByStore: string = 'products/store/all';
     public readonly productbilling: string = 'sales/all';
     public readonly salesAll: string = `sales/store/all`;
     public readonly salesCreate: string = 'sales/create';

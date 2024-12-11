@@ -1,0 +1,45 @@
+<div class="flex h-full">
+    <app-dashboard />
+  
+    <div class="ml-64 w-full px-8 py-6">
+      <div class="flex items-center">
+        <h2 class="text-4xl font-bold text-slate-950 pl-6">Lista de Produtos</h2>
+      </div>
+      <div class="p-6">
+        <table class="min-w-full bg-white border border-gray-300 shadow">
+          <thead>
+            <tr class="bg-indigo-500 text-center border-b">
+              <th class="px-6 py-3 font-normal text-white">Foto do Produto</th>
+              <th class="px-6 py-3 font-normal text-white">Nome do Produto</th>
+              <th class="px-6 py-3 font-normal text-white">Quantidade em Estoque</th>
+              <th class="px-6 py-3 font-normal text-white">Descrição</th>
+              <th class="px-6 py-3 font-normal text-white">Categoria</th>
+              <th class="px-6 py-3 font-normal text-white">Loja</th>
+              <th class="px-6 py-3 font-normal text-white">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products" class="border-b text-center">
+              <td class="p-4 flex justify-center items-center">
+                <img [src]="product.product_image_url" alt="Foto do Produto" class="w-12 h-12 rounded-full object-cover" />
+              </td>
+              <td class="p-4 font-medium text-gray-800">{{ product.product_name }}</td>
+              <td class="p-4 font-medium text-gray-800">{{ product.product_quantity }}</td>
+              <td class="p-4 font-medium text-gray-800">{{ product.product_description }}</td>
+              <td class="p-4 font-medium text-gray-800">{{ product.category_name }}</td>
+              <td class="p-4 font-medium text-gray-800">{{ product.store_name }}</td>
+              <td class="p-4 font-medium text-gray-800">
+                <button class="rounded-full">
+                  <mat-icon color="primary">edit</mat-icon>
+                </button>
+                <button  class="pl-2 rounded-full">
+                  <mat-icon color="primary">delete</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

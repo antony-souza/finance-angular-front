@@ -42,6 +42,11 @@ export class LayoutDashboardComponent {
       icon: 'people',
       action: () => this.handleNavigateToEmployees(),
     },
+    {
+      name: 'Produtos',
+      icon: 'widgets',
+      action: () => this.handleNavigateToProducts(),
+    },
   ];
 
   constructor(private readonly webSocketService: WebSocketService) {}
@@ -61,6 +66,11 @@ export class LayoutDashboardComponent {
   handleNavigateToEmployees() {
     this.router.navigate(['/employees']);
   }
+
+  handleNavigateToProducts() {
+    this.router.navigate(['/products']);
+  }
+
 
   handleLogout() {
     const storeId = localStorage.getItem('store_id') as string;
