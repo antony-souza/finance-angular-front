@@ -2,6 +2,7 @@ class Environment {
     public readonly host: string = 'http://localhost';
     public readonly port: number = 8920;
     public readonly routerAuth: string = 'auth';
+    public readonly updateUser: string = 'user/update';
     public readonly getAllUsers: string = 'user/all/enable';
     public readonly getAllProductsByStore: string = 'products/store/all';
     public readonly productbilling: string = 'sales/all';

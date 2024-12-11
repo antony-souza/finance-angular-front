@@ -1,11 +1,11 @@
  
 import { Component, inject, OnInit } from '@angular/core';
-import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environment/environment';
 import { LayoutDashboardComponent } from '../dashboard/layout-options.component';
+import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
 
 interface IProductResponse {
   product_id: string;
@@ -22,7 +22,7 @@ interface IProductResponse {
 @Component({
   selector: 'app-create-sales',
   standalone: true,
-  imports: [...MATERIAL_COMPONENTS,LayoutDashboardComponent, CommonModule, ReactiveFormsModule],
+  imports: [LayoutDashboardComponent, CommonModule, ReactiveFormsModule, ...MATERIAL_COMPONENTS],
   templateUrl: './create-sales.component.html',
   styleUrl: './create-sales.component.scss' 
 })
