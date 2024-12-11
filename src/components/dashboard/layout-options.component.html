@@ -7,7 +7,7 @@
     </div>
 
     <nav class="flex-1">
-      <div class="flex flex-col  items-start w-full text-gray-800">
+      <div class="flex flex-col items-start w-full text-gray-800 font-medium">
         <a
           *ngFor="let item of asideMenu"
           (click)="item.action()"
@@ -25,9 +25,9 @@
     <div class="p-4 border-t">
       <button
         (click)="handleLogout()"
-        class="w-full flex text-gray-600 hover:text-red-600 hover:bg-red-100 px-4 py-2 rounded"
+        class="w-full flex text-gray-800 font-medium hover:text-red-600 hover:bg-red-100 px-4 py-2 rounded"
       >
-        <mat-icon class="mr-2">logout</mat-icon>
+        <mat-icon class="mr-2" color="primary">logout</mat-icon>
         Logout
       </button>
     </div>
