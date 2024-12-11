@@ -46,8 +46,6 @@ export class ProductsComponent implements OnInit {
           ...product,
           formatted_price: formatPrice(product.product_price)
         }))
-        
-
       });
   }
 

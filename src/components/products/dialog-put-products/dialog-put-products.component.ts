@@ -21,7 +21,7 @@ export class DialogPutProductsComponent  {
     name: [''],
     price: ['', [Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
     description: [''],
-    quantity: new FormControl<number>(0),
+    quantity: ['', [Validators.pattern(/^\d+$/)]],
     image_url: new FormControl<string | Blob>(''),
   });
 
