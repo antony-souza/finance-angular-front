@@ -26,9 +26,11 @@
       <label class="text-black font-medium" for="image_url">Foto do Funcionário</label> 
        <input  
         formControlName="image_url" 
+        (change)="onFileSelected($event)"
         name="image_url"
-        accept="image/*"
         type="file"
+        accept="image/*"
+        class="file-input"
        />
     </div>
   </form>
