@@ -6,12 +6,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environment/environment';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
-interface IEmployeeUpdate {
-  name?: string;
-  email?: string;
-  image_url?: string;
-}
-
 @Component({
   selector: 'app-dialog-put-employees',
   templateUrl: './dialog-put-employees.component.html',
@@ -57,19 +51,19 @@ export class DialogPutEmployeesComponent {
       });
 
       this.httpClient
-        .put<IEmployeeUpdate>(
+        .put(
           `${environment.host}:${environment.port}/${environment.updateUser}/${this.data.user_id}`,
           formData
         )
         .subscribe({
           next: () => {
-            this.dialogRef.close(true);
+            this.closeDialog()
           }
         });
     } 
   }
 
   closeDialog() {
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 }
