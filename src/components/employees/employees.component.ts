@@ -42,12 +42,12 @@ export class EmployeesComponent implements OnInit {
   openEditDialog(employeeId: string): void {
     const dialogRef = this.dialog.open(DialogPutEmployeesComponent, {
       width: '400px',
-      data: { user_id: employeeId } // Passando o user_id para o componente de diálogo
+      data: { user_id: employeeId }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.loadEmployees();  // Recarregar a lista após a edição
+        this.loadEmployees();
       }
     });
   }

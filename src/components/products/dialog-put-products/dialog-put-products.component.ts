@@ -1,33 +1,35 @@
 import { Component, Inject } from '@angular/core';
 import { MATERIAL_COMPONENTS } from '../../../utils/angular-material/angular-material';
-import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environment/environment';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-dialog-put-employees',
-  templateUrl: './dialog-put-employees.component.html',
-  styleUrls: ['./dialog-put-employees.component.scss'],
+  selector: 'app-dialog-put-products',
+  templateUrl: './dialog-put-products.component.html',
+  styleUrls: ['./dialog-put-products.component.scss'],
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, ...MATERIAL_COMPONENTS],
 })
-export class DialogPutEmployeesComponent {
+export class DialogPutProductsComponent  {
 
   private selectedFile: File | null = null;
 
-  formUpdateEmployee = this.formBuilder.group({
+  formUpdateProducts = this.formBuilder.group({
     name: [''],
-    email: ['', [Validators.email]],
+    price: ['', [Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+    description: [''],
+    quantity: new FormControl<number>(0),
     image_url: new FormControl<string | Blob>(''),
   });
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { user_id: string },
+    @Inject(MAT_DIALOG_DATA) public data: { id: string },
     private readonly httpClient: HttpClient,
     private formBuilder: FormBuilder,
-    private dialogRef: MatDialogRef<DialogPutEmployeesComponent>
+    private dialogRef: MatDialogRef<DialogPutProductsComponent>
   ) {}
 
   onChangeFileSelected(event: Event) {
@@ -38,10 +40,10 @@ export class DialogPutEmployeesComponent {
   }
 
   saveChanges() {
-    if (this.formUpdateEmployee.valid) {
+    if (this.formUpdateProducts.valid) {
       const formData = new FormData();
 
-      Object.entries(this.formUpdateEmployee.controls).forEach(([key, control]) => {
+      Object.entries(this.formUpdateProducts.controls).forEach(([key, control]) => {
         if (control.value) {
           if (key === 'image_url' && this.selectedFile) {
               formData.append(key, this.selectedFile);
@@ -52,7 +54,7 @@ export class DialogPutEmployeesComponent {
 
       this.httpClient
         .put(
-          `${environment.host}:${environment.port}/${environment.updateUser}/${this.data.user_id}`,
+          `${environment.host}:${environment.port}/${environment.updateProduct}/${this.data.id}`,
           formData
         )
         .subscribe({

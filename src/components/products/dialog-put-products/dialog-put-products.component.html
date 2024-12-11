@@ -1,0 +1,65 @@
+<h2 mat-dialog-title>Editar Produto</h2>
+<mat-dialog-content>
+  <form [formGroup]="formUpdateProducts">
+    <div class="pb-5">  
+      <label class="text-black font-medium" for="image_url">Foto do Produto</label> 
+      <input  
+        formControlName="image_url" 
+        (change)="onChangeFileSelected($event)"
+        name="image_url"
+        type="file"
+        accept="image/*"
+      />
+    </div>
+    <mat-form-field class="w-full">
+      <mat-icon matPrefix color="primary">shopping_bag</mat-icon>
+      <mat-label>Nome do Produto</mat-label>
+      <input 
+        matInput 
+        formControlName="name" 
+        name="name"
+        placeholder="Digite o novo nome do produto"
+      >
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-icon matPrefix color="primary">inventory</mat-icon>
+      <mat-label>Quantidade</mat-label>
+      <input 
+        matInput 
+        formControlName="quantity" 
+        name="quantity"
+        type="number"
+        placeholder="Digite a nova quantidade do produto"
+      />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-icon matPrefix color="primary">attach_money</mat-icon>
+      <mat-label>Preço</mat-label>
+      <input 
+        matInput 
+        formControlName="price" 
+        name="price"
+        type="number"
+        placeholder="Digite o novo preço do produto"
+      />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-icon matPrefix color="primary">description</mat-icon>
+      <mat-label>Descrição</mat-label>
+      <input 
+        matInput 
+        formControlName="description" 
+        name="description"
+        type="text"
+        placeholder="Digite a descrição do produto"
+      />
+    </mat-form-field>
+  </form>
+  <div class="flex justify-end w-full">
+    <button mat-button color="warn" (click)="closeDialog()">Fechar</button>
+    <button mat-button 
+      (click)="saveChanges()"
+      color="primary" 
+    >Salvar</button>
+  </div>
+</mat-dialog-content>

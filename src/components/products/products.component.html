@@ -11,7 +11,8 @@
             <tr class="bg-indigo-500 text-center border-b">
               <th class="px-6 py-3 font-normal text-white">Foto do Produto</th>
               <th class="px-6 py-3 font-normal text-white">Nome do Produto</th>
-              <th class="px-6 py-3 font-normal text-white">Quantidade em Estoque</th>
+              <th class="px-6 py-3 font-normal text-white">Preço</th>
+              <th class="px-6 py-3 font-normal text-white">Quantidade</th>
               <th class="px-6 py-3 font-normal text-white">Descrição</th>
               <th class="px-6 py-3 font-normal text-white">Categoria</th>
               <th class="px-6 py-3 font-normal text-white">Loja</th>
@@ -24,12 +25,13 @@
                 <img [src]="product.product_image_url" alt="Foto do Produto" class="w-12 h-12 rounded-full object-cover" />
               </td>
               <td class="p-4 font-medium text-gray-800">{{ product.product_name }}</td>
+              <td class="p-4 font-medium text-gray-800">{{ product.formatted_price }}</td>
               <td class="p-4 font-medium text-gray-800">{{ product.product_quantity }}</td>
               <td class="p-4 font-medium text-gray-800">{{ product.product_description }}</td>
               <td class="p-4 font-medium text-gray-800">{{ product.category_name }}</td>
               <td class="p-4 font-medium text-gray-800">{{ product.store_name }}</td>
               <td class="p-4 font-medium text-gray-800">
-                <button class="rounded-full">
+                <button class="rounded-full" (click)="openDialogPutProducts(product.product_id)">
                   <mat-icon color="primary">edit</mat-icon>
                 </button>
                 <button  class="pl-2 rounded-full">
