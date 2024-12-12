@@ -60,7 +60,7 @@
     </mat-form-field>
     <mat-form-field class="w-full" appearance="fill">
       <mat-label>Categorias</mat-label>
-      <mat-icon matPrefix color="primary">supervisor_account</mat-icon>
+      <mat-icon matPrefix color="primary">category</mat-icon>
       <mat-select formControlName="category_id">
         <mat-option value="" disabled>Selecione uma categoria</mat-option>
         <mat-option *ngFor="let category of categories" [value]="category.id">
