@@ -65,4 +65,11 @@ export class EmployeesComponent implements OnInit {
       }
     });
   }
+
+  deleteUser(employeeId: string) {
+    this.httpClient.delete(`${environment.host}:${environment.port}/${environment.deletePermanUser}/${employeeId}`)
+      .subscribe(() => {
+        this.loadEmployees();
+      });
+  }
 }

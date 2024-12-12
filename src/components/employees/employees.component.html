@@ -39,9 +39,9 @@
               <button class="rounded-full" (click)="openEditDialog(employee.id)">
                 <mat-icon color="primary">edit</mat-icon>
               </button>
-              <!-- <button class="pl-2 rounded-full">
-                <mat-icon color="primary">delete</mat-icon>
-              </button> -->
+              <button class="pl-2 rounded-full" (click)="deleteUser(employee.id)">
+                <mat-icon color="warn">delete</mat-icon>
+              </button> 
             </td>
           </tr>
         </tbody>

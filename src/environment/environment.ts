@@ -4,6 +4,7 @@ class Environment {
     public readonly routerAuth: string = 'auth';
     public readonly createUser: string = 'user/create';
     public readonly updateUser: string = 'user/update';
+    public readonly deletePermanUser: string = 'user/delete';
     public readonly getAllUsers: string = 'user/all/enable';
     public readonly getAllProductsByStore: string = 'products/store/all';
     public readonly updateProduct: string = 'products/update';
