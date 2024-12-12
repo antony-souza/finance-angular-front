@@ -8,9 +8,6 @@ import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-materi
 
 interface IAuthResponse {
   token: string;
-  name: string;
-  role: string;
-  store_id: string;
   user: IUserProps
 }
 
@@ -19,6 +16,7 @@ interface IUserProps {
   name: string;
   image_url: string;
   store_id: string;
+  role: string;
 }
 
 @Component({
@@ -50,6 +48,7 @@ export class AuthComponent {
             localStorage.setItem('token', response.token)
             localStorage.setItem('store_id', response.user.store_id)
             localStorage.setItem('user_id', response.user.id)
+            localStorage.setItem('role', response.user.role)
             this.router.navigate(['/home'])
           }
         })
