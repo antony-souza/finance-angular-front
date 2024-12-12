@@ -15,7 +15,9 @@ class Environment {
     public readonly allproducts: string = 'products/allstore';
     public readonly deleteProduct: string = 'products/delete';
     public readonly getAllCategoriesByStoreId: string = 'categories/all';
-
+    public readonly createCategories: string = 'categories/create';
+    public readonly updateCategories: string = 'categories/update';
+    public readonly deleteCategories: string = 'categories/delete';
 }
 
 export const environment = new Environment();

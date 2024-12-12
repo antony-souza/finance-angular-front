@@ -47,6 +47,11 @@ export class LayoutDashboardComponent {
       icon: 'widgets',
       action: () => this.handleNavigateToProducts(),
     },
+    {
+      name: 'Categorias',
+      icon: 'category',
+      action: () => this.handleNavigateToCategories(),
+    },
   ];
 
   constructor(private readonly webSocketService: WebSocketService) {}
@@ -69,6 +74,10 @@ export class LayoutDashboardComponent {
 
   handleNavigateToProducts() {
     this.router.navigate(['/products']);
+  }
+
+  handleNavigateToCategories() {
+    this.router.navigate(['/categories']);
   }
 
 

@@ -1,0 +1,36 @@
+<h2 mat-dialog-title class="border-b">Editar Categoria</h2>
+<mat-dialog-content>
+  <form [formGroup]="formUpdateCategories" class="pt-3">
+    <div class="pb-5 flex flex-col gap-3">
+      <label class="text-black font-medium" for="image_url">Foto da Categoria</label> 
+      <div class="flex items-center gap-6 overflow-hidden bg-gray-100 p-3 border-b border-b-gray-500">
+        <mat-icon color="primary" class="absolute">image</mat-icon>
+        <input  
+          formControlName="image_url" 
+          (change)="onChangeFileSelected($event)"
+          name="image_url"
+          type="file"
+          accept="image/*"
+          class="pl-10"
+        />
+      </div>
+    </div>
+    <mat-form-field class="w-full">
+      <mat-icon matPrefix color="primary">category</mat-icon>
+      <mat-label>Nome</mat-label>
+      <input 
+        matInput 
+        formControlName="name" 
+        name="name"
+        placeholder="Digite o novo nome do funcionário"
+      >
+    </mat-form-field>
+  </form>
+  <div class="flex justify-end w-full">
+    <button mat-button color="warn" (click)="closeDialog()">Fechar</button>
+    <button mat-button 
+      (click)="saveChanges()"
+      color="primary" 
+    >Salvar</button>
+  </div>
+</mat-dialog-content>

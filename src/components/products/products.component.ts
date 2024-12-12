@@ -76,9 +76,11 @@ export class ProductsComponent implements OnInit {
   }
 
   deleteProduct(product_id: string) {
+    if(confirm('Tem certeza que deseja deletar este produto? Essa ação não poderá ser desfeita!')) {
     this.httpClient.delete(`${environment.host}:${environment.port}/${environment.deleteProduct}/${product_id}`)
       .subscribe(() => {
         this.getProducts();
       })
   }
+}
 }

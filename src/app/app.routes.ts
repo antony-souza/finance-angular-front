@@ -7,6 +7,7 @@ import { ProductbillingComponent } from '../components/productbilling/productbil
 import { CreateSalesComponent } from '../components/create-sales/create-sales.component';
 import { EmployeesComponent } from '../components/employees/employees.component';
 import { ProductsComponent } from '../components/products/products.component';
+import { CategoriesComponent } from '../components/categories/categories.component';
 
 export const routes: Routes =
     [
@@ -42,6 +43,11 @@ export const routes: Routes =
         {
             path: 'products',
             component: ProductsComponent,
+            canActivate: [RouterGuard]
+        },
+        {
+            path: 'categories',
+            component: CategoriesComponent,
             canActivate: [RouterGuard]
         },
 

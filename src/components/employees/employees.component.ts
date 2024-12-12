@@ -67,7 +67,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   deleteUser(employeeId: string) {
-    if (!confirm('Tem certeza que deseja deletar este usuário? Essa ação é irreversível!')) {
+    if (!confirm('Tem certeza que deseja deletar este usuário? Essa ação não poderá ser desfeita!')) {
       return;
     }
     this.httpClient.delete(`${environment.host}:${environment.port}/${environment.deletePermanUser}/${employeeId}`)
