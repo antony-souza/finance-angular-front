@@ -38,7 +38,7 @@ export class LayoutDashboardComponent implements OnInit {
     {
       name: 'Faturamento',
       icon: 'attach_money',
-      roles: ['ADMIN', 'USER'],
+      roles: ['ADMIN'],
       action: () => this.handleNavigateToProductBilling(),
     },
     {
@@ -67,13 +67,10 @@ export class LayoutDashboardComponent implements OnInit {
 
   constructor(private readonly webSocketService: WebSocketService) {}
 
-  filterMenuByRole(): void {
-    const role = (localStorage.getItem('role') as string).toUpperCase();
-    this.asideMenu = this.asideMenu.filter(menu =>
-      menu.roles.map((role) => role.toUpperCase()).includes(role)
-    );
+  filterMenuByRole(){
+    const userRole = localStorage.getItem('role') as string
+    this.asideMenu = this.asideMenu.filter(menu => menu.roles.includes(userRole))
   }
-  
 
   handleNavigateToCreateSales() {
     this.router.navigate(['/createsales']);
