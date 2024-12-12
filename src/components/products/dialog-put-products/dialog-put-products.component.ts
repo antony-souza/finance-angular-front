@@ -19,7 +19,7 @@ export class DialogPutProductsComponent  {
 
   formUpdateProducts = this.formBuilder.group({
     name: [''],
-    price: ['', [Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+    price: [''],
     description: [''],
     quantity: ['', [Validators.pattern(/^\d+$/)]],
     image_url: new FormControl<string | Blob>(''),

@@ -25,7 +25,7 @@ export class DialogPostProductsComponent implements OnInit {
 
   formCreateProducts = this.formBuilder.group({
     name: ['',[Validators.required]],
-    price: ['', [Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+    price: [''],
     quantity: ['', [Validators.pattern(/^\d+$/)]],
     description: ['', [Validators.required]],
     category_id: ['', [Validators.required]],
