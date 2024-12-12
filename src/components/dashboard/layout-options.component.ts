@@ -21,7 +21,7 @@ interface IAsideMenu {
 })
 export class LayoutDashboardComponent implements OnInit {
   router = inject(Router);
-  
+
   asideMenu: IAsideMenu[] = [
     {
       name: 'Registrar Venda',
@@ -65,11 +65,11 @@ export class LayoutDashboardComponent implements OnInit {
     this.filterMenuByRole();
   }
 
-  constructor(private readonly webSocketService: WebSocketService) {}
+  constructor(private readonly webSocketService: WebSocketService) { }
 
-  filterMenuByRole(){
-    const userRole = localStorage.getItem('role') as string
-    this.asideMenu = this.asideMenu.filter(menu => menu.roles.includes(userRole))
+  filterMenuByRole() {
+    const userRole = localStorage.getItem('role') as string;
+    this.asideMenu = this.asideMenu.filter((previusAsideMenu) => previusAsideMenu.roles.includes(userRole))
   }
 
   handleNavigateToCreateSales() {
