@@ -74,5 +74,11 @@ export class ProductsComponent implements OnInit {
       }
     });
   }
-  
+
+  deleteProduct(product_id: string) {
+    this.httpClient.delete(`${environment.host}:${environment.port}/${environment.deleteProduct}/${product_id}`)
+      .subscribe(() => {
+        this.getProducts();
+      })
+  }
 }

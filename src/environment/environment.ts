@@ -13,6 +13,7 @@ class Environment {
     public readonly salesAll: string = `sales/store/all`;
     public readonly salesCreate: string = 'sales/create';
     public readonly allproducts: string = 'products/allstore';
+    public readonly deleteProduct: string = 'products/delete';
     public readonly getAllCategoriesByStoreId: string = 'categories/all';
 
 }
