@@ -6,7 +6,9 @@
     <div class="flex justify-between mb-6">
       <h2 class="text-4xl font-bold text-slate-950">Lista de Funcionários</h2>
 
-      <button class="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white rounded-md">
+      <button class="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white rounded-md" 
+        (click)="openCreateDialog()"
+      >
         <mat-icon>add</mat-icon>
         Adicionar Funcionário
       </button>

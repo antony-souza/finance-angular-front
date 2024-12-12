@@ -6,6 +6,7 @@ import { environment } from '../../environment/environment';
 import { LayoutDashboardComponent } from '../dashboard/layout-options.component';
 import { DialogPutEmployeesComponent } from './dialog-put-employees/dialog-put-employees.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogPostEmployeesComponent } from './dialog-post-employees/dialog-post-employees.component';
 
 interface IEmployeeResponse {
   id: string;
@@ -44,6 +45,18 @@ export class EmployeesComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogPutEmployeesComponent, {
       width: '400px',
       data: { user_id: employeeId }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadEmployees();
+      }
+    });
+  }
+
+  openCreateDialog(): void {
+    const dialogRef = this.dialog.open(DialogPostEmployeesComponent, {
+      width: '400px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
