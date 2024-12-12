@@ -1,40 +1,49 @@
 <div class="flex h-full">
-    <app-dashboard />
+  <app-dashboard />
   
-    <div class="ml-64 w-full px-8 py-6">
-      <div class="flex items-center">
-        <h2 class="text-4xl font-bold text-slate-950 pl-6">Lista de Funcionários</h2>
-      </div>
-      <div class="p-6">
-        <table class="min-w-full bg-white border border-gray-300 shadow">
-          <thead>
-            <tr class="bg-indigo-500 text-center border-b">
-              <th class="px-6 py-3 font-normal text-white">Foto</th>
-              <th class="px-6 py-3 font-normal text-white">Nome</th>
-              <th class="px-6 py-3 font-normal text-white">Email</th>
-              <th class="px-6 py-3 font-normal text-white">Empresa</th>
-              <th class="px-6 py-3 font-normal text-white">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let employee of employees" class="border-b text-center">
-              <td class="p-4 flex justify-center items-center">
-                <img [src]="employee.image_url" alt="Foto do Funcionário" class="w-12 h-12 rounded-full object-cover" />
-              </td>
-              <td class="p-4 font-medium text-gray-800">{{ employee.name }}</td>
-              <td class="p-4 font-medium text-gray-800">{{ employee.email }}</td>
-              <td class="p-4 font-medium text-gray-800">{{ employee.store }}</td>
-              <td class="p-4 font-medium text-gray-800">
-                <button class="rounded-full" (click)="openEditDialog(employee.id)">
-                  <mat-icon color="primary">edit</mat-icon>
-                </button>
-                <!-- <button  class="pl-2 rounded-full">
-                  <mat-icon color="primary">delete</mat-icon>
-                </button> -->
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <div class="ml-64 w-full px-8 py-6">
+
+    <div class="flex justify-between mb-6">
+      <h2 class="text-4xl font-bold text-slate-950">Lista de Funcionários</h2>
+
+      <button class="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white rounded-md">
+        <mat-icon>add</mat-icon>
+        Adicionar Funcionário
+      </button>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white border border-gray-300 shadow">
+        <thead>
+          <tr class="bg-indigo-500 text-center border-b">
+            <th class="px-6 py-3 font-normal text-white">Foto</th>
+            <th class="px-6 py-3 font-normal text-white">Nome</th>
+            <th class="px-6 py-3 font-normal text-white">Email</th>
+            <th class="px-6 py-3 font-normal text-white">Empresa</th>
+            <th class="px-6 py-3 font-normal text-white">Função</th>
+            <th class="px-6 py-3 font-normal text-white">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees" class="border-b text-center">
+            <td class="p-4 flex justify-center items-center">
+              <img [src]="employee.image_url" alt="Foto do Funcionário" class="w-12 h-12 rounded-full object-cover" />
+            </td>
+            <td class="p-4 font-medium text-gray-800">{{ employee.name }}</td>
+            <td class="p-4 font-medium text-gray-800">{{ employee.email }}</td>
+            <td class="p-4 font-medium text-gray-800">{{ employee.store }}</td>
+            <td class="p-4 font-medium text-gray-800">{{ employee.role }}</td>
+            <td class="p-4 font-medium text-gray-800">
+              <button class="rounded-full" (click)="openEditDialog(employee.id)">
+                <mat-icon color="primary">edit</mat-icon>
+              </button>
+              <!-- <button class="pl-2 rounded-full">
+                <mat-icon color="primary">delete</mat-icon>
+              </button> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
+</div>

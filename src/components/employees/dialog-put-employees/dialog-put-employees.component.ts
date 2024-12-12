@@ -19,6 +19,7 @@ export class DialogPutEmployeesComponent {
 
   formUpdateEmployee = this.formBuilder.group({
     name: [''],
+    role: [''],
     email: ['', [Validators.email]],
     image_url: new FormControl<string | Blob>(''),
   });

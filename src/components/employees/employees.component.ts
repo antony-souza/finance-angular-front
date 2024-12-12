@@ -13,6 +13,7 @@ interface IEmployeeResponse {
   email: string;
   image_url: string;
   store: string;
+  role: string;
 }
 
 @Component({

@@ -37,6 +37,15 @@
         
       />
     </mat-form-field>
+    <mat-form-field class="w-full" appearance="fill">
+      <mat-label>Produto Vendido</mat-label>
+      <mat-icon matPrefix color="primary">shopping_cart</mat-icon>
+      <select matNativeControl formControlName="role" name="role">
+        <option value="" disabled selected>Selecione um cargo</option>
+        <option value="ADMIN">Gerente</option>
+        <option value="USER">Funcionário</option>
+      </select>
+    </mat-form-field>
   </form>
   <div class="flex justify-end w-full">
     <button mat-button color="warn" (click)="closeDialog()">Fechar</button>
