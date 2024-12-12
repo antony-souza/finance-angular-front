@@ -14,12 +14,12 @@
           <mat-form-field class="w-full" appearance="fill">
             <mat-label>Produto Vendido</mat-label>
             <mat-icon matPrefix color="primary">shopping_cart</mat-icon>
-            <select matNativeControl formControlName="product_id">
-              <option value="" disabled selected>Selecione um produto</option>
-              <option *ngFor="let product of products" [value]="product.product_id">
+            <mat-select matNativeControl formControlName="product_id">
+              <mat-option value="" disabled selected>Selecione um produto</mat-option>
+              <mat-option *ngFor="let product of products" [value]="product.product_id">
                 {{ product.product_name }}
-              </option>
-            </select>
+              </mat-option>
+            </mat-select>
           </mat-form-field>
 
           <mat-form-field class="w-full" appearance="fill">

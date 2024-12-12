@@ -1,0 +1,79 @@
+<h2 mat-dialog-title class="border-b">Adicionando Funcionário</h2>
+<mat-dialog-content>
+  <form [formGroup]="formCreateProducts" class="pt-3">
+    <div class="pb-5 flex flex-col gap-3">
+      <label class="text-black font-medium" for="image_url">Foto do Produto</label> 
+      <div class="flex items-center gap-6 overflow-hidden bg-gray-100 p-3 border-b border-b-gray-500">
+        <mat-icon color="primary" class="absolute">image</mat-icon>
+        <input  
+          formControlName="image_url" 
+          (change)="onChangeFileSelected($event)"
+          name="image_url"
+          type="file"
+          accept="image/*"
+          class="pl-10"
+        />
+      </div>
+    </div>
+    <mat-form-field class="w-full">
+      <mat-icon matPrefix color="primary">shopping_bag</mat-icon>
+      <mat-label>Nome do Produto</mat-label>
+      <input 
+        matInput 
+        formControlName="name" 
+        name="name"
+        placeholder="Digite o novo nome do produto"
+      >
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-icon matPrefix color="primary">inventory</mat-icon>
+      <mat-label>Quantidade</mat-label>
+      <input 
+        matInput 
+        formControlName="quantity" 
+        name="quantity"
+        type="number"
+        placeholder="Digite a nova quantidade do produto"
+      />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-icon matPrefix color="primary">attach_money</mat-icon>
+      <mat-label>Preço</mat-label>
+      <input 
+        matInput 
+        formControlName="price" 
+        name="price"
+        type="number"
+        placeholder="Digite o novo preço do produto"
+      />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-icon matPrefix color="primary">description</mat-icon>
+      <mat-label>Descrição</mat-label>
+      <input 
+        matInput 
+        formControlName="description" 
+        name="description"
+        type="text"
+        placeholder="Digite a descrição do produto"
+      />
+    </mat-form-field>
+    <mat-form-field class="w-full" appearance="fill">
+      <mat-label>Categorias</mat-label>
+      <mat-icon matPrefix color="primary">supervisor_account</mat-icon>
+      <mat-select formControlName="category_id">
+        <mat-option value="" disabled>Selecione uma categoria</mat-option>
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <div class="flex justify-end w-full">
+    <button mat-button color="warn" (click)="closeDialog()">Fechar</button>
+    <button mat-button 
+      (click)="createProduct()"
+      color="primary" 
+    >Adicionar</button>
+  </div>
+</mat-dialog-content>

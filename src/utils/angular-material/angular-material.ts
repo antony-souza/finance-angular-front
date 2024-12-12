@@ -9,6 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 export const MATERIAL_COMPONENTS = [
   MatButtonModule,
@@ -22,4 +23,5 @@ export const MATERIAL_COMPONENTS = [
   MatPaginatorModule,
   MatSortModule,
   MatDialogModule,
+  MatSelectModule
 ];

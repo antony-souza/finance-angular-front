@@ -7,6 +7,7 @@ import { environment } from '../../environment/environment';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogPutProductsComponent } from './dialog-put-products/dialog-put-products.component';
 import { formatPrice } from '../../utils/formatMoney/format-price.service';
+import { DialogPostProductsComponent } from './dialog-post-products/dialog-post-products.component';
 interface IProductResponse {
   product_id: string;
   product_name: string;
@@ -62,5 +63,16 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  openDialogPostProducts() {
+    const dialogRef = this.dialog.open(DialogPostProductsComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getProducts();
+      }
+    });
+  }
   
 }
