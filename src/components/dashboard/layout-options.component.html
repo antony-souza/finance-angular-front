@@ -22,6 +22,18 @@
       </div>
     </nav>
 
+    <div class="p-4 border-t flex items-center gap-4">
+      <img
+        [src]="user.image_url"
+        alt="User Photo"
+        class="w-12 h-12 rounded-full"
+      />
+      <div>
+        <h2 class="text-lg font-semibold text-gray-800">{{user.name}}</h2>
+        <p class="text-sm text-gray-500">{{user.role}}</p>
+      </div>
+    </div>
+
     <div class="p-4 border-t">
       <button
         (click)="handleLogout()"

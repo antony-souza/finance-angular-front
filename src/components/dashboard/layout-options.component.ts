@@ -22,54 +22,64 @@ interface IAsideMenu {
 export class LayoutDashboardComponent implements OnInit {
   router = inject(Router);
 
+  user = { id: '', image_url: '', name: '', role: '' };  // Definição simplificada para um único objeto
+
   asideMenu: IAsideMenu[] = [
     {
       name: 'Registrar Venda',
       icon: 'add_shopping_cart',
-      roles: ['ADMIN', 'USER'],
+      roles: ['Gerente', 'Vendedor'],
       action: () => this.handleNavigateToCreateSales(),
     },
     {
       name: 'Histórico de Vendas',
       icon: 'history',
-      roles: ['ADMIN'],
+      roles: ['Gerente'],
       action: () => this.handleNavigateToHistoryPayments(),
     },
     {
       name: 'Faturamento',
       icon: 'attach_money',
-      roles: ['ADMIN'],
+      roles: ['Gerente'],
       action: () => this.handleNavigateToProductBilling(),
     },
     {
       name: 'Funcionários',
       icon: 'people',
-      roles: ['ADMIN'],
+      roles: ['Gerente'],
       action: () => this.handleNavigateToEmployees(),
     },
     {
       name: 'Produtos',
       icon: 'widgets',
-      roles: ['ADMIN', 'USER'],
+      roles: ['Gerente', 'Vendedor'],
       action: () => this.handleNavigateToProducts(),
     },
     {
       name: 'Categorias',
       icon: 'category',
-      roles: ['ADMIN', 'USER'],
+      roles: ['Gerente', 'Vendedor'],
       action: () => this.handleNavigateToCategories(),
     },
   ];
 
   ngOnInit() {
     this.filterMenuByRole();
+    this.loadUser();
   }
 
-  constructor(private readonly webSocketService: WebSocketService) { }
+  constructor(private readonly webSocketService: WebSocketService) {}
+
+  loadUser() {
+    this.user.id = localStorage.getItem('user_id') as string;
+    this.user.role = localStorage.getItem('role') as string;
+    this.user.name = localStorage.getItem('name') as string;
+    this.user.image_url = localStorage.getItem('image_url') as string;
+  }
 
   filterMenuByRole() {
     const userRole = localStorage.getItem('role') as string;
-    this.asideMenu = this.asideMenu.filter((previusAsideMenu) => previusAsideMenu.roles.includes(userRole))
+    this.asideMenu = this.asideMenu.filter((menu) => menu.roles.includes(userRole));
   }
 
   handleNavigateToCreateSales() {
@@ -95,7 +105,6 @@ export class LayoutDashboardComponent implements OnInit {
   handleNavigateToCategories() {
     this.router.navigate(['/categories']);
   }
-
 
   handleLogout() {
     const storeId = localStorage.getItem('store_id') as string;

@@ -49,6 +49,8 @@ export class AuthComponent {
             localStorage.setItem('store_id', response.user.store_id)
             localStorage.setItem('user_id', response.user.id)
             localStorage.setItem('role', response.user.role)
+            localStorage.setItem('name', response.user.name)
+            localStorage.setItem('image_url', response.user.image_url)
             this.router.navigate(['/home'])
           }
         })
