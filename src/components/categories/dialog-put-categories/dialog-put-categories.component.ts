@@ -2,9 +2,9 @@ import { Component, Inject } from '@angular/core';
 import { MATERIAL_COMPONENTS } from '../../../utils/angular-material/angular-material';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environment/environment';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { HttpApiComponent } from '../../../utils/http/http.component';
 
 @Component({
   selector: 'app-dialog-put-categories',
@@ -12,6 +12,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./dialog-put-categories.component.scss'],
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, ...MATERIAL_COMPONENTS],
+  providers: [HttpApiComponent]
 })
 export class DialogPutCategoriesComponent {
 
@@ -27,7 +28,7 @@ export class DialogPutCategoriesComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { category_id: string },
-    private readonly httpClient: HttpClient,
+    private readonly httpClient: HttpApiComponent,
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<DialogPutCategoriesComponent>
   ) {}
@@ -53,11 +54,9 @@ export class DialogPutCategoriesComponent {
         }
       });
 
+      const endpoint = `${environment.updateCategories}/${this.data.category_id}`;
       this.httpClient
-        .put(
-          `${environment.host}:${environment.port}/${environment.updateCategories}/${this.data.category_id}`,
-          formData
-        )
+        .genericHttpRequest(endpoint, 'PUT', true, formData)
         .subscribe({
           next: () => {
             this.closeDialog()

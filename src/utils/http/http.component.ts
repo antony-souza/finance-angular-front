@@ -8,12 +8,12 @@ type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 @Injectable({
     providedIn: 'root' 
 })
-export class HttpApiService {
+export class HttpApiComponent {
     baseUrl = `${environment.host}:${environment.port}`;
 
     constructor(private readonly httpClient: HttpClient) {}
 
-    genericRequest<T>(endpoint: string, method: HttpMethod, withAuth: boolean, body?: any) {
+    genericHttpRequest<T>(endpoint: string, method: HttpMethod, withAuth: boolean, body?: any) {
         let headers: HttpHeaders = new HttpHeaders(); 
 
         if (withAuth) {
@@ -24,10 +24,10 @@ export class HttpApiService {
             }
         }
 
-        if (body) {
+        if (body && !(body instanceof FormData)) {
             headers = headers.set("Content-Type", "application/json");
         }
 
-        return this.httpClient.request<T>(method, `${this.baseUrl}/${endpoint}`, { body, headers });
+        return this.httpClient.request<T>(method, `${this.baseUrl}/${endpoint}`, {body, headers });
     }
 }
