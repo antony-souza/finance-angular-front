@@ -22,7 +22,8 @@ export class DialogPostProductsComponent implements OnInit {
 
   private selectedFile: File | null = null;
   categories: ICategoriesResponse[] = [];
-
+  isLoading = false;
+  
   formCreateProducts = this.formBuilder.group({
     name: ['',[Validators.required]],
     price: [''],
@@ -52,6 +53,7 @@ export class DialogPostProductsComponent implements OnInit {
 
   createProduct() {
     if (this.formCreateProducts.valid) {
+      this.isLoading = true;
       const formData = new FormData();
 
       Object.entries(this.formCreateProducts.controls).forEach(([key, control]) => {
@@ -71,6 +73,7 @@ export class DialogPostProductsComponent implements OnInit {
         .subscribe({
           next: () => {
             this.closeDialog()
+            this.isLoading = false;
           }
         });
     } 

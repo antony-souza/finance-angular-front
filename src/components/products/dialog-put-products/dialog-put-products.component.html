@@ -58,12 +58,27 @@
         placeholder="Digite a descrição do produto"
       />
     </mat-form-field>
+    <mat-form-field class="w-full" appearance="fill">
+      <mat-label>Categorias</mat-label>
+      <mat-icon matPrefix color="primary">category</mat-icon>
+      <mat-select formControlName="category_id">
+        <mat-option value="" disabled>Selecione uma categoria</mat-option>
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </form>
   <div class="flex justify-end w-full">
     <button mat-button color="warn" (click)="closeDialog()">Fechar</button>
     <button mat-button 
       (click)="saveChanges()"
       color="primary" 
-    >Salvar</button>
+    >
+    <ng-container *ngIf="isLoading; else buttonText">
+      <mat-spinner [diameter]="24"></mat-spinner>
+    </ng-container>
+    <ng-template #buttonText>Salvar</ng-template>
+  </button>
   </div>
 </mat-dialog-content>

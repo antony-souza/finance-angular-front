@@ -22,8 +22,8 @@ interface IAsideMenu {
 export class LayoutDashboardComponent implements OnInit {
   router = inject(Router);
 
-  user = { id: '', image_url: '', name: '', role: '' };  // Definição simplificada para um único objeto
-
+  user = { id: '', image_url: '', name: '', role: '' };
+  
   asideMenu: IAsideMenu[] = [
     {
       name: 'Registrar Venda',
@@ -34,7 +34,7 @@ export class LayoutDashboardComponent implements OnInit {
     {
       name: 'Histórico de Vendas',
       icon: 'history',
-      roles: ['Gerente'],
+      roles: ['Gerente','Vendedor'],
       action: () => this.handleNavigateToHistoryPayments(),
     },
     {

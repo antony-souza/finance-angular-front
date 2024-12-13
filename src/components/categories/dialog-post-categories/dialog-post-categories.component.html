@@ -31,6 +31,11 @@
     <button mat-button 
       (click)="createCategories()"
       color="primary" 
-    >Adicionar</button>
+    >
+    <ng-container *ngIf="isLoading; else buttonText">
+      <mat-spinner [diameter]="24"></mat-spinner>
+    </ng-container>
+    <ng-template #buttonText>Adicionar</ng-template>
+  </button>
   </div>
 </mat-dialog-content>

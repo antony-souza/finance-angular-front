@@ -31,6 +31,7 @@ export class CreateSalesComponent implements OnInit{
   products: IProductResponse[] =  [] as  IProductResponse[]
   private form = inject(FormBuilder)
   private validadtors = Validators
+  isLoading = false
 
   protected formSales = this.form.group({
     product_id: ['', [this.validadtors.required]],
@@ -48,11 +49,13 @@ export class CreateSalesComponent implements OnInit{
 
   onSubmitSales() {
     if (this.formSales.valid) {
+      this.isLoading = true;
       this.httpClient
         .post(`${environment.host}:${environment.port}/${environment.salesCreate}`, this.formSales.value)
         .subscribe({
           next: () => {
             this.formSales.reset();
+            this.isLoading = false;
           }
         })
     }

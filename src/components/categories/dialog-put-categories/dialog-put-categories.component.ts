@@ -16,6 +16,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class DialogPutCategoriesComponent {
 
   private selectedFile: File | null = null;
+  isLoading = false;
 
   formUpdateCategories = this.formBuilder.group({
     name: [''],
@@ -40,6 +41,7 @@ export class DialogPutCategoriesComponent {
 
   saveChanges() {
     if (this.formUpdateCategories.valid) {
+      this.isLoading = true;
       const formData = new FormData();
 
       Object.entries(this.formUpdateCategories.controls).forEach(([key, control]) => {
@@ -59,6 +61,7 @@ export class DialogPutCategoriesComponent {
         .subscribe({
           next: () => {
             this.closeDialog()
+            this.isLoading = false;
           }
         });
     } 

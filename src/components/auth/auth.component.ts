@@ -31,6 +31,7 @@ export class AuthComponent {
   private readonly router = inject(Router)
   private form = inject(FormBuilder)
   private validadtors = Validators
+  isLoading = false
 
   constructor(private readonly httpClient: HttpClient) { }
 
@@ -41,6 +42,7 @@ export class AuthComponent {
 
   onSubmitAuth() {
     if (this.formAuth.valid) {
+      this.isLoading = true
       this.httpClient
         .post<IAuthResponse>(`${environment.host}:${environment.port}/${environment.routerAuth}`, this.formAuth.value)
         .subscribe({
@@ -51,6 +53,7 @@ export class AuthComponent {
             localStorage.setItem('role', response.user.role)
             localStorage.setItem('name', response.user.name)
             localStorage.setItem('image_url', response.user.image_url)
+            this.isLoading = false
             this.router.navigate(['/home'])
           }
         })

@@ -40,18 +40,24 @@
     <mat-form-field class="w-full" appearance="fill">
       <mat-label>Nível de permissão</mat-label>
       <mat-icon matPrefix color="primary">supervisor_account</mat-icon>
-      <select matNativeControl formControlName="role" name="role">
-        <option value="" disabled selected>Selecione um cargo</option>
-        <option value="ADMIN">Gerente</option>
-        <option value="USER">Funcionário</option>
-      </select>
+      <mat-select matNativeControl formControlName="role" name="role">
+        <mat-option value="" disabled selected>Selecione um cargo</mat-option>
+        <mat-option value="ADMIN">Gerente</mat-option>
+        <mat-option value="USER">Funcionário</mat-option>
+      </mat-select>
     </mat-form-field>
   </form>
   <div class="flex justify-end w-full">
     <button mat-button color="warn" (click)="closeDialog()">Fechar</button>
     <button mat-button 
       (click)="saveChanges()"
+      [disabled]="formUpdateEmployee.invalid"
       color="primary" 
-    >Salvar</button>
+    >
+    <ng-container *ngIf="isLoading; else buttonText">
+      <mat-spinner [diameter]="24"></mat-spinner>
+    </ng-container>
+    <ng-template #buttonText>Salvar</ng-template>
+  </button>
   </div>
 </mat-dialog-content>

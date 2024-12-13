@@ -16,6 +16,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class DialogPostCategoriesComponent {
 
   private selectedFile: File | null = null;
+  isLoading = false;
 
   formCreateCategories = this.formBuilder.group({
     name: ['',[Validators.required]],
@@ -38,6 +39,7 @@ export class DialogPostCategoriesComponent {
 
   createCategories() {
     if (this.formCreateCategories.valid) {
+      this.isLoading = true;
       const formData = new FormData();
 
       Object.entries(this.formCreateCategories.controls).forEach(([key, control]) => {
@@ -57,6 +59,7 @@ export class DialogPostCategoriesComponent {
         .subscribe({
           next: () => {
             this.closeDialog()
+            this.isLoading = false;
           }
         });
     } 

@@ -1,10 +1,15 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MATERIAL_COMPONENTS } from '../../../utils/angular-material/angular-material';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environment/environment';
+
+interface ICategoriesResponse {
+  id: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-dialog-put-products',
@@ -13,14 +18,17 @@ import { environment } from '../../../environment/environment';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, ...MATERIAL_COMPONENTS],
 })
-export class DialogPutProductsComponent  {
+export class DialogPutProductsComponent implements OnInit {
 
   private selectedFile: File | null = null;
+  categories: ICategoriesResponse[] = [];
+  isLoading = false;
 
   formUpdateProducts = this.formBuilder.group({
     name: [''],
     price: [''],
     description: [''],
+    category_id: [''],
     quantity: ['', [Validators.pattern(/^\d+$/)]],
     image_url: new FormControl<string | Blob>(''),
   });
@@ -32,6 +40,10 @@ export class DialogPutProductsComponent  {
     private dialogRef: MatDialogRef<DialogPutProductsComponent>
   ) {}
 
+  ngOnInit() {
+    this.getAllCategories();
+  }
+
   onChangeFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -41,6 +53,7 @@ export class DialogPutProductsComponent  {
 
   saveChanges() {
     if (this.formUpdateProducts.valid) {
+      this.isLoading = true;
       const formData = new FormData();
 
       Object.entries(this.formUpdateProducts.controls).forEach(([key, control]) => {
@@ -60,10 +73,23 @@ export class DialogPutProductsComponent  {
         .subscribe({
           next: () => {
             this.closeDialog()
+            this.isLoading = false;
           }
         });
     } 
   }
+
+  getAllCategories() {
+      this.httpClient
+        .get<ICategoriesResponse[]>(
+          `${environment.host}:${environment.port}/${environment.getAllCategoriesByStoreId}/${localStorage.getItem('store_id')}`
+        )
+        .subscribe({
+          next: (response) => {
+            this.categories = response;
+          }
+        });
+    }
 
   closeDialog() {
     this.dialogRef.close(true);
