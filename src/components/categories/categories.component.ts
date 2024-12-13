@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
-import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environment/environment';
 import { LayoutDashboardComponent } from '../dashboard/layout-options.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogPutCategoriesComponent } from './dialog-put-categories/dialog-put-categories.component';
 import { DialogPostCategoriesComponent } from './dialog-post-categories/dialog-post-categories.component';
+import { HttpApiService } from '../../utils/http/http.service';
 
 interface ICategoriesResponse {
   id: string;
@@ -25,7 +25,7 @@ interface ICategoriesResponse {
 })
 export class CategoriesComponent implements OnInit {
  
-  constructor(private readonly httpClient: HttpClient, private dialog: MatDialog) { }
+  constructor(private readonly httpClient: HttpApiService, private dialog: MatDialog) { }
 
   categories: ICategoriesResponse[] = []
   
@@ -34,8 +34,9 @@ export class CategoriesComponent implements OnInit {
   }
 
   loadCategories(){
-    this.httpClient.get<ICategoriesResponse[]>(`${environment.host}:${environment.port}/${environment.getAllCategoriesByStoreId}/${localStorage.getItem('store_id')}`)
-      .subscribe(response => {
+    const endpoint = `${environment.getAllCategoriesByStoreId}/${localStorage.getItem('store_id')}`;
+    this.httpClient.genericRequest<ICategoriesResponse[]>(endpoint,'GET', true)
+      .subscribe((response) => {
         this.categories = response;
       });
   }
@@ -66,12 +67,10 @@ export class CategoriesComponent implements OnInit {
   }
 
   deleteCategories(category_id: string) {
+    const endpoint = `${environment.deleteCategories}/${category_id}`;
     if (!confirm('Tem certeza que deseja deletar está categoria? Essa ação não poderá ser desfeita!')) {
       return;
     }
-    this.httpClient.delete(`${environment.host}:${environment.port}/${environment.deleteCategories}/${category_id}`)
-      .subscribe(() => {
-        this.loadCategories();
-      });
+    this.httpClient.genericRequest<ICategoriesResponse>(endpoint, 'DELETE', false)
   }
 }
