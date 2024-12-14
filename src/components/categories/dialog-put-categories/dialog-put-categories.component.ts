@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MATERIAL_COMPONENTS } from '../../../utils/angular-material/angular-material';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../../../environment/environment';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HttpApiComponent } from '../../../utils/http/http.component';
@@ -21,8 +21,7 @@ export class DialogPutCategoriesComponent {
 
   formUpdateCategories = this.formBuilder.group({
     name: [''],
-    role: [''],
-    email: ['', [Validators.email]],
+    store_id: [localStorage.getItem('store_id')],
     image_url: new FormControl<string | Blob>(''),
   });
 

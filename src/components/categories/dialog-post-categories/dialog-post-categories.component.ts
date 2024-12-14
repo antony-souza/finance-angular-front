@@ -5,14 +5,14 @@ import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angu
 import { environment } from '../../../environment/environment';
 import { MatDialogRef } from '@angular/material/dialog';
 import { HttpApiComponent } from '../../../utils/http/http.component';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-dialog-post-categories',
   templateUrl: './dialog-post-categories.component.html',
   styleUrls: ['./dialog-post-categories.component.scss'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ...MATERIAL_COMPONENTS,HttpClientModule],
+  imports: [CommonModule, ReactiveFormsModule, ...MATERIAL_COMPONENTS],
+  providers: [HttpApiComponent]
 })
 export class DialogPostCategoriesComponent {
 
