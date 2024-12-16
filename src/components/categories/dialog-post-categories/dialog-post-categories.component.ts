@@ -53,8 +53,7 @@ export class DialogPostCategoriesComponent {
         }
       });
 
-      const store_id = localStorage.getItem('store_id');
-      this.httpClient.post(`${environment.apiProd}/${environment.createCategories}/${store_id}`, formData)
+      this.httpClient.post(`${environment.apiProd}/${environment.createCategories}`, formData)
       .subscribe({
         next: () => {
           this.isLoading = false;
