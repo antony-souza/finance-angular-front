@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { environment } from '../../../environment/environment';
 import { MatDialogRef } from '@angular/material/dialog';
-import { HttpApiComponent } from '../../../utils/http/http.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-dialog-post-categories',
@@ -12,7 +12,7 @@ import { HttpApiComponent } from '../../../utils/http/http.component';
   styleUrls: ['./dialog-post-categories.component.scss'],
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, ...MATERIAL_COMPONENTS],
-  providers: [HttpApiComponent]
+  providers: []
 })
 export class DialogPostCategoriesComponent {
 
@@ -26,7 +26,7 @@ export class DialogPostCategoriesComponent {
   });
 
   constructor(
-    private readonly httpClient: HttpApiComponent,
+    private readonly httpClient: HttpClient,
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<DialogPostCategoriesComponent>
   ) {}
@@ -52,13 +52,12 @@ export class DialogPostCategoriesComponent {
         }
       });
 
-      const endpoint = `${environment.createCategories}/${localStorage.getItem('store_id')}`;
-      this.httpClient
-        .genericHttpRequest<FormData>(endpoint, 'POST', true, formData)
-        .subscribe(() => {
-          this.isLoading = false;
-          this.closeDialog();
-    });
+      const store_id = localStorage.getItem('store_id');
+      this.httpClient.post(`${environment.host}:${environment.port}/${environment.createCategories}/${store_id}`, formData).subscribe(() => {
+        this.isLoading = false;
+        this.closeDialog();
+
+      });
     } 
   }
 

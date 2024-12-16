@@ -30,7 +30,7 @@ export class DialogPutEmployeesComponent {
     private readonly httpClient: HttpClient,
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<DialogPutEmployeesComponent>
-  ) {}
+  ) { }
 
   onChangeFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -47,9 +47,9 @@ export class DialogPutEmployeesComponent {
       Object.entries(this.formUpdateEmployee.controls).forEach(([key, control]) => {
         if (control.value) {
           if (key === 'image_url' && this.selectedFile) {
-              formData.append(key, this.selectedFile);
-          } 
-            formData.append(key, control.value as string);
+            formData.append(key, this.selectedFile);
+          }
+          formData.append(key, control.value as string);
         }
       });
 
@@ -64,7 +64,7 @@ export class DialogPutEmployeesComponent {
             this.isLoading = false;
           }
         });
-    } 
+    }
   }
 
   closeDialog() {

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../../../environment/environment';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { HttpApiComponent } from '../../../utils/http/http.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-dialog-put-categories',
@@ -12,7 +12,6 @@ import { HttpApiComponent } from '../../../utils/http/http.component';
   styleUrls: ['./dialog-put-categories.component.scss'],
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, ...MATERIAL_COMPONENTS],
-  providers: [HttpApiComponent]
 })
 export class DialogPutCategoriesComponent {
 
@@ -20,17 +19,17 @@ export class DialogPutCategoriesComponent {
   isLoading = false;
 
   formUpdateCategories = this.formBuilder.group({
-    name: [''],
-    store_id: [localStorage.getItem('store_id')],
-    image_url: new FormControl<string | Blob>(''),
-  });
+    image_url: new FormControl<string | Blob | null>(null),
+    name: new FormControl<string | null>(null),
+  })
+  
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { category_id: string },
-    private readonly httpClient: HttpApiComponent,
+    private readonly httpClient: HttpClient,
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<DialogPutCategoriesComponent>
-  ) {}
+  ) { }
 
   onChangeFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -43,26 +42,26 @@ export class DialogPutCategoriesComponent {
     if (this.formUpdateCategories.valid) {
       this.isLoading = true;
       const formData = new FormData();
+      const formValues = this.formUpdateCategories.value;
 
-      Object.entries(this.formUpdateCategories.controls).forEach(([key, control]) => {
-        if (control.value) {
+      Object.entries(formValues).forEach(([key, value]) => {
+        if (value) {
           if (key === 'image_url' && this.selectedFile) {
-              formData.append(key, this.selectedFile);
+            formData.append(key, this.selectedFile);
           } 
-            formData.append(key, control.value as string);
+            formData.append(key, value as string);
         }
       });
+      
 
-      const endpoint = `${environment.updateCategories}/${this.data.category_id}`;
-      this.httpClient
-        .genericHttpRequest(endpoint, 'PUT', true, formData)
+      this.httpClient.put(`${environment.host}:${environment.port}/${environment.updateCategories}/${this.data.category_id}`, formData)
         .subscribe({
           next: () => {
-            this.closeDialog()
             this.isLoading = false;
+            this.dialogRef.close(true);
           }
-        });
-    } 
+        })
+    }
   }
 
   closeDialog() {
