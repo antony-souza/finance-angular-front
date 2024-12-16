@@ -44,13 +44,14 @@ export class DialogPostEmployeesComponent {
     if (this.formCreateEmployees.valid) {
       this.isLoading = true;
       const formData = new FormData();
-
-      Object.entries(this.formCreateEmployees.controls).forEach(([key, control]) => {
-        if (control.value) {
+      const formValues = this.formCreateEmployees.value;
+      
+      Object.entries(formValues).forEach(([key, value]) => {
+        if (value) {
           if (key === 'image_url' && this.selectedFile) {
-              formData.append(key, this.selectedFile);
+            formData.append(key, this.selectedFile);
           } 
-            formData.append(key, control.value as string);
+            formData.append(key, value as string);
         }
       });
 

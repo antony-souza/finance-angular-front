@@ -43,15 +43,17 @@ export class DialogPutEmployeesComponent {
     if (this.formUpdateEmployee.valid) {
       this.isLoading = true;
       const formData = new FormData();
+      const formValues = this.formUpdateEmployee.value;
 
-      Object.entries(this.formUpdateEmployee.controls).forEach(([key, control]) => {
-        if (control.value) {
+      Object.entries(formValues).forEach(([key, value]) => {
+        if (value) {
           if (key === 'image_url' && this.selectedFile) {
             formData.append(key, this.selectedFile);
-          }
-          formData.append(key, control.value as string);
+          } 
+            formData.append(key, value as string);
         }
       });
+      
 
       this.httpClient
         .put(
