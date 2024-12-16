@@ -64,6 +64,9 @@ export class DialogPutEmployeesComponent {
           next: () => {
             this.closeDialog()
             this.isLoading = false;
+          },
+          error: () => {
+            this.isLoading = false
           }
         });
     }

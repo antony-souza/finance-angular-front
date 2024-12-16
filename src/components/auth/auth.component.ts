@@ -55,6 +55,9 @@ export class AuthComponent {
             localStorage.setItem('image_url', response.user.image_url)
             this.isLoading = false
             this.router.navigate(['/home'])
+          },
+          error: () => {
+            this.isLoading = false
           }
         })
     }

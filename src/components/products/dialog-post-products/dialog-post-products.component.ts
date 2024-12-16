@@ -91,6 +91,9 @@ export class DialogPostProductsComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.categories = response;
+        },
+        error: () => {
+          this.isLoading = false;
         }
       });
   }

@@ -58,7 +58,10 @@ export class DialogPutCategoriesComponent {
         .subscribe({
           next: () => {
             this.isLoading = false;
-            this.dialogRef.close(true);
+            this.closeDialog()
+          },
+          error: () => {
+            this.isLoading = false
           }
         })
     }

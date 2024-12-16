@@ -67,6 +67,9 @@ export class CreateSalesComponent implements OnInit{
       .subscribe({
         next: (response) => {
           this.products = response;
+        },
+        error: () => {
+          this.isLoading = false;
         }
       });
   }
