@@ -51,7 +51,7 @@ export class CreateSalesComponent implements OnInit{
     if (this.formSales.valid) {
       this.isLoading = true;
       this.httpClient
-        .post(`${environment.host}:${environment.port}/${environment.salesCreate}`, this.formSales.value)
+        .post(`${environment.apiProd}/${environment.salesCreate}`, this.formSales.value)
         .subscribe({
           next: () => {
             this.formSales.reset();
@@ -63,7 +63,7 @@ export class CreateSalesComponent implements OnInit{
 
   loadProducts() {
     this.httpClient
-      .get<IProductResponse[]>(`${environment.host}:${environment.port}/${environment.getAllProductsByStore}/${localStorage.getItem('store_id')}`)
+      .get<IProductResponse[]>(`${environment.apiProd}/${environment.getAllProductsByStore}/${localStorage.getItem('store_id')}`)
       .subscribe({
         next: (response) => {
           this.products = response;

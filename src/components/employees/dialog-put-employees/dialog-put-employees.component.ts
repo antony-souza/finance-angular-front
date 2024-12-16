@@ -57,7 +57,7 @@ export class DialogPutEmployeesComponent {
 
       this.httpClient
         .put(
-          `${environment.host}:${environment.port}/${environment.updateUser}/${this.data.user_id}`,
+          `${environment.apiProd}/${environment.updateUser}/${this.data.user_id}`,
           formData
         )
         .subscribe({

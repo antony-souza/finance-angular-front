@@ -19,6 +19,6 @@ export class ChartService{
     }
 
     getChartInfo(): Observable<IChartInfo[]> {
-        return this.httpClient.get<IChartInfo[]>(`${environment.host}:${environment.port}/${environment.productbilling}/${this.storeId}`);
+        return this.httpClient.get<IChartInfo[]>(`${environment.apiProd}/${environment.productbilling}/${this.storeId}`);
     }
 }

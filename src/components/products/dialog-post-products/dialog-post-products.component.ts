@@ -67,7 +67,7 @@ export class DialogPostProductsComponent implements OnInit {
       });
       this.httpClient
         .post(
-          `${environment.host}:${environment.port}/${environment.createProducts}`,
+          `${environment.apiProd}/${environment.createProducts}`,
           formData
         )
         .subscribe({
@@ -86,7 +86,7 @@ export class DialogPostProductsComponent implements OnInit {
   getAllCategories() {
     this.httpClient
       .get<ICategoriesResponse[]>(
-        `${environment.host}:${environment.port}/${environment.getAllCategoriesByStoreId}/${localStorage.getItem('store_id')}`
+        `${environment.apiProd}/${environment.getAllCategoriesByStoreId}/${localStorage.getItem('store_id')}`
       )
       .subscribe({
         next: (response) => {

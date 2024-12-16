@@ -54,7 +54,7 @@ export class DialogPutCategoriesComponent {
       });
       
 
-      this.httpClient.put(`${environment.host}:${environment.port}/${environment.updateCategories}/${this.data.category_id}`, formData)
+      this.httpClient.put(`${environment.apiProd}/${environment.updateCategories}/${this.data.category_id}`, formData)
         .subscribe({
           next: () => {
             this.isLoading = false;

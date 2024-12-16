@@ -34,7 +34,7 @@ export class SaleshistoryComponent implements OnInit {
   ngOnInit(): void {
     this.httpClient
       .get<ISalesHistory[]>(
-        `${environment.host}:${environment.port}/${environment.salesAll}/${this.storeId}`
+        `${environment.apiProd}/${environment.salesAll}/${this.storeId}`
       )
       .subscribe((response) => {
         this.salesHistory = response.map((sale) => ({

@@ -10,7 +10,7 @@ export class WebSocketService {
     socket: Socket;
 
     constructor() {
-        this.socket = io(`${environment.host}:${environment.port}`, {
+        this.socket = io(`${environment.apiProd}`, {
             autoConnect: false,
             reconnection: false,
         });

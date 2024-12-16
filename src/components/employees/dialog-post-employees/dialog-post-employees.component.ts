@@ -57,7 +57,7 @@ export class DialogPostEmployeesComponent {
 
       this.httpClient
         .post(
-          `${environment.host}:${environment.port}/${environment.createUser}`,
+          `${environment.apiProd}/${environment.createUser}`,
           formData
         )
         .subscribe({

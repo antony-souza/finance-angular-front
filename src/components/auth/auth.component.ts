@@ -44,7 +44,7 @@ export class AuthComponent {
     if (this.formAuth.valid) {
       this.isLoading = true
       this.httpClient
-        .post<IAuthResponse>(`${environment.host}:${environment.port}/${environment.routerAuth}`, this.formAuth.value)
+        .post<IAuthResponse>(`${environment.apiProd}/${environment.routerAuth}`, this.formAuth.value)
         .subscribe({
           next: (response) => {
             localStorage.setItem('token', response.token)

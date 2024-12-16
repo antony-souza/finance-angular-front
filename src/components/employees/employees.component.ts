@@ -35,7 +35,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   loadEmployees(){
-    this.httpClient.get<IEmployeeResponse[]>(`${environment.host}:${environment.port}/${environment.getAllUsers}/${localStorage.getItem('store_id')}`)
+    this.httpClient.get<IEmployeeResponse[]>(`${environment.apiProd}/${environment.getAllUsers}/${localStorage.getItem('store_id')}`)
       .subscribe(response => {
         this.employees = response;
       });
@@ -70,7 +70,7 @@ export class EmployeesComponent implements OnInit {
     if (!confirm('Tem certeza que deseja deletar este usuário? Essa ação não poderá ser desfeita!')) {
       return;
     }
-    this.httpClient.delete(`${environment.host}:${environment.port}/${environment.deletePermanUser}/${employeeId}`)
+    this.httpClient.delete(`${environment.apiProd}/${environment.deletePermanUser}/${employeeId}`)
       .subscribe(() => {
         this.loadEmployees();
       });

@@ -34,7 +34,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   loadCategories() {
-    this.httpClient.get<ICategoriesResponse[]>(`${environment.host}:${environment.port}/${environment.getAllCategoriesByStoreId}/${localStorage.getItem('store_id')}`)
+    this.httpClient.get<ICategoriesResponse[]>(`${environment.apiProd}/${environment.getAllCategoriesByStoreId}/${localStorage.getItem('store_id')}`)
       .subscribe(response => {
         this.categories = response;
       });
@@ -69,7 +69,7 @@ export class CategoriesComponent implements OnInit {
     if (!confirm('Tem certeza que deseja deletar está categoria? Essa ação não poderá ser desfeita!')) {
       return;
     }
-    this.httpClient.delete(`${environment.host}:${environment.port}/${environment.deleteCategories}/${category_id}`)
+    this.httpClient.delete(`${environment.apiProd}/${environment.deleteCategories}/${category_id}`)
       .subscribe(() => {
         this.loadCategories();
       });

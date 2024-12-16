@@ -68,7 +68,7 @@ export class DialogPutProductsComponent implements OnInit {
 
       this.httpClient
         .put(
-          `${environment.host}:${environment.port}/${environment.updateProduct}/${this.data.id}`,
+          `${environment.apiProd}/${environment.updateProduct}/${this.data.id}`,
           formData
         )
         .subscribe({
@@ -83,7 +83,7 @@ export class DialogPutProductsComponent implements OnInit {
   getAllCategories() {
       this.httpClient
         .get<ICategoriesResponse[]>(
-          `${environment.host}:${environment.port}/${environment.getAllCategoriesByStoreId}/${localStorage.getItem('store_id')}`
+          `${environment.apiProd}/${environment.getAllCategoriesByStoreId}/${localStorage.getItem('store_id')}`
         )
         .subscribe({
           next: (response) => {

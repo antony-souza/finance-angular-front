@@ -1,5 +1,6 @@
 class Environment {
-    public readonly host: string = 'http://localhost';
+    public readonly apiLocal: string = 'http://localhost:8920';
+    public readonly apiProd: string = 'https://teiu-back.onrender.com'
     public readonly port: number = 8920;
     public readonly routerAuth: string = 'auth';
     public readonly createUser: string = 'user/create';

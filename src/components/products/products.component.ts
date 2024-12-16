@@ -41,7 +41,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getProducts() {
-    this.httpClient.get<IProductResponse[]>(`${environment.host}:${environment.port}/${environment.getAllProductsByStore}/${localStorage.getItem('store_id')}`)
+    this.httpClient.get<IProductResponse[]>(`${environment.apiProd}/${environment.getAllProductsByStore}/${localStorage.getItem('store_id')}`)
       .subscribe((response) => {
         this.products = response.map((product) => ({
           ...product,
@@ -77,7 +77,7 @@ export class ProductsComponent implements OnInit {
 
   deleteProduct(product_id: string) {
     if(confirm('Tem certeza que deseja deletar este produto? Essa ação não poderá ser desfeita!')) {
-    this.httpClient.delete(`${environment.host}:${environment.port}/${environment.deleteProduct}/${product_id}`)
+    this.httpClient.delete(`${environment.apiProd}/${environment.deleteProduct}/${product_id}`)
       .subscribe(() => {
         this.getProducts();
       })
