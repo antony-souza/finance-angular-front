@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MATERIAL_COMPONENTS } from '../../../utils/angular-material/angular-material';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { environment } from '../../../environment/environment';
+import { environment } from '../../../../environment/environment';
 import { MatDialogRef } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 

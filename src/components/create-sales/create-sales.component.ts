@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environment/environment';
+import { environment } from '../../../environment/environment';
 import { LayoutDashboardComponent } from '../dashboard/layout-options.component';
 import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
 

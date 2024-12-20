@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environment/environment';
+import { environment } from '../../../environment/environment';
 import { formatPrice } from '../../utils/formatMoney/format-price.service';
 import { LayoutDashboardComponent } from '../dashboard/layout-options.component';
 

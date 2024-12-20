@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
-import { environment } from '../../environment/environment';
+import { environment } from '../../../environment/environment';
 import { LayoutDashboardComponent } from '../dashboard/layout-options.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogPutCategoriesComponent } from './dialog-put-categories/dialog-put-categories.component';

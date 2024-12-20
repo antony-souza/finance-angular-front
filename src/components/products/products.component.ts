@@ -3,7 +3,7 @@ import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-materi
 import { CommonModule } from '@angular/common';
 import { LayoutDashboardComponent } from '../dashboard/layout-options.component';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environment/environment';
+import { environment } from '../../../environment/environment';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogPutProductsComponent } from './dialog-put-products/dialog-put-products.component';
 import { formatPrice } from '../../utils/formatMoney/format-price.service';

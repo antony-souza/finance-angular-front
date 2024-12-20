@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environment/environment';
+import { environment } from '../../../environment/environment';
 import { LayoutDashboardComponent } from '../dashboard/layout-options.component';
 import { DialogPutEmployeesComponent } from './dialog-put-employees/dialog-put-employees.component';
 import { MatDialog } from '@angular/material/dialog';
