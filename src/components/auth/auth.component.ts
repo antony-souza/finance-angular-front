@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
 
 interface IAuthResponse {
-  token: string;
+  access_token: string;
   user: IUserProps
 }
 
@@ -47,12 +47,12 @@ export class AuthComponent {
         .post<IAuthResponse>(`${environment.apiProd}/${environment.routerAuth}`, this.formAuth.value)
         .subscribe({
           next: (response) => {
-            localStorage.setItem('token', response.token)
+            localStorage.setItem('token', response.access_token)
             localStorage.setItem('store_id', response.user.store_id)
             localStorage.setItem('user_id', response.user.id)
             localStorage.setItem('role', response.user.role)
             localStorage.setItem('name', response.user.name)
-            localStorage.setItem('image_url', response.user.image_url)
+            localStorage.setItem('image_url', response.user.image_url) 
             this.isLoading = false
             this.router.navigate(['/home'])
           },
