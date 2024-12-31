@@ -3,18 +3,17 @@ import { CommonModule } from '@angular/common';
 import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environment/environment';
-import { formatPrice } from '../../utils/formatMoney/format-price.service';
 import { LayoutDashboardComponent } from '../dashboard/layout-options.component';
 
 
 interface ISalesHistory {
-  store_name: string;
-  total_billed: number | string;
-  quantity_sold: number;
-  product_name: string;
-  product_image: string;
-  user_name: string;
-  user_image: string;
+  storeName: string;
+  totalBilled: number | string;
+  quantitySold: number;
+  productName: string;
+  productImg: string;
+  userName: string;
+  userImg: string;
 }
 
 @Component({
@@ -37,10 +36,7 @@ export class SaleshistoryComponent implements OnInit {
         `${environment.apiProd}/${environment.salesAll}/${this.storeId}`
       )
       .subscribe((response) => {
-        this.salesHistory = response.map((sale) => ({
-          ...sale,
-          total_billed: formatPrice(sale.total_billed as number),
-        }));
+        this.salesHistory = response
       });
   }
 }
