@@ -61,6 +61,12 @@ export class LayoutDashboardComponent implements OnInit {
       roles: ['Gerente', 'Vendedor'],
       action: () => this.handleNavigateToCategories(),
     },
+    {
+      name: 'Planilhas',
+      icon: 'table_chart',
+      roles: ['Gerente'],
+      action: () => this.handleNavigateToSheets(),
+    },
   ];
 
   ngOnInit() {
@@ -104,6 +110,10 @@ export class LayoutDashboardComponent implements OnInit {
 
   handleNavigateToCategories() {
     this.router.navigate(['/categories']);
+  }
+
+  handleNavigateToSheets() {
+    this.router.navigate(['/sheets']);
   }
 
   handleLogout() {
