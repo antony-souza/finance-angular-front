@@ -8,7 +8,6 @@ import { CreateSalesComponent } from '../components/create-sales/create-sales.co
 import { EmployeesComponent } from '../components/employees/employees.component';
 import { ProductsComponent } from '../components/products/products.component';
 import { CategoriesComponent } from '../components/categories/categories.component';
-import { SheetsComponent } from '../components/sheets/sheets.component';
 
 export const routes: Routes =
     [
@@ -51,10 +50,5 @@ export const routes: Routes =
             component: CategoriesComponent,
             canActivate: [RouterGuard]
         },
-        {
-            path: 'sheets',
-            component: SheetsComponent,
-            canActivate: [RouterGuard]
-        }
 
     ];
