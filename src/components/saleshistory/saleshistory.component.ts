@@ -42,4 +42,18 @@ export class SaleshistoryComponent implements OnInit {
         this.salesHistory = response
       });
   }
+
+  generateExcel() {
+    this.httpClient
+      .get(`${environment.apiProd}/${environment.generateExcelToSales}/${this.storeId}`, { responseType: 'blob' })
+      .subscribe((response) => {
+        const url = window.URL.createObjectURL(response);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'sales.xlsx';
+        a.click(); 
+        window.URL.revokeObjectURL(url);
+      });
+  }
+  
 }
