@@ -2,19 +2,33 @@
   <app-dashboard />
 
   <div class="ml-64 w-full px-8 py-6">
-    <div class="flex items-center">
-      <h2 class="text-4xl font-bold text-slate-950 pl-6">Histórico de Vendas</h2>
+    <div class="flex justify-between mb-6">
+      <h2 class="text-4xl font-bold text-slate-950">Histórico de Vendas</h2>
+
+      <div class="flex gap-4">
+        <!-- <button class="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white rounded-md">
+          <mat-icon>picture_as_pdf</mat-icon>
+          Gerar PDF 
+        </button> -->
+        <button class="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white rounded-md">
+          <mat-icon>description</mat-icon>
+          Gerar Excel 
+        </button>
+      </div>
     </div>
-    <div class="p-6">
-      <table class="min-w-full bg-white border shadow rounded">
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white border border-gray-300 shadow">
         <thead>
           <tr class="bg-indigo-500 text-center border-b">
             <th class="px-6 py-3 font-normal text-white">Foto</th>
             <th class="px-6 py-3 font-normal text-white">Nome</th>
             <th class="px-6 py-3 font-normal text-white">Quantidade</th>
             <th class="px-6 py-3 font-normal text-white">Faturamento</th>
+            <th class="px-6 py-3 font-normal text-white">Data</th>
+            <th class="px-6 py-3 font-normal text-white">Horário</th>
             <th class="px-6 py-3 font-normal text-white">Foto do Funcionário</th>
             <th class="px-6 py-3 font-normal text-white">Nome do Funcionário</th>
+            <th class="px-6 py-3 font-normal text-white">Cargo</th>
             <th class="px-6 py-3 font-normal text-white">Empresa</th>
           </tr>
         </thead>
@@ -26,10 +40,13 @@
             <td class="p-4 font-medium text-gray-800">{{ sales.productName }}</td>
             <td class="p-4 font-medium text-gray-800">{{ sales.quantitySold }}</td>
             <td class="p-4 font-medium text-gray-800">{{ sales.totalBilled }}</td>
+            <td class="p-4 font-medium text-gray-800">{{ sales.date }}</td>
+            <td class="p-4 font-medium text-gray-800">{{ sales.hour }}</td>
             <td class="p-4 flex justify-center items-center">
               <img [src]="sales.userImg" alt="Foto do Funcionário" class="w-12 h-12 rounded-full object-cover" />
             </td>
             <td class="p-4 font-medium text-gray-800">{{ sales.userName }}</td>
+            <td class="p-4 font-medium text-gray-800">{{ sales.userRole }}</td>
             <td class="p-4 font-medium text-gray-800">{{ sales.storeName }}</td>
           </tr>
         </tbody>

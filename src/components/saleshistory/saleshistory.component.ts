@@ -10,9 +10,12 @@ interface ISalesHistory {
   storeName: string;
   totalBilled: number | string;
   quantitySold: number;
+  date: string;
+  hour: string;
   productName: string;
   productImg: string;
   userName: string;
+  userRole: string;
   userImg: string;
 }
 

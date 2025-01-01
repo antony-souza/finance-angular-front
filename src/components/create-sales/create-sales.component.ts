@@ -36,7 +36,6 @@ export class CreateSalesComponent implements OnInit{
   protected formSales = this.form.group({
     product_id: ['', [this.validadtors.required]],
     quantity_sold: [0, [this.validadtors.required, this.validadtors.min(1)]],
-    date: ['', [this.validadtors.required]],
     store_id: [localStorage.getItem('store_id')],
     user_id: [localStorage.getItem('user_id')]
   })
