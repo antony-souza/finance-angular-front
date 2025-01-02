@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environment/environment';
 import { LayoutDashboardComponent } from '../dashboard/layout-options.component';
 import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
+import { Router } from '@angular/router';
 
 interface IProductResponse {
   product_id: string;
@@ -28,17 +29,17 @@ interface IProductResponse {
 })
 export class CreateSalesComponent implements OnInit{
 
-  products: IProductResponse[] =  [] as  IProductResponse[]
+  products: IProductResponse[] = [];
   private form = inject(FormBuilder)
   private validadtors = Validators
   isLoading = false
+  router = inject(Router)
 
   protected formSales = this.form.group({
     product_id: ['', [this.validadtors.required]],
     quantitySold: [0, [this.validadtors.required, this.validadtors.min(1)]],
     store_id: [localStorage.getItem('store_id')],
     user_id: [localStorage.getItem('user_id')],
-    storeName: [localStorage.getItem('store_name')]
   })
 
   constructor(private readonly httpClient: HttpClient) { }
@@ -55,10 +56,12 @@ export class CreateSalesComponent implements OnInit{
         .subscribe({
           next: () => {
             this.formSales.reset();
+            this.router.navigate(['/saleshistory'])
             this.isLoading = false;
           }
         })
     }
+    console.log(this.formSales.value)
   }
 
   loadProducts() {

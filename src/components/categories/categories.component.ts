@@ -13,7 +13,7 @@ interface ICategoriesResponse {
   name: string;
   image_url: string;
   store_name: string;
-  store_id: string;
+  storeName: string;
 }
 
 @Component({
