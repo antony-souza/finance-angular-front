@@ -16,6 +16,7 @@ interface IUserProps {
   name: string;
   image_url: string;
   store_id: string;
+  storeName: string;
   role: string;
 }
 
@@ -49,6 +50,7 @@ export class AuthComponent {
           next: (response) => {
             localStorage.setItem('token', response.access_token)
             localStorage.setItem('store_id', response.user.store_id)
+            localStorage.setItem('store_name', response.user.storeName)
             localStorage.setItem('user_id', response.user.id)
             localStorage.setItem('role', response.user.role)
             localStorage.setItem('name', response.user.name)

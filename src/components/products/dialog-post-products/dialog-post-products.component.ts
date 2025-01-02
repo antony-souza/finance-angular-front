@@ -7,7 +7,7 @@ import { environment } from '../../../../environment/environment';
 import { MatDialogRef } from '@angular/material/dialog';
 
 interface ICategoriesResponse {
-  id: string;
+  _id: string;
   name: string;
 }
 
@@ -21,16 +21,16 @@ interface ICategoriesResponse {
 export class DialogPostProductsComponent implements OnInit {
 
   private selectedFile: File | null = null;
-  categories: ICategoriesResponse[] = [];
+  categoriesData: ICategoriesResponse[] = [];
   isLoading = false;
   
   formCreateProducts = this.formBuilder.group({
     name: ['',[Validators.required]],
     price: [''],
-    quantity: ['', [Validators.pattern(/^\d+$/)]],
+    stock: ['', [Validators.pattern(/^\d+$/)]],
     description: ['', [Validators.required]],
-    category_id: ['', [Validators.required]],
-    store_id: [localStorage.getItem('store_id')],
+    categories: ['', [Validators.required]],
+    store: [localStorage.getItem('store_id')],
     image_url: new FormControl<string | Blob>('')
   });
 
@@ -90,7 +90,7 @@ export class DialogPostProductsComponent implements OnInit {
       )
       .subscribe({
         next: (response) => {
-          this.categories = response;
+          this.categoriesData = response;
         },
         error: () => {
           this.isLoading = false;
