@@ -4,7 +4,7 @@ import { environment } from "../../../../environment/environment";
 import { Observable } from "rxjs";
 
 export interface IChartInfo {
-    name: string;
+    productName: string;
     quantitySold: number
     totalBilled: number;
 }

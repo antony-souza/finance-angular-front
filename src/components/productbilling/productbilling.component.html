@@ -2,11 +2,11 @@
   <app-dashboard />
 
   <div class="ml-64 flex flex-col w-full px-8 py-6">
-    <div class="flex items-center mb-8 pl-6">
+    <div class="flex items-center mb-8 pl-6 justify-between">
       <h2 class="text-4xl font-bold text-slate-950">Faturamento</h2>
       <div class="flex gap-4">
         <button class="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white rounded-md"
-          (click)="generateExcel()"
+          (click)="generateXlsx()"
         >
           <mat-icon>description</mat-icon>
           Gerar Excel 

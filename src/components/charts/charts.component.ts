@@ -67,7 +67,7 @@ export class ChartBaseComponent implements OnInit, OnDestroy {
       this.data = [];
 
       for (const item of this.chartInfo) {
-        this.label.push(item.name);
+        this.label.push(item.productName);
         this.data.push(item.totalBilled);
       }
     }
