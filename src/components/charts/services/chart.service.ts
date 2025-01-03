@@ -5,8 +5,8 @@ import { Observable } from "rxjs";
 
 export interface IChartInfo {
     name: string;
-    quantity_sold: number
-    total_billed: number;
+    quantitySold: number
+    totalBilled: number;
 }
 @Injectable({
     providedIn: 'root'

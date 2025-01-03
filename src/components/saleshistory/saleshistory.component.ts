@@ -6,6 +6,7 @@ import { environment } from '../../../environment/environment';
 import { LayoutDashboardComponent } from '../dashboard/layout-options.component';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { GenerateXlsxService } from '../../utils/generateXlsx/generate-xlsx.service';
 
 
 interface ISalesHistory {
@@ -31,7 +32,9 @@ interface ISalesHistory {
 export class SaleshistoryComponent implements OnInit {
   salesHistory: ISalesHistory[] = [];
 
-  constructor(private readonly httpClient: HttpClient) { }
+  constructor(
+    private readonly httpClient: HttpClient, 
+    private readonly xlsxService: GenerateXlsxService) { }
 
   storeId = localStorage.getItem('store_id');
 
@@ -45,18 +48,10 @@ export class SaleshistoryComponent implements OnInit {
       });
   }
 
-  generateExcel() {
-    this.httpClient
-      .get(`${environment.apiProd}/${environment.generateExcelToSales}/${this.storeId}`, { responseType: 'blob' })
-      .subscribe((response) => {
-        const url = window.URL.createObjectURL(response);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'sales.xlsx';
-        a.click();
-        window.URL.revokeObjectURL(url);
-      });
+  generateExcel(): void {
+    this.xlsxService.generateExcel(environment.generateExcelToSales, 'historico-vendas');
   }
+  
   generatePDF(): void {
     const data = document.querySelector('.pdfLayout') as HTMLElement;
 
