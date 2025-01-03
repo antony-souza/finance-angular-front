@@ -42,8 +42,7 @@
       <mat-icon matPrefix color="primary">supervisor_account</mat-icon>
       <mat-select matNativeControl formControlName="role" name="role">
         <mat-option value="" disabled selected>Selecione um cargo</mat-option>
-        <mat-option value="Subgerente">Sub-Gerente</mat-option>
-        <mat-option value="Vendedor">Vendedor</mat-option>
+        <mat-option *ngFor="let role of roles" value={{role.id}}>{{role.name}}</mat-option>
       </mat-select>
     </mat-form-field>
   </form>

@@ -1,10 +1,16 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MATERIAL_COMPONENTS } from '../../../utils/angular-material/angular-material';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environment/environment';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
+interface IRolesResponse {
+  id: string;
+  name: string;
+  permissionsName: string[];
+}
 
 @Component({
   selector: 'app-dialog-put-employees',
@@ -13,10 +19,12 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, ...MATERIAL_COMPONENTS],
 })
-export class DialogPutEmployeesComponent {
+export class DialogPutEmployeesComponent implements OnInit {
 
   private selectedFile: File | null = null;
   isLoading = false;
+
+  roles: IRolesResponse[] = [];
 
   formUpdateEmployee = this.formBuilder.group({
     name: [''],
@@ -31,6 +39,10 @@ export class DialogPutEmployeesComponent {
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<DialogPutEmployeesComponent>
   ) { }
+
+  ngOnInit(): void {
+    this.getRoles()
+  }
 
   onChangeFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -74,5 +86,13 @@ export class DialogPutEmployeesComponent {
 
   closeDialog() {
     this.dialogRef.close(true);
+  }
+
+  getRoles(){
+    this.httpClient.get<IRolesResponse[]>(`${environment.apiProd}/${environment.getAllRoles}`).subscribe({
+      next: (response) => {
+        this.roles = response
+      }
+    })
   }
 }
