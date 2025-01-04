@@ -61,7 +61,6 @@ export class CreateSalesComponent implements OnInit{
           }
         })
     }
-    console.log(this.formSales.value)
   }
 
   loadProducts() {

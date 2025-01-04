@@ -50,7 +50,6 @@ export class ChartBaseComponent implements OnInit, OnDestroy {
     this.webSocketService.connect();
     this.webSocketService.joinRoom(localStorage.getItem('store_id') as string);
     this.webSocketService.on(this.messageSockets, (data) => {
-      console.log('Dados atualizados do WebSocket:', data);
       this.chartInfo = data;
 
       this.processChartData();
