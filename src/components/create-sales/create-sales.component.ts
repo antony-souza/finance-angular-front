@@ -55,10 +55,13 @@ export class CreateSalesComponent implements OnInit{
         .post(`${environment.apiProd}/${environment.salesCreate}`, this.formSales.value)
         .subscribe({
           next: () => {
+            this.isLoading = false;
             this.formSales.reset();
             this.router.navigate(['/saleshistory'])
+          },
+         error: () => {
             this.isLoading = false;
-          }
+         }
         })
     }
   }
