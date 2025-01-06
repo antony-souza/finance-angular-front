@@ -21,7 +21,7 @@ export class DialogPostCategoriesComponent {
 
   formCreateCategories = this.formBuilder.group({
     name: ['',[Validators.required]],
-    store_id: [localStorage.getItem('store_id')],
+    store: [localStorage.getItem('store_id')],
     image_url: new FormControl<string | Blob>('')
   });
 
@@ -61,6 +61,7 @@ export class DialogPostCategoriesComponent {
         },
         error: () => {
           this.isLoading = false
+          
         }
       })
     } 
