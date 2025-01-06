@@ -28,8 +28,8 @@ export class DialogPutProductsComponent implements OnInit {
     name: [''],
     price: [''],
     description: [''],
-    category_id: [''],
-    quantity: ['', [Validators.pattern(/^\d+$/)]],
+    categories: [''],
+    stock: ['', [Validators.pattern(/^\d+$/)]],
     image_url: new FormControl<string | Blob>(''),
   });
 
