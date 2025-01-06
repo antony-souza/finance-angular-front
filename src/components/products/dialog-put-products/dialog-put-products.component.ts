@@ -21,7 +21,7 @@ interface ICategoriesResponse {
 export class DialogPutProductsComponent implements OnInit {
 
   private selectedFile: File | null = null;
-  categories: ICategoriesResponse[] = [];
+  categoriesData: ICategoriesResponse[] = [];
   isLoading = false;
 
   formUpdateProducts = this.formBuilder.group({
@@ -87,7 +87,7 @@ export class DialogPutProductsComponent implements OnInit {
         )
         .subscribe({
           next: (response) => {
-            this.categories = response;
+            this.categoriesData = response;
           },
           error: () => {
             this.isLoading = false;

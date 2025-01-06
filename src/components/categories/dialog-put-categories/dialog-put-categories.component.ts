@@ -22,7 +22,6 @@ export class DialogPutCategoriesComponent {
     image_url: new FormControl<string | Blob | null>(null),
     name: new FormControl<string | null>(null),
   })
-  
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { category_id: string },

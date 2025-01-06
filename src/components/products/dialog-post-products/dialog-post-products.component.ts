@@ -7,7 +7,7 @@ import { environment } from '../../../../environment/environment';
 import { MatDialogRef } from '@angular/material/dialog';
 
 interface ICategoriesResponse {
-  _id: string;
+  id: string;
   name: string;
 }
 
