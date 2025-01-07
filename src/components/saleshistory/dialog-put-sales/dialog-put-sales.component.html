@@ -1,0 +1,28 @@
+<h2 mat-dialog-title class="border-b">Editar Venda</h2>
+<mat-dialog-content>
+  <form [formGroup]="formUpdateSales" class="pt-3">
+    <mat-form-field class="w-full">
+      <mat-icon matPrefix color="primary">shopping_bag</mat-icon>
+      <mat-label>Quantidade Vendida</mat-label>
+      <input 
+        matInput 
+        formControlName="quantitySold" 
+        name="quantitySold"
+        type="number"
+        placeholder="Digite a quantidade vendida"
+      >
+    </mat-form-field>
+  </form>
+  <div class="flex justify-end w-full">
+    <button mat-button color="warn" (click)="closeDialog()">Fechar</button>
+    <button mat-button 
+      (click)="saveChanges()"
+      color="primary" 
+    >
+    <ng-container *ngIf="isLoading; else buttonText">
+      <mat-spinner [diameter]="24"></mat-spinner>
+    </ng-container>
+    <ng-template #buttonText>Salvar</ng-template>
+  </button>
+  </div>
+</mat-dialog-content>

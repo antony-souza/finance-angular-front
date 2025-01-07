@@ -7,9 +7,11 @@ import { LayoutDashboardComponent } from '../dashboard/layout-options.component'
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { GenerateXlsxService } from '../../utils/generateXlsx/generate-xlsx.service';
+import { DialogPutSalesComponent } from './dialog-put-sales/dialog-put-sales.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
-interface ISalesHistory {
+export interface ISalesHistory {
   storeName: string;
   totalBilled: number | string;
   quantitySold: number;
@@ -20,6 +22,7 @@ interface ISalesHistory {
   userName: string;
   userRole: string;
   userImg: string;
+  id: string;
 }
 
 @Component({
@@ -34,23 +37,53 @@ export class SaleshistoryComponent implements OnInit {
 
   constructor(
     private readonly httpClient: HttpClient, 
-    private readonly xlsxService: GenerateXlsxService) { }
+    private readonly xlsxService: GenerateXlsxService,
+    private readonly dialog: MatDialog
+  ) { }
 
   storeId = localStorage.getItem('store_id');
 
   ngOnInit(): void {
-    this.httpClient
-      .get<ISalesHistory[]>(
-        `${environment.apiProd}/${environment.salesAll}/${this.storeId}`
-      )
-      .subscribe((response) => {
-        this.salesHistory = response
-      });
+    this.loadSales();
   }
 
   generateExcel(): void {
     this.xlsxService.generateExcel(environment.generateExcelToSales, 'historico-vendas');
   }
+
+  loadSales() {
+    this.httpClient
+      .get<ISalesHistory[]>(
+        `${environment.apiProd}/${environment.salesAll}/${this.storeId}`
+      )
+      .subscribe({
+        next: (response) =>{
+          this.salesHistory = response
+        }
+      })
+  }
+
+  openDialogPutSales(saleId: string) {
+    const dialogRef = this.dialog.open(DialogPutSalesComponent, {
+      width: '400px',
+      data: { id: saleId }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadSales();
+      }
+    });
+  }
+
+  deleteSales(salesId: string) {
+    if(confirm('Tem certeza que deseja deletar esta venda? Essa ação não poderá ser desfeita!')) {
+    this.httpClient.delete(`${environment.apiProd}/${environment.salesDelete}/${salesId}`)
+      .subscribe(() => {
+        this.loadSales();
+      })
+  }
+}
   
   generatePDF(): void {
     const data = document.querySelector('.pdfLayout') as HTMLElement;

@@ -34,6 +34,7 @@
             <th class="px-6 py-3 font-normal text-white">Vendedor</th>
             <th class="px-6 py-3 font-normal text-white">Cargo</th>
             <th class="px-6 py-3 font-normal text-white">Empresa</th>
+            <th class="px-6 py-3 font-normal text-white">Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -52,6 +53,14 @@
             <td class="p-4 font-medium text-gray-800">{{ sales.userName }}</td>
             <td class="p-4 font-medium text-gray-800">{{ sales.userRole }}</td>
             <td class="p-4 font-medium text-gray-800">{{ sales.storeName }}</td>
+            <td class="p-4 font-medium text-gray-800">
+              <button class="rounded-full" (click)="openDialogPutSales(sales.id)">
+                <mat-icon color="primary">edit</mat-icon>
+              </button>
+              <button class="pl-2 rounded-full" (click)="deleteSales(sales.id)">
+                <mat-icon color="warn">delete</mat-icon>
+              </button> 
+            </td>
           </tr>
         </tbody>
       </table>
