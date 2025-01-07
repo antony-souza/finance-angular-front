@@ -51,6 +51,9 @@ export class DialogPutSalesComponent  {
           next: () => {
             this.closeDialog()
             this.isLoading = false;
+          },
+          error: () => {
+            this.isLoading = false;
           }
         });
     } 
