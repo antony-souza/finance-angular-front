@@ -18,10 +18,17 @@
           <mat-icon>description</mat-icon>
           Gerar Excel 
         </button>
+        <form [formGroup]="formFilterDate" class="flex items-center gap-2">
+          <input type="date" class="bg-white border border-indigo-500 rounded-md px-2 py-1" formControlName="startDate"  />
+          <input type="date" class="bg-white border border-indigo-500 rounded-md px-2 py-1" formControlName="endDate" />
+          <button class="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white rounded-md" (click)="getAllSalesByDate()">
+            <mat-icon class="cursor-pointer">search</mat-icon>
+          </button>
+        </form>
       </div>
     </div>
     <div class="overflow-x-auto pb-16">
-      <table class="pdfLayout min-w-full bg-white border border-gray-300 shadow">
+      <table class="w-full table-auto bg-white border border-gray-300 shadow">
         <thead>
           <tr class="bg-indigo-500 text-center border-b">
             <th class="px-6 py-3 font-normal text-white">Foto do Produto</th>
@@ -33,7 +40,6 @@
             <th class="px-6 py-3 font-normal text-white">Foto do Vendedor</th>
             <th class="px-6 py-3 font-normal text-white">Vendedor</th>
             <th class="px-6 py-3 font-normal text-white">Cargo</th>
-            <th class="px-6 py-3 font-normal text-white">Empresa</th>
             <th class="px-6 py-3 font-normal text-white">Ações</th>
           </tr>
         </thead>
@@ -52,7 +58,6 @@
             </td>
             <td class="p-4 font-medium text-gray-800">{{ sales.userName }}</td>
             <td class="p-4 font-medium text-gray-800">{{ sales.userRole }}</td>
-            <td class="p-4 font-medium text-gray-800">{{ sales.storeName }}</td>
             <td class="p-4 font-medium text-gray-800">
               <button class="rounded-full" (click)="openDialogPutSales(sales.id)">
                 <mat-icon color="primary">edit</mat-icon>

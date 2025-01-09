@@ -9,6 +9,7 @@ import jsPDF from 'jspdf';
 import { GenerateXlsxService } from '../../utils/generateXlsx/generate-xlsx.service';
 import { DialogPutSalesComponent } from './dialog-put-sales/dialog-put-sales.component';
 import { MatDialog } from '@angular/material/dialog';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 
 export interface ISalesHistory {
@@ -28,7 +29,7 @@ export interface ISalesHistory {
 @Component({
   selector: 'app-saleshistory',
   standalone: true,
-  imports: [CommonModule, LayoutDashboardComponent, ...MATERIAL_COMPONENTS],
+  imports: [CommonModule, LayoutDashboardComponent, ...MATERIAL_COMPONENTS, ReactiveFormsModule],
   templateUrl: './saleshistory.component.html',
   styleUrls: ['./saleshistory.component.scss'],
 })
@@ -37,11 +38,18 @@ export class SaleshistoryComponent implements OnInit {
 
   constructor(
     private readonly httpClient: HttpClient, 
+    private readonly formBuilder: FormBuilder,
     private readonly xlsxService: GenerateXlsxService,
     private readonly dialog: MatDialog
   ) { }
 
   storeId = localStorage.getItem('store_id');
+
+  formFilterDate = this.formBuilder.group({
+    store_id: [this.storeId],
+    startDate: [''],
+    endDate: ['']
+  })
 
   ngOnInit(): void {
     this.loadSales();
@@ -84,6 +92,31 @@ export class SaleshistoryComponent implements OnInit {
       })
   }
 }
+
+  getAllSalesByDate() {
+    if(this.formFilterDate.valid){
+
+      const formData = new FormData();
+      const formValues = this.formFilterDate.value;
+      
+      Object.entries(formValues).forEach(([key, value]) => {
+        if(value) {
+          formData.append(key, value);
+        }
+      })
+      
+      this.httpClient
+      .post<ISalesHistory[]>(
+        `${environment.apiProd}/${environment.salesAllByDate}`, 
+        formValues
+      )
+      .subscribe({
+        next: (response:ISalesHistory[]) =>{
+          this.salesHistory = response
+        }
+      })
+    }
+  }
   
   generatePDF(): void {
     const data = document.querySelector('.pdfLayout') as HTMLElement;
