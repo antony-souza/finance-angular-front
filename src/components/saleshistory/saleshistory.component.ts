@@ -55,10 +55,6 @@ export class SaleshistoryComponent implements OnInit {
     this.loadSales();
   }
 
-  generateExcel(): void {
-    this.xlsxService.generateExcel(environment.generateExcelToSales, 'historico-vendas');
-  }
-
   loadSales() {
     this.httpClient
       .get<ISalesHistory[]>(
@@ -116,6 +112,10 @@ export class SaleshistoryComponent implements OnInit {
         }
       })
     }
+  }
+
+  generateExcel(): void {
+    this.xlsxService.generateExcel(environment.generateExcelToSales,'historico-vendas');
   }
   
   generatePDF(): void {

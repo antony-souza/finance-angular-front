@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { WebSocketService } from '../../web/socket.component';
 
+
 interface IAsideMenu {
   name: string;
   icon: string;
@@ -25,6 +26,12 @@ export class LayoutDashboardComponent implements OnInit {
   user = { id: '', image_url: '', name: '', role: '' };
   
   asideMenu: IAsideMenu[] = [
+    {
+      name: 'Top Vendas',
+      icon: 'emoji_events',
+      roles: ['Gerente', 'Subgerente'],
+      action: () => this.handleNavigateToTopVendas(),
+    },
     {
       name: 'Registrar Venda',
       icon: 'add_shopping_cart',
@@ -60,7 +67,7 @@ export class LayoutDashboardComponent implements OnInit {
       icon: 'category',
       roles: ['Gerente', 'Vendedor'],
       action: () => this.handleNavigateToCategories(),
-    },
+    }, 
   ];
 
   ngOnInit() {
@@ -105,6 +112,11 @@ export class LayoutDashboardComponent implements OnInit {
   handleNavigateToCategories() {
     this.router.navigate(['/categories']);
   }
+
+  handleNavigateToTopVendas() {
+    this.router.navigate(['/topvendas']);
+  }
+  
 
   handleLogout() {
     const storeId = localStorage.getItem('store_id') as string;

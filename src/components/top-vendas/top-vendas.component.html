@@ -1,0 +1,36 @@
+<div class="flex h-full">
+    <app-dashboard />
+    
+    <div class="ml-64 w-full px-8 py-6">
+  
+      <div class="flex justify-between mb-6">
+        <h2 class="text-4xl font-bold text-slate-950">Top Vendas - Destaque</h2>
+      </div>
+  
+      <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-300 shadow">
+          <thead>
+            <tr class="bg-indigo-500 text-center border-b">
+              <th class="px-6 py-3 font-normal text-white">Foto</th>
+              <th class="px-6 py-3 font-normal text-white">Nome</th>
+              <th class="px-6 py-3 font-normal text-white">Cargo</th>
+              <th class="px-6 py-3 font-normal text-white">Quantidade Vendida</th>
+              <th class="px-6 py-3 font-normal text-white">Total Faturado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of dataArray" class="border-b text-center">
+              <td class="p-4 flex justify-center items-center">
+                <img [src]="data.userImg" alt="Foto do Funcionário" class="w-12 h-12 rounded-full object-cover" />
+              </td>
+              <td class="p-4 font-medium text-gray-800">{{ data.userName }}</td>
+              <td class="p-4 font-medium text-gray-800">{{ data.userRole }}</td>
+              <td class="p-4 font-medium text-gray-800">{{ data.quantitySold }}</td>
+              <td class="p-4 font-medium text-gray-800">{{ data.totalBilled }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
