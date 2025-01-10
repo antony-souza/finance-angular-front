@@ -1,9 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MATERIAL_COMPONENTS } from '../../utils/angular-material/angular-material';
 import { CommonModule } from '@angular/common';
 import { LayoutDashboardComponent } from '../dashboard/layout-options.component';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder } from '@angular/forms';
 import { environment } from '../../../environment/environment';
 
 interface IResponseTopVendas {
@@ -26,9 +25,6 @@ interface IResponseTopVendas {
 export class TopVendasComponent implements OnInit{
   
   constructor(private readonly httpClient: HttpClient) {}
-
-
-  formBuilder = inject(FormBuilder);
 
   storeId = localStorage.getItem('store_id');
   
