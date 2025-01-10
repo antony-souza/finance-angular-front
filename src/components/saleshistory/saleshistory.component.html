@@ -19,10 +19,15 @@
           Gerar Excel 
         </button>
         <form [formGroup]="formFilterDate" class="flex items-center gap-2">
+          <span>De</span>
           <input type="date" class="bg-white border border-indigo-500 rounded-md px-2 py-1" formControlName="startDate"  />
+          <span>Até</span>
           <input type="date" class="bg-white border border-indigo-500 rounded-md px-2 py-1" formControlName="endDate" />
           <button class="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white rounded-md" (click)="getAllSalesByDate()">
             <mat-icon class="cursor-pointer">search</mat-icon>
+          </button>
+          <button class="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white rounded-md" (click)="loadSales()">
+            <mat-icon class="cursor-pointer">refresh</mat-icon>
           </button>
         </form>
       </div>
