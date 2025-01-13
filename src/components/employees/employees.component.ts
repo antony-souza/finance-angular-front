@@ -46,9 +46,9 @@ export class EmployeesComponent implements OnInit {
   }
 
   searchEmployees(search: string) {
-    
+
     if(!search.trim()){
-      return this.loadEmployees();
+      return 
     }
 
     this.genericSearchService.genericBaseSearch<IEmployeeResponse[]>(environment.searchUsersFromStoreByName, search)
