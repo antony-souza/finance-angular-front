@@ -41,6 +41,13 @@ export class EmployeesComponent implements OnInit {
       });
   }
 
+/*   searchEmployees(name: string) {
+    this.httpClient.get<IEmployeeResponse[]>(`${environment.apiProd}/${environment.getAllUsers}/${localStorage.getItem('store_id')}/${name}`)
+      .subscribe(response => {
+        this.employees = response;
+      });
+  } */
+
   openEditDialog(employeeId: string): void {
     const dialogRef = this.dialog.open(DialogPutEmployeesComponent, {
       width: '400px',

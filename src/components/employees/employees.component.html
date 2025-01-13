@@ -1,17 +1,27 @@
 <div class="flex h-full">
   <app-dashboard />
-  
+
   <div class="ml-64 w-full px-8 py-6">
 
     <div class="flex justify-between mb-6">
       <h2 class="text-4xl font-bold text-slate-950">Lista de Funcionários</h2>
-
-      <button class="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white rounded-md" 
-        (click)="openCreateDialog()"
-      >
-        <mat-icon>add</mat-icon>
-        Adicionar Funcionário
-      </button>
+      <div class="flex gap-2">
+        <input 
+        #searchInput 
+        type="search" 
+        class="bg-white border border-indigo-500 rounded-md px-4 py-2"
+        placeholder="Buscar Funcionários" 
+        name="search" 
+        />
+        <button class="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white rounded-md">
+          <mat-icon class="cursor-pointer">search</mat-icon>
+        </button>
+        <button class="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white rounded-md"
+          (click)="openCreateDialog()">
+          <mat-icon>add</mat-icon>
+          Adicionar Funcionário
+        </button>
+      </div>
     </div>
 
     <div class="overflow-x-auto">
@@ -41,7 +51,7 @@
               </button>
               <button class="pl-2 rounded-full" (click)="deleteUser(employee.id)">
                 <mat-icon color="warn">delete</mat-icon>
-              </button> 
+              </button>
             </td>
           </tr>
         </tbody>

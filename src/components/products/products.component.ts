@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogPutProductsComponent } from './dialog-put-products/dialog-put-products.component';
 import { formatPrice } from '../../utils/formatMoney/format-price.service';
 import { DialogPostProductsComponent } from './dialog-post-products/dialog-post-products.component';
+import { GenericSearchService } from '../../utils/genericSearch/generic-search.service';
 interface IProductResponse {
   product_id: string;
   product_name: string;
@@ -34,6 +35,7 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private readonly httpClient: HttpClient,
+    private readonly genericSearchService: GenericSearchService,
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -51,20 +53,18 @@ export class ProductsComponent implements OnInit {
   }
 
   searchProducts(search: string) {
-    
-    if(!search.trim()){
+
+    if (!search.trim()) {
       return this.getProducts();
     }
 
-    this.httpClient.get<IProductResponse[]>(`${environment.apiProd}/${environment.searchProductsFromStoreByName}/${localStorage.getItem('store_id')}/${search}`)
+    this.genericSearchService.genericBaseSearch<IProductResponse[]>(environment.searchProductsFromStoreByName, search)
       .subscribe((response) => {
         this.products = response.map((product) => ({
           ...product,
           formatted_price: formatPrice(product.product_price)
         }))
-
-      }
-      );
+      });
   }
 
   openDialogPutProducts(product_id: string) {
