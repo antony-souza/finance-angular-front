@@ -50,6 +50,23 @@ export class ProductsComponent implements OnInit {
       });
   }
 
+  searchProducts(search: string) {
+    
+    if(!search.trim()){
+      return this.getProducts();
+    }
+
+    this.httpClient.get<IProductResponse[]>(`${environment.apiProd}/${environment.searchProductsFromStoreByName}/${localStorage.getItem('store_id')}/${search}`)
+      .subscribe((response) => {
+        this.products = response.map((product) => ({
+          ...product,
+          formatted_price: formatPrice(product.product_price)
+        }))
+
+      }
+      );
+  }
+
   openDialogPutProducts(product_id: string) {
     const dialogRef = this.dialog.open(DialogPutProductsComponent, {
       width: '400px',
@@ -76,11 +93,11 @@ export class ProductsComponent implements OnInit {
   }
 
   deleteProduct(product_id: string) {
-    if(confirm('Tem certeza que deseja deletar este produto? Essa ação não poderá ser desfeita!')) {
-    this.httpClient.delete(`${environment.apiProd}/${environment.deleteProduct}/${product_id}`)
-      .subscribe(() => {
-        this.getProducts();
-      })
+    if (confirm('Tem certeza que deseja deletar este produto? Essa ação não poderá ser desfeita!')) {
+      this.httpClient.delete(`${environment.apiProd}/${environment.deleteProduct}/${product_id}`)
+        .subscribe(() => {
+          this.getProducts();
+        })
+    }
   }
-}
 }
