@@ -7,6 +7,7 @@ import { LayoutDashboardComponent } from '../dashboard/layout-options.component'
 import { DialogPutEmployeesComponent } from './dialog-put-employees/dialog-put-employees.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogPostEmployeesComponent } from './dialog-post-employees/dialog-post-employees.component';
+import { GenericSearchService } from '../../utils/genericSearch/generic-search.service';
 
 interface IEmployeeResponse {
   id: string;
@@ -26,7 +27,10 @@ interface IEmployeeResponse {
 })
 export class EmployeesComponent implements OnInit {
  
-  constructor(private readonly httpClient: HttpClient, private dialog: MatDialog) { }
+  constructor(
+    private readonly httpClient: HttpClient, 
+    private readonly genericSearchService: GenericSearchService,
+    private dialog: MatDialog) { }
 
   employees: IEmployeeResponse[] = []
   
@@ -41,12 +45,17 @@ export class EmployeesComponent implements OnInit {
       });
   }
 
-/*   searchEmployees(name: string) {
-    this.httpClient.get<IEmployeeResponse[]>(`${environment.apiProd}/${environment.getAllUsers}/${localStorage.getItem('store_id')}/${name}`)
-      .subscribe(response => {
-        this.employees = response;
-      });
-  } */
+  searchEmployees(search: string) {
+    
+    if(!search.trim()){
+      return this.loadEmployees();
+    }
+
+    this.genericSearchService.genericBaseSearch<IEmployeeResponse[]>(environment.searchUsersFromStoreByName, search)
+    .subscribe(response => {
+      this.employees = response;
+    })
+  }
 
   openEditDialog(employeeId: string): void {
     const dialogRef = this.dialog.open(DialogPutEmployeesComponent, {
