@@ -55,7 +55,7 @@ export class ProductsComponent implements OnInit {
   searchProducts(search: string) {
 
     if (!search.trim()) {
-      return this.getProducts();
+      return
     }
 
     this.genericSearchService.genericBaseSearch<IProductResponse[]>(environment.searchProductsFromStoreByName, search)
