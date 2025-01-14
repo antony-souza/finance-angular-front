@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogPutCategoriesComponent } from './dialog-put-categories/dialog-put-categories.component';
 import { DialogPostCategoriesComponent } from './dialog-post-categories/dialog-post-categories.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { GenericSearchService } from '../../utils/genericSearch/generic-search.service';
 
 interface ICategoriesResponse {
   id: string;
@@ -25,7 +26,10 @@ interface ICategoriesResponse {
 })
 export class CategoriesComponent implements OnInit {
 
-  constructor(private readonly httpClient: HttpClient, private dialog: MatDialog) { }
+  constructor(
+    private readonly httpClient: HttpClient, 
+    private readonly genericSearchService: GenericSearchService,
+    private dialog: MatDialog) { }
 
   categories: ICategoriesResponse[] = []
 
@@ -38,6 +42,17 @@ export class CategoriesComponent implements OnInit {
       .subscribe(response => {
         this.categories = response;
       });
+  }
+
+  searchCategories(search: string) {
+    if(!search.trim()){
+      return
+    }
+
+    this.genericSearchService.genericBaseSearch<ICategoriesResponse[]>(environment.searchCategoriesFromStoreByName, search)
+    .subscribe(response =>{
+      this.categories = response;
+    })
   }
 
   openEditDialog(category_id: string): void {

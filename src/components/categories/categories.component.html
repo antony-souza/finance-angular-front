@@ -5,13 +5,33 @@
 
     <div class="flex justify-between mb-6">
       <h2 class="text-4xl font-bold text-slate-950">Lista de Categorias</h2>
-
-      <button class="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white rounded-md" 
+      <div class="flex gap-2">
+        <input 
+            #searchInput
+            type="search" 
+            class="bg-white border border-indigo-500 rounded-md px-4 py-2" 
+            placeholder="Buscar Categorias"
+            name="search"
+          />
+          <button 
+            class="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white rounded-md"
+            (click)="searchCategories(searchInput.value)"
+            >
+            <mat-icon class="cursor-pointer">search</mat-icon>
+          </button>
+          <button 
+            class="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white rounded-md"
+            (click)="loadCategories()"
+            >
+            <mat-icon class="cursor-pointer">refresh</mat-icon>
+          </button>
+        <button class="flex items-center gap-2 px-4 py-2 bg-indigo-500 text-white rounded-md" 
         (click)="openCreateDialog()"
-      >
+        >
         <mat-icon>add</mat-icon>
         Adicionar Categoria
       </button>
+    </div>
     </div>
 
     <div class="overflow-x-auto">
