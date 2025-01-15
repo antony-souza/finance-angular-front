@@ -29,13 +29,11 @@ export class RevoveryComponent {
     this.isLoading = true;
     this.httpClient.post(`${environment.apiProd}/${environment.sendCodeRecoveryByEmail}`, this.recoveryForm.value)
     .subscribe({
-      next: (response) => {
+      next: () => {
         this.isLoading = false;
-        console.log(response);
       },
-      error: (erro) => {
+      error: () => {
         this.isLoading = false;
-        console.log(erro)
       }
     })
   }
