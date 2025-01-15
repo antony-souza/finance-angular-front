@@ -9,12 +9,17 @@ import { EmployeesComponent } from '../components/employees/employees.component'
 import { ProductsComponent } from '../components/products/products.component';
 import { CategoriesComponent } from '../components/categories/categories.component';
 import { TopVendasComponent } from '../components/top-vendas/top-vendas.component';
+import { RevoveryComponent } from '../components/revovery/revovery.component';
 
 export const routes: Routes =
     [
         {
             path: '',
             component: AuthComponent
+        },
+        {
+            path:'recovery',
+            component: RevoveryComponent
         },
         {
             path: 'home',

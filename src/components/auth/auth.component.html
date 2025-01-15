@@ -43,9 +43,10 @@
       </button>
     </form>
     <div class="mt-4 text-center">
-      <a href="#" class="text-blue-600 hover:underline text-sm"
-        >Esqueceu sua senha?</a
-      >
+      <button 
+        class="text-blue-600 hover:underline text-sm"
+        (click)="recoverySendEmail()"
+      >Esqueceu a senha?</button>
     </div>
   </mat-card>
 </div>

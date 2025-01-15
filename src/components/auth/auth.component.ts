@@ -64,4 +64,7 @@ export class AuthComponent {
         })
     }
   }
+  recoverySendEmail() {
+    this.router.navigate(['/recovery'])
+  }
 }
