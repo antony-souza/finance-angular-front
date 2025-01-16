@@ -13,10 +13,8 @@ export interface IChartInfo {
 })
 export class ChartService{
 
-    storeId: string | null = null;
-    constructor(private httpClient: HttpClient) { 
-        this.storeId = localStorage.getItem('store_id') as string;
-    }
+    storeId = localStorage.getItem('store_id') as string;
+    constructor(private httpClient: HttpClient) { }
 
     getChartInfo(): Observable<IChartInfo[]> {
         return this.httpClient.get<IChartInfo[]>(`${environment.apiProd}/${environment.productbilling}/${this.storeId}`);
