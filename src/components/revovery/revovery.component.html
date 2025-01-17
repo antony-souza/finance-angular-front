@@ -15,7 +15,7 @@
         <mat-step [stepControl]="firstFormRecoveryEmail">
           <form [formGroup]="firstFormRecoveryEmail">
             <ng-template matStepLabel>Envie o e-mail de recuperação</ng-template>
-            <mat-form-field>
+            <mat-form-field class="pt-3">
               <mat-label>Email</mat-label>
               <input matInput 
                 placeholder="Digite um e-mail válido"  
@@ -37,7 +37,7 @@
         <mat-step [stepControl]="twoFormRecoveryCode">
           <form [formGroup]="twoFormRecoveryCode">
             <ng-template matStepLabel>Digite o código</ng-template>
-            <mat-form-field>
+            <mat-form-field class="pt-3">
               <mat-label>Código</mat-label>
               <input matInput 
                 #recoveryCodeValidate
@@ -61,7 +61,7 @@
         <mat-step [stepControl]="threeFormRecoveryPassword">
           <form [formGroup]="threeFormRecoveryPassword">
             <ng-template matStepLabel>Nova Senha</ng-template>
-            <mat-form-field>
+            <mat-form-field class="pt-3">
               <mat-label>Senha</mat-label>
               <input matInput 
                 placeholder="Digite uma nova senha" 
