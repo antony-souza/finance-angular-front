@@ -28,7 +28,8 @@
             <div>
               <button 
                 mat-button matStepperNext
-              >Próximo</button>
+                (click)="sendEmailForRecovery()"
+                >Próximo</button>
             </div>
           </form>
         </mat-step>
@@ -38,16 +39,20 @@
             <mat-form-field>
               <mat-label>Código</mat-label>
               <input matInput 
+                #recoveryCodeValidate
                 placeholder="Código enviado por e-mail" 
-                type="number" 
-                formControlName="code" 
-                name="code" 
+                type="text" 
+                formControlName="recoveryCode" 
+                name="recoveryCode" 
                 required
               />
             </mat-form-field>
             <div>
               <button mat-button matStepperPrevious>Voltar</button>
-              <button mat-button matStepperNext>Próximo</button>
+              <button 
+                mat-button matStepperNext
+                (click)="validateCodeRecovery()"
+              >Próximo</button>
             </div>
           </form>
         </mat-step>
@@ -66,7 +71,10 @@
             </mat-form-field>
             <div>
               <button mat-button matStepperPrevious>Voltar</button>
-              <button mat-button matStepperNext>Próximo</button>
+              <button 
+                mat-button matStepperNext
+                (click)="updatePassword(recoveryCodeValidate.value)"
+              >Próximo</button>
             </div>
           </form>
         </mat-step>

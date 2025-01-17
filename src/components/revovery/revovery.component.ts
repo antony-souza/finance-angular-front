@@ -8,6 +8,12 @@ import { Router } from '@angular/router';
 
 interface IRecoveryResponse {
   message: string
+  recoveryCode: string
+}
+
+interface IResponseValidateCode {
+  message: string
+  recoveryCode: string
 }
 
 @Component({
@@ -21,7 +27,6 @@ export class RevoveryComponent {
 
   formBuilder = inject(FormBuilder);
   isLoading = false;
-  recoveryResponse = '';
   isLinear = false;
   router = inject(Router);
 
@@ -32,10 +37,11 @@ export class RevoveryComponent {
   });
 
   twoFormRecoveryCode = this.formBuilder.group({
-    code: ['',[Validators.required]]
+    recoveryCode: ['',[Validators.required]]
   });
 
   threeFormRecoveryPassword = this.formBuilder.group({
+    recoveryCode: ['',[Validators.required]],
     password: ['',[Validators.required, Validators.minLength(6)]],
   });
 
@@ -43,12 +49,42 @@ export class RevoveryComponent {
     this.isLoading = true;
     this.httpClient.post<IRecoveryResponse>(`${environment.apiProd}/${environment.sendCodeRecoveryByEmail}`, this.firstFormRecoveryEmail.value)
     .subscribe({
-      next: (response) => {
+      next: () => {
         this.isLoading = false;
-        this.recoveryResponse = response.message;
       },
       error: () => {
         this.isLoading = false;
+      }
+    })
+  }
+
+  validateCodeRecovery() {
+    this.isLoading = true;
+    this.httpClient.post<IResponseValidateCode>(`${environment.apiProd}/${environment.validateCodeRecovery}`, this.twoFormRecoveryCode.value)
+    .subscribe({
+      next: () => {
+        this.isLoading = false;
+      },
+      error: () => {
+        this.isLoading = false;
+      }
+    })
+  }
+
+  updatePassword(recoveryCode: string) {
+    this.isLoading = true;
+    this.threeFormRecoveryPassword.controls.recoveryCode.setValue(recoveryCode);
+    this.httpClient.put(`${environment.apiProd}/${environment.updateUserForRecovery}`, this.threeFormRecoveryPassword.value)
+    .subscribe({
+      next: () => {
+        this.isLoading = false;
+        this.threeFormRecoveryPassword.reset();
+        this.firstFormRecoveryEmail.reset();
+        this.twoFormRecoveryCode.reset();
+      },
+      error: () => {
+        this.isLoading = false;
+    
       }
     })
   }
