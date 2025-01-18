@@ -1,16 +1,12 @@
 <div class="flex h-full">
   <app-dashboard />
-
   <div class="ml-64 flex flex-col w-full px-8 py-6">
- 
     <div class="flex items-center mb-8 pl-6">
       <h2 class="text-4xl font-bold text-slate-950">Registrar Venda</h2>
     </div>
-
     <div class="flex justify-start items-center pl-6">
-      <mat-card class="w-full max-w-md bg-white p-8 rounded-lg shadow-custom">
+      <mat-card class="w-full max-w-md bg-white p-8 rounded-lg shadow-custom pb-4">
         <form [formGroup]="formSales" (submit)="onSubmitSales()" class="space-y-6">
-    
           <mat-form-field class="w-full" appearance="fill">
             <mat-label>Produto Vendido</mat-label>
             <mat-icon matPrefix color="primary">shopping_cart</mat-icon>
@@ -21,7 +17,6 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-
           <mat-form-field class="w-full" appearance="fill">
             <mat-label>Quantidade da Venda</mat-label>
             <mat-icon matPrefix color="primary">filter_1</mat-icon>
@@ -33,6 +28,39 @@
               placeholder="Digite a quantidade"
             />
           </mat-form-field>
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Nome do Cliente</mat-label>
+            <mat-icon matPrefix color="primary">person</mat-icon>
+            <input
+              matInput
+              type="text"
+              name="clientName"
+              formControlName="clientName"
+              placeholder="Informe o nome do cliente"
+            />
+          </mat-form-field>
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Entrega</mat-label>
+            <mat-icon matPrefix color="primary">local_shipping</mat-icon>
+            <mat-select matNativeControl formControlName="isDelivery">
+              <mat-option value="" disabled selected>Selecione a opção</mat-option>
+              <mat-option [value]='true'>Sim</mat-option>
+              <mat-option [value]='false'>Não</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div *ngIf="formSales.get('isDelivery')?.value === true">
+            <mat-form-field class="w-full" appearance="fill">
+              <mat-label>Endereço de Entrega</mat-label>
+              <mat-icon matPrefix color="primary">home</mat-icon>
+                <input
+                matInput
+                type="text"
+                name="deliveryAddress"
+                formControlName="deliveryAddress"
+                placeholder="Informe o endereço de entrega"
+                />
+            </mat-form-field>
+        </div>
           <button
             mat-raised-button
             color="primary"
