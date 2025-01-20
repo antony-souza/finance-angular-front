@@ -10,6 +10,7 @@ import { ProductsComponent } from '../components/products/products.component';
 import { CategoriesComponent } from '../components/categories/categories.component';
 import { TopVendasComponent } from '../components/top-vendas/top-vendas.component';
 import { RevoveryComponent } from '../components/revovery/revovery.component';
+import { DeliveryComponent } from '../components/delivery/delivery.component';
 
 export const routes: Routes =
     [
@@ -61,5 +62,10 @@ export const routes: Routes =
             component: TopVendasComponent,
             canActivate: [RouterGuard]
         },
+        {
+            path:'delivery',
+            component: DeliveryComponent,
+            canActivate: [RouterGuard]
+        }
 
     ];

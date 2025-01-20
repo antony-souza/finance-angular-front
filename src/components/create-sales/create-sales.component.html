@@ -50,6 +50,18 @@
           </mat-form-field>
           <div *ngIf="formSales.get('isDelivery')?.value === true">
             <mat-form-field class="w-full" appearance="fill">
+              <mat-label>Data da Entrega</mat-label>
+              <mat-icon matPrefix color="primary">calendar_today</mat-icon>
+              <input
+              matInput
+              type="date"
+              name="deliveryDate"
+              formControlName="deliveryDate"
+              />
+            </mat-form-field>
+          </div>
+          <div *ngIf="formSales.get('isDelivery')?.value === true">
+            <mat-form-field class="w-full" appearance="fill">
               <mat-label>Endereço de Entrega</mat-label>
               <mat-icon matPrefix color="primary">home</mat-icon>
                 <input

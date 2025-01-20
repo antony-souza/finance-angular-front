@@ -43,6 +43,7 @@ export class CreateSalesComponent implements OnInit {
     clientName: ['', [this.validadtors.required]],
     isDelivery: [false, [this.validadtors.required]],
     deliveryAddress: [''],
+    deliveryDate: [Date],
     store_id: [localStorage.getItem('store_id')],
     user_id: [localStorage.getItem('user_id')],
   })

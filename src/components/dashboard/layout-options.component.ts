@@ -45,6 +45,12 @@ export class LayoutDashboardComponent implements OnInit {
       action: () => this.handleNavigateToHistoryPayments(),
     },
     {
+      name: 'Entregas',
+      icon: 'local_shipping',
+      roles: ['Gerente', 'Vendedor'],
+      action: () => this.handleNavigateToDelivery(),
+    }, 
+    {
       name: 'Faturamento',
       icon: 'attach_money',
       roles: ['Gerente'],
@@ -115,6 +121,10 @@ export class LayoutDashboardComponent implements OnInit {
 
   handleNavigateToTopVendas() {
     this.router.navigate(['/topvendas']);
+  }
+
+  handleNavigateToDelivery() {
+    this.router.navigate(['/delivery']);
   }
   
 
